@@ -6,7 +6,16 @@
 
     <groupId>org.example</groupId>
     <artifactId>SVDJGroep8</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx</artifactId>
+            <version>11</version>
+            <type>pom</type>
+        </dependency>
+    </dependencies>
 
 
 </project>
