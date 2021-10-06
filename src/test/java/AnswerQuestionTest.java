@@ -1,8 +1,6 @@
-package Tests;
-
 import org.junit.jupiter.api.Test;
 
-public class TemplateForTest {
+public class AnswerQuestionTest {
 
     @Test
     public void Should_doeIets_When_IetsWordtGedaan() {
@@ -16,5 +14,4 @@ public class TemplateForTest {
 
 
     }
-
 }

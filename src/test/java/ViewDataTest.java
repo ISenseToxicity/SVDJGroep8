@@ -1,8 +1,6 @@
-package Tests;
-
 import org.junit.jupiter.api.Test;
 
-public class GetCSVReportTest {
+public class ViewDataTest {
 
     @Test
     public void Should_doeIets_When_IetsWordtGedaan() {
