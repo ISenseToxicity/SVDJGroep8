@@ -1,4 +1,4 @@
 package controllers;
 
-public class AdminPanelController {
+public class AdminPanelController implements Controller {
 }

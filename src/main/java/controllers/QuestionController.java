@@ -1,4 +1,4 @@
 package controllers;
 
-public class QuestionController {
+public class QuestionController implements Controller {
 }

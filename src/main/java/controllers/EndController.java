@@ -1,4 +1,4 @@
 package controllers;
 
-public class EndController {
+public class EndController implements Controller {
 }

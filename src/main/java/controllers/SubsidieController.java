@@ -1,4 +1,4 @@
 package controllers;
 
-public class SubsidieController {
+public class SubsidieController implements Controller {
 }

@@ -1,4 +1,4 @@
 package controllers;
 
-public class CategoryController {
+public class CategoryController implements Controller {
 }

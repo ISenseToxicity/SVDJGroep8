@@ -1,4 +1,4 @@
 package controllers;
 
-public class RouteController {
+public class RouteController implements Controller {
 }

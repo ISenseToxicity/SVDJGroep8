@@ -1,4 +1,4 @@
 package controllers;
 
-public class InfoPopupController {
+public class InfoPopupController implements Controller {
 }

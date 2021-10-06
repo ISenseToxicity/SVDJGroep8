@@ -1,4 +1,4 @@
 package controllers;
 
-public class StartController {
+public class StartController implements Controller {
 }
