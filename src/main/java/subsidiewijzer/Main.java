@@ -31,6 +31,8 @@ public class Main extends Application {
         ControllerRegistry.register(new StartController());
         ControllerRegistry.register(new SubsidieController());
 
+
+
         // Hello world
         primaryStage.setTitle("Hello World!");
         Button btn = new Button();

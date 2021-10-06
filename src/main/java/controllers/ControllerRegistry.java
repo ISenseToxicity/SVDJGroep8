@@ -22,4 +22,10 @@ public class ControllerRegistry {
             return controllers.values();
         }
 
+
+
+    // Als je Instanties van ControllerRegistry wilt halen type dan
+    // KlasNaam klasNaam = (KlasNaam) ControllerRegistry.get(KlasNaam.class);
+    // :)
+
 }
