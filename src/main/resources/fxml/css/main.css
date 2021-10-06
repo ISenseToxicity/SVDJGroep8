@@ -31,7 +31,7 @@
 
 .svdj-corner {
     -fx-font-size: 1;
-    -fx-fill-height: 10;
+    -fx-fill-height: 10px;
     -fx-border-width: 2 2 0 0;
     -fx-border-color: #FFFFFF;
     -fx-border-insets: 0 0 0 10;
