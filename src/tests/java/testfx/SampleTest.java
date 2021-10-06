@@ -1,3 +1,5 @@
+package testfx;
+
 import javafx.scene.Parent;
 import org.loadui.testfx.GuiTest;
 
