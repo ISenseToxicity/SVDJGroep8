@@ -12,9 +12,9 @@
 .check-box .box {
     -fx-padding: 0;
     -fx-background-color: #F7F7F7;
-    -fx-background-radius: 50;
+    -fx-background-radius: 50%;
     -fx-border-color: #000000;
-    -fx-border-width: 3;
+    -fx-border-width: 3px;
     -fx-border-radius: 50%;
 }
 
@@ -30,16 +30,35 @@
     -fx-background-color: #000000;
     -fx-font-family: "Segoe UI";
     -fx-font-weight: bold;
-    -fx-font-size: 15;
+    -fx-font-size: 15px;
     -fx-text-fill: #FFFFFF;
     -fx-background-radius: 0;
-    -fx-padding: 15 25;
+    -fx-padding: 15px 25px;
 }
 
 .svdj-corner {
-    -fx-font-size: 1;
+    -fx-font-size: 1px;
     -fx-fill-height: 10px;
-    -fx-border-width: 2 2 0 0;
+    -fx-border-width: 2px 2px 0 0;
     -fx-border-color: #FFFFFF;
-    -fx-border-insets: 0 0 0 10;
+    -fx-border-insets: 0 0 0 10px;
+}
+
+.more-info-corner {
+    -fx-border-color: #000000;
+    -fx-border-width: 2px 2px 0 0;
+    -fx-border-insets: 0 0 0 10px;
+    -fx-font-size: 1px;
+    -fx-min-width: 50px;
+    -fx-min-height: 10px;
+}
+
+.more-info-label {
+    -fx-font-size: 15px;
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+    -fx-min-width: 50px;
+    -fx-content-display: right;
+    -fx-text-alignment: left;
+    -fx-padding: 10px 15px;
 }

@@ -32,6 +32,11 @@ public class Main extends Application {
         ControllerRegistry.register(new SubsidieController());
 
 
+        ApplicatieController applicatieController = (ApplicatieController) ControllerRegistry.get(ApplicatieController.class);
+
+//        applicatieController.setStage(primaryStage);
+
+
 
         // Hello world
         primaryStage.setTitle("Hello World!");
