@@ -62,3 +62,7 @@
     -fx-text-alignment: left;
     -fx-padding: 10px 15px;
 }
+
+.blackground {
+    -fx-background-color: #000000;
+}
