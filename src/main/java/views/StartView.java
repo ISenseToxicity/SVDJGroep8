@@ -18,7 +18,6 @@ public class StartView implements PrimaryStage {
     public StartView() {
 
     }
-
     private void createPrimaryStage() throws IOException {
         final int WIDTH = 1500;
         final int HEIGHT = 900;

@@ -2,13 +2,8 @@ package subsidiewijzer;
 
 import controllers.*;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import models.Route;
+import views.StartView;
 
 public class Main extends Application {
 
@@ -30,25 +25,8 @@ public class Main extends Application {
         ControllerRegistry.register(new RouteController());
         ControllerRegistry.register(new StartController());
         ControllerRegistry.register(new SubsidieController());
-
-
-
-        // Hello world
-        primaryStage.setTitle("Hello World!");
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
-
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        primaryStage.setScene(new Scene(root, 300, 250));
-        primaryStage.show();
+        StartView startView = new StartView();
+        startView.setStage(primaryStage);
     }
 }
 
