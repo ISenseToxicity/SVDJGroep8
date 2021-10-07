@@ -19,8 +19,8 @@ public class ApplicatieController implements Controller {
 
     ApplicatieView applicatieView = new ApplicatieView();
 
-    @FXML private Button beginButton;
-    @FXML private Label beginLabel;
+    @FXML Button beginButton;
+    @FXML Label beginLabel;
 
     public void setStage(Stage primaryStage) {
         applicatieView.setStage(primaryStage);
@@ -32,13 +32,10 @@ public class ApplicatieController implements Controller {
         beginButton.setOnMouseEntered(e -> enterButton(beginButton, beginLabel));
         beginButton.setOnMouseExited(e -> exitButton(beginButton, beginLabel));
 
-        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Stage primaryStage = applicatieView.getStage();
-                StartController startController = (StartController) ControllerRegistry.get(StartController.class);
-                startController.setStage(primaryStage);
-            }
+        EventHandler<ActionEvent> event = actionEvent -> {
+            Stage primaryStage = applicatieView.getStage();
+            StartController startController = (StartController) ControllerRegistry.get(StartController.class);
+            startController.setStage(primaryStage);
         };
 
         beginButton.setOnAction(event);
