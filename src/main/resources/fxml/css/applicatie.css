@@ -1,10 +1,11 @@
-.titel-corner-svdj {
+.title-corner-svdj {
     -fx-font-weight: bold;
     -fx-font-size: 20px;
     -fx-fill-height: 10px;
     -fx-border-width: 5px 0 0 5px;
     -fx-border-color: #FFFFFF;
-    -fx-border-insets: 0 10 0 0px;
+    -fx-padding: 10px;
+    -fx-min-width: 250px;
 }
 .button {
     -fx-background-color: #000000;
@@ -21,6 +22,12 @@
     -fx-font-size: 1px;
     -fx-fill-height: 10px;
     -fx-border-width: 2px 2px 0 0;
+    -fx-min-width: 75px;
     -fx-border-color: #FFFFFF;
-    -fx-border-insets: 0 0 0 10px;
+    -fx-border-insets: 5px 0 5px 10px;
+}
+
+.svdj-container {
+    -fx-background-color: #9ac2d4;
+    -fx-opacity: 0.3;
 }

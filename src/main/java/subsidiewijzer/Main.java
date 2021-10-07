@@ -4,6 +4,7 @@ import controllers.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import models.Question;
+import views.ApplicatieView;
 import views.StartView;
 
 import java.util.ArrayList;
@@ -28,8 +29,11 @@ public class Main extends Application {
         ControllerRegistry.register(new RouteController());
         ControllerRegistry.register(new StartController());
         ControllerRegistry.register(new SubsidieController());
-        StartView startView = new StartView();
-        startView.setStage(primaryStage);
+
+
+        ApplicatieController applicatieController = (ApplicatieController) ControllerRegistry.get(ApplicatieController.class);
+        applicatieController.setStage(primaryStage);
+
         tempTestShit();
 
     }
