@@ -3,7 +3,10 @@ package subsidiewijzer;
 import controllers.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import models.Question;
 import views.StartView;
+
+import java.util.ArrayList;
 
 public class Main extends Application {
 
@@ -27,6 +30,19 @@ public class Main extends Application {
         ControllerRegistry.register(new SubsidieController());
         StartView startView = new StartView();
         startView.setStage(primaryStage);
+        tempTestShit();
+
+    }
+    private void tempTestShit(){
+        ArrayList<String> questionID = new ArrayList<>();
+        ArrayList<String> questionText = new ArrayList<>();
+        QuestionController questionController = new QuestionController();
+        for(int i = 0; i<100; i++){
+            questionID.add(String.valueOf(i));
+            questionText.add(i + "TEXTNDOJNSGDHUFSDIGSKOGMDSJOFDISJKO{DSLPMFJOHSFUH");
+        }
+        questionController.setQuestionID(questionID);
+        questionController.setQuestionText(questionText);
     }
 }
 
