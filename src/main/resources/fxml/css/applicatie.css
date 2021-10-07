@@ -31,3 +31,7 @@
     -fx-background-color: #9ac2d4;
     -fx-opacity: 0.3;
 }
+
+.blackground {
+    -fx-background-color: #000000;
+}

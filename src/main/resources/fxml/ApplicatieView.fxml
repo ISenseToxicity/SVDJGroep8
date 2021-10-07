@@ -23,17 +23,19 @@
          </font>
       </Label>
       <Label layoutX="100.0" layoutY="440.0" styleClass="title-corner-svdj" stylesheets="@css/applicatie.css" text=" Subsidie Wijzer" textFill="WHITE" />
-      <Button fx:id="beginButton" layoutX="415.0" layoutY="630.0" mnemonicParsing="false" stylesheets="@css/applicatie.css" text="Begin">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <graphic>
-            <Label prefHeight="30.0" prefWidth="62.0" styleClass="svdj-corner" stylesheets="@css/applicatie.css" text="Label" />
-         </graphic>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
+      <AnchorPane layoutX="415.0" layoutY="630.0" styleClass="blackground" stylesheets="@css/main.css">
+         <Button fx:id="beginButton" mnemonicParsing="false" stylesheets="@css/applicatie.css" text="Begin">
+            <font>
+               <Font size="14.0" />
+            </font>
+            <graphic>
+               <Label fx:id="beginLabel" prefHeight="30.0" prefWidth="62.0" styleClass="svdj-corner" stylesheets="@css/applicatie.css" text="Label" />
+            </graphic>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
+      </AnchorPane>
       <ImageView fitHeight="62.0" fitWidth="121.0" layoutX="1219.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/logo_white_SVDJ.png" />
