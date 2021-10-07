@@ -1,0 +1,26 @@
+.titel-corner-svdj {
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+    -fx-fill-height: 10px;
+    -fx-border-width: 5px 0 0 5px;
+    -fx-border-color: #FFFFFF;
+    -fx-border-insets: 0 10 0 0px;
+}
+.button {
+    -fx-background-color: #000000;
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+    -fx-font-size: 25px;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 0;
+    -fx-padding: 15px 25px;
+    -fx-content-display: right;
+    -fx-text-alignment: left;
+}
+.svdj-corner {
+    -fx-font-size: 1px;
+    -fx-fill-height: 10px;
+    -fx-border-width: 2px 2px 0 0;
+    -fx-border-color: #FFFFFF;
+    -fx-border-insets: 0 0 0 10px;
+}
