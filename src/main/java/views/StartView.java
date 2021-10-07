@@ -19,8 +19,8 @@ public class StartView implements PrimaryStage {
 
     }
     private void createPrimaryStage() throws IOException {
-        final int WIDTH = 1500;
-        final int HEIGHT = 900;
+        final int WIDTH = 1350;
+        final int HEIGHT = 750;
         final String TITLE = "SVDJ - Subsidie Wijzer";
         final String ICONURL = "fxml/icons/icon_SVDJ.png";
 
@@ -29,7 +29,9 @@ public class StartView implements PrimaryStage {
         Parent root = loader.load();
 
         primaryStage.setScene(new Scene(root, WIDTH, HEIGHT));
-        primaryStage.setResizable(false);
+        primaryStage.setMinWidth(WIDTH);
+        primaryStage.setMinHeight(HEIGHT);
+        primaryStage.setResizable(true);
         primaryStage.setTitle(TITLE);
         primaryStage.getIcons().add(new Image(ICONURL));
 
