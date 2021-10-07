@@ -81,4 +81,12 @@
          <Cursor fx:constant="HAND" />
       </cursor>
     </Button>
+   <Label layoutX="924.0" layoutY="225.0" styleClass="more-info-label" stylesheets="@css/main.css" text="Meer informatie">
+      <graphic>
+         <Label styleClass="more-info-corner" stylesheets="@css/main.css" />
+      </graphic>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+   </Label>
 </AnchorPane>
