@@ -102,7 +102,8 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Label>
-        <ScrollPane fx:id="moreInfoPane" layoutX="722.0" maxHeight="750.0" maxWidth="620.0" prefHeight="727.0" prefWidth="620.0" stylesheets="@css/infopopup.css" visible="false">
+<!--        More Info Pane-->
+        <ScrollPane fx:id="moreInfoPane" layoutX="1350.0" maxHeight="750.0" maxWidth="620.0" prefHeight="727.0" prefWidth="620.0" stylesheets="@css/infopopup.css" visible="false">
             <AnchorPane prefWidth="550.0">
                 <style>-fx-background-color: #FFFFFF;</style>
                 <Button fx:id="closeButton" layoutX="23.0" layoutY="14.0" mnemonicParsing="false">

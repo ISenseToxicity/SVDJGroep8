@@ -96,10 +96,19 @@ public class StartController implements Controller {
 
     private void showPopup() {
         moreInfoPane.setVisible(true);
+
+        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(0.5), moreInfoPane);
+        translateTransition.setByX(-620);
+        translateTransition.play();
+
     }
 
     private void closePopup() {
-        moreInfoPane.setVisible(false);
+        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(0.5), moreInfoPane);
+        translateTransition.setByX(620);
+        translateTransition.play();
+
+        translateTransition.setOnFinished(e -> moreInfoPane.setVisible(false));
     }
 
 }
