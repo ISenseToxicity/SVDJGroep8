@@ -42,3 +42,9 @@
 .button {
     -fx-background-color: #FFFFFF;
 }
+
+.title-Label {
+    -fx-font-family: "neue-haas-grotesk-display";
+    -fx-font-weight: BOLD;
+    -fx-font-size: 30px;
+}

@@ -119,15 +119,7 @@
                 </Button>
                 <VBox layoutY="75.0" prefHeight="1000.0" prefWidth="600.0">
                     <style>-fx-background-color: #FFFF; -fx-alignment: top-center;</style>
-                    <Label alignment="TOP_LEFT" maxWidth="550.0" minHeight="50.0" prefHeight="50.0" prefWidth="550.0" text="Meer informatie over de vraag." wrapText="true">
-                        <style>-fx-font-weight: Bold;</style>
-                        <font>
-                            <Font name="neue-haas-grotesk-display BOLD" size="30.0" />
-                        </font>
-                        <VBox.margin>
-                            <Insets />
-                        </VBox.margin>
-                    </Label>
+                    <Label alignment="TOP_LEFT" maxWidth="550.0" minHeight="50.0" prefHeight="50.0" prefWidth="550.0" text="Meer informatie over de vraag." styleClass="title-Label" stylesheets="@css/infopopup.css" wrapText="true" />
                     <Label alignment="TOP_LEFT" maxWidth="550.0" prefWidth="550.0" text="Hier komt  de extra informatie over de vraag te staan Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet ligula purus. Donec at velit at dolor finibus ultrices in id magna. Nunc molestie scelerisque nunc, eu egestas quam hendrerit at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse pharetra, nibh id finibus placerat, diam nisl condimentum eros, a convallis ante orci vel leo. Sed blandit a sapien a tincidunt. Nam aliquam quam sit amet mi dapibus finibus. Quisque viverra laoreet turpis non tristique. Suspendisse non nibh tellus. Nulla aliquet risus lorem, at egestas ante lacinia sed. Nunc dapibus, nisi eget cursus consectetur, ante metus dignissim diam, et placerat eros augue ac leo. Vestibulum tristique efficitur libero eget auctor. Aliquam condimentum risus blandit, tincidunt sem a, tincidunt dui. Pellentesque efficitur ex elit, sit amet fringilla erat sodales quis. Sed sapien purus, dictum in sapien a, tempor sagittis sapien.Donec in dui." wrapText="true">
                         <font>
                             <Font name="neue-haas-grotesk-display" size="15.0" />
