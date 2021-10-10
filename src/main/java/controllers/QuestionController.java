@@ -22,9 +22,11 @@ public class QuestionController implements Controller {
     public void setQuestionText(ArrayList<String> questionText) {
         question.setQuestionText(questionText);
     }
+
     public String getSpecificQuestionID(int id){
         return question.getQuestionID().get(id);
     }
+
     public String getSpecificQuestionText(int id){
         return question.getQuestionText().get(id);
     }

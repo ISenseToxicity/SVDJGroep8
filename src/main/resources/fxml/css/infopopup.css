@@ -1,0 +1,44 @@
+.scroll-pane {
+    -fx-background-color: #FFFFFF;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical {
+    -fx-background-color: #ECF0F1;
+}
+
+.increment-button, decremenet-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-color-label-visible: transparent;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: #ECF0F1;
+}
+
+.scroll-bar:horizontal .track, .scroll-bar:vertical .track {
+    -fx-background-color: #ECF0F1;
+    -fx-border-color: transparent;
+    -fx-border-radius: 0px;
+}
+
+.scroll-bar:horizontal .thumb, .scroll-bar:vertical .thumb {
+    -fx-background-color: #BDC3C7;
+    -fx-border-radius: 0px;
+}
+
+.svdj-video-corner {
+    -fx-font: "neue-haas-grotesk-display";
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-border-width: 3px 0 0 3px;
+    -fx-border-color: #000000;
+    -fx-padding: 10px 25px 0px 25px;
+    -fx-max-height: 60px;
+    -fx-border-insets: 0 200px 20px 0;
+}
+
+.button {
+    -fx-background-color: #FFFFFF;
+}
