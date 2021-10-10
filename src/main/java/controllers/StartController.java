@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import views.StartView;
@@ -28,6 +30,9 @@ public class StartController implements Controller {
     @FXML javafx.scene.control.Button closeButton;
     @FXML ScrollPane moreInfoPane;
 
+    @FXML WebView infoVideo;
+    @FXML WebEngine webEngine;
+
 
     public void setStage(Stage primaryStage) {
         startView.setStage(primaryStage);
@@ -45,6 +50,10 @@ public class StartController implements Controller {
 
         moreInfoButton.setOnMouseClicked(e -> showPopup());
         closeButton.setOnMouseClicked(e -> closePopup());
+
+        infoVideo.setContextMenuEnabled(false);
+        webEngine = infoVideo.getEngine();
+
 
     }
 
@@ -101,6 +110,9 @@ public class StartController implements Controller {
         translateTransition.setByX(-620);
         translateTransition.play();
 
+        // Example video, DELETE LATER
+        webEngine.load("https://www.youtube.com/embed/WPyOl4Equpw");
+        // ^^^^^^^^^^^^^^^^^^^^^^^^^^^
     }
 
     private void closePopup() {
@@ -109,6 +121,8 @@ public class StartController implements Controller {
         translateTransition.play();
 
         translateTransition.setOnFinished(e -> moreInfoPane.setVisible(false));
+
+        webEngine.load("");
     }
 
 }
