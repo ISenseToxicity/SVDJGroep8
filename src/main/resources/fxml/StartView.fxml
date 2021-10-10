@@ -6,111 +6,138 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" minHeight="727.0" minWidth="1342.0" prefHeight="900.0" prefWidth="1500.0"
-      style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-    <AnchorPane layoutX="98.0" layoutY="34.0" maxHeight="727.0" maxWidth="1342.0" minHeight="727.0" minWidth="1342.0"
-                prefHeight="727.0" prefWidth="1342.0">
-        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="1400.0"
-               text="Hier Komt een vraag te staan" textAlignment="CENTER">
+<VBox alignment="CENTER" minHeight="750.0" minWidth="1350.0" prefHeight="750.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <style>-fx-background-color: #FFFFFF;</style>
+    <AnchorPane layoutX="98.0" layoutY="34.0" maxHeight="727.0" maxWidth="1342.0" minHeight="727.0" minWidth="1342.0" prefHeight="727.0" prefWidth="1342.0">
+        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="1400.0" text="Hier Komt een vraag te staan" textAlignment="CENTER">
             <font>
-                <Font name="neue-haas-grotesk-display Bold" size="44.0"/>
+                <Font name="neue-haas-grotesk-display Bold" size="44.0" />
             </font>
         </Label>
-        <CheckBox layoutX="325.0" layoutY="150.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0"
-                  style="-fx-background-color: #F7F7F7;" stylesheets="@css/main.css"
-                  text="Hier staat het eerst mogelijke antwoord">
+        <CheckBox layoutX="325.0" layoutY="150.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0" stylesheets="@css/main.css" text="Hier staat het eerst mogelijke antwoord">
+            <style>-fx-background-color: #F7F7F7;</style>
             <font>
-                <Font name="neue-haas-grotesk-display Bold" size="15.0"/>
+                <Font name="neue-haas-grotesk-display Bold" size="15.0" />
             </font>
             <padding>
-                <Insets bottom="5.0" left="15.0" right="15.0" top="5.0"/>
+                <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
             </padding>
             <cursor>
-                <Cursor fx:constant="HAND"/>
+                <Cursor fx:constant="HAND" />
             </cursor>
         </CheckBox>
-        <CheckBox layoutX="325.0" layoutY="250.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0"
-                  style="-fx-background-color: #F7F7F7;" stylesheets="@css/main.css"
-                  text="Hier staat het tweede mogelijke antwoord">
+        <CheckBox layoutX="325.0" layoutY="250.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0" stylesheets="@css/main.css" text="Hier staat het tweede mogelijke antwoord">
+            <style>-fx-background-color: #F7F7F7;</style>
             <font>
-                <Font name="neue-haas-grotesk-display Bold" size="15.0"/>
+                <Font name="neue-haas-grotesk-display Bold" size="15.0" />
             </font>
             <padding>
-                <Insets bottom="5.0" left="15.0" right="15.0" top="5.0"/>
+                <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
             </padding>
             <cursor>
-                <Cursor fx:constant="HAND"/>
+                <Cursor fx:constant="HAND" />
             </cursor>
         </CheckBox>
-        <CheckBox layoutX="325.0" layoutY="350.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0"
-                  style="-fx-background-color: #F7F7F7;" stylesheets="@css/main.css"
-                  text="Hier staat het derde mogelijke antwoord">
+        <CheckBox layoutX="325.0" layoutY="350.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0" stylesheets="@css/main.css" text="Hier staat het derde mogelijke antwoord">
+            <style>-fx-background-color: #F7F7F7;</style>
             <font>
-                <Font name="neue-haas-grotesk-display Bold" size="15.0"/>
+                <Font name="neue-haas-grotesk-display Bold" size="15.0" />
             </font>
             <padding>
-                <Insets bottom="5.0" left="15.0" right="15.0" top="5.0"/>
+                <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
             </padding>
             <cursor>
-                <Cursor fx:constant="HAND"/>
+                <Cursor fx:constant="HAND" />
             </cursor>
         </CheckBox>
-        <CheckBox layoutX="325.0" layoutY="450.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0"
-                  style="-fx-background-color: #F7F7F7;" stylesheets="@css/main.css"
-                  text="Hier staat dan natuurlijk het vierde mogelijke antwoord">
+        <CheckBox layoutX="325.0" layoutY="450.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0" stylesheets="@css/main.css" text="Hier staat dan natuurlijk het vierde mogelijke antwoord">
+            <style>-fx-background-color: #F7F7F7;</style>
             <font>
-                <Font name="neue-haas-grotesk-display Bold" size="15.0"/>
+                <Font name="neue-haas-grotesk-display Bold" size="15.0" />
             </font>
             <padding>
-                <Insets bottom="5.0" left="15.0" right="15.0" top="5.0"/>
+                <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
             </padding>
             <cursor>
-                <Cursor fx:constant="HAND"/>
+                <Cursor fx:constant="HAND" />
             </cursor>
         </CheckBox>
-        <ProgressBar layoutX="325.0" layoutY="700.0" prefHeight="10.0" prefWidth="750.0" progress="0.35"
-                     stylesheets="@css/main.css"/>
+        <ProgressBar layoutX="325.0" layoutY="700.0" prefHeight="10.0" prefWidth="750.0" progress="0.35" stylesheets="@css/main.css" />
         <Label layoutX="665.0" layoutY="664.0" text="Voortgang">
             <font>
-                <Font name="neue-haas-grotesk-display" size="15.0"/>
+                <Font name="neue-haas-grotesk-display" size="15.0" />
             </font>
         </Label>
         <AnchorPane layoutX="899.0" layoutY="575.0" styleClass="blackground" stylesheets="@css/main.css">
-            <Button fx:id="nextButton" contentDisplay="RIGHT" mnemonicParsing="false" stylesheets="@css/main.css"
-                    text="Volgende">
+            <Button fx:id="nextButton" contentDisplay="RIGHT" mnemonicParsing="false" stylesheets="@css/main.css" text="Volgende">
                 <graphic>
-                    <Label fx:id="nextLabel" minWidth="45.0" prefHeight="12.0" prefWidth="55.0" styleClass="svdj-corner"
-                           stylesheets="@css/main.css" textAlignment="RIGHT"/>
+                    <Label fx:id="nextLabel" minWidth="45.0" prefHeight="12.0" prefWidth="55.0" styleClass="svdj-corner" stylesheets="@css/main.css" textAlignment="RIGHT" />
                 </graphic>
                 <cursor>
-                    <Cursor fx:constant="HAND"/>
+                    <Cursor fx:constant="HAND" />
                 </cursor>
             </Button>
         </AnchorPane>
         <AnchorPane layoutX="727.0" layoutY="575.0" styleClass="blackground" stylesheets="@css/main.css">
-            <Button fx:id="previousButton" contentDisplay="RIGHT" mnemonicParsing="false" stylesheets="@css/main.css"
-                    text="Vorige">
+            <Button fx:id="previousButton" contentDisplay="RIGHT" mnemonicParsing="false" stylesheets="@css/main.css" text="Vorige">
                 <graphic>
-                    <Label fx:id="previousLabel" minWidth="45.0" prefHeight="12.0" prefWidth="55.0"
-                           styleClass="svdj-corner" stylesheets="@css/main.css" textAlignment="RIGHT"/>
+                    <Label fx:id="previousLabel" minWidth="45.0" prefHeight="12.0" prefWidth="55.0" styleClass="svdj-corner" stylesheets="@css/main.css" textAlignment="RIGHT" />
                 </graphic>
                 <cursor>
-                    <Cursor fx:constant="HAND"/>
+                    <Cursor fx:constant="HAND" />
                 </cursor>
             </Button>
         </AnchorPane>
-        <Label layoutX="875.0" layoutY="98.0" styleClass="more-info-label" stylesheets="@css/main.css"
-               text="Meer informatie">
+        <Label layoutX="875.0" layoutY="98.0" styleClass="more-info-label" stylesheets="@css/main.css" text="Meer informatie">
             <graphic>
-                <Label styleClass="more-info-corner" stylesheets="@css/main.css"/>
+                <Label styleClass="more-info-corner" stylesheets="@css/main.css" />
             </graphic>
             <cursor>
-                <Cursor fx:constant="HAND"/>
+                <Cursor fx:constant="HAND" />
             </cursor>
         </Label>
+        <ScrollPane layoutX="722.0" maxHeight="750.0" maxWidth="620.0" prefHeight="727.0" prefWidth="620.0" stylesheets="@css/infopopup.css" visible="false">
+            <AnchorPane prefWidth="550.0" style="-fx-background-color: #FFFFFF;">
+                <Button mnemonicParsing="false" />
+                <VBox layoutY="75.0" prefHeight="1000.0" prefWidth="600.0" style="-fx-background-color: #FFFF; -fx-alignment: top-center;">
+                    <Label alignment="TOP_LEFT" maxWidth="550.0" minHeight="50.0" prefHeight="50.0" prefWidth="550.0" style="-fx-font-weight: Bold;" text="Meer informatie over de vraag." wrapText="true">
+                        <font>
+                            <Font name="neue-haas-grotesk-display BOLD" size="30.0" />
+                        </font>
+                        <VBox.margin>
+                            <Insets />
+                        </VBox.margin>
+                    </Label>
+                    <Label alignment="TOP_LEFT" maxWidth="550.0" prefWidth="550.0" text="Hier komt  de extra informatie over de vraag te staan Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet ligula purus. Donec at velit at dolor finibus ultrices in id magna. Nunc molestie scelerisque nunc, eu egestas quam hendrerit at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse pharetra, nibh id finibus placerat, diam nisl condimentum eros, a convallis ante orci vel leo. Sed blandit a sapien a tincidunt. Nam aliquam quam sit amet mi dapibus finibus. Quisque viverra laoreet turpis non tristique. Suspendisse non nibh tellus. Nulla aliquet risus lorem, at egestas ante lacinia sed. Nunc dapibus, nisi eget cursus consectetur, ante metus dignissim diam, et placerat eros augue ac leo. Vestibulum tristique efficitur libero eget auctor. Aliquam condimentum risus blandit, tincidunt sem a, tincidunt dui. Pellentesque efficitur ex elit, sit amet fringilla erat sodales quis. Sed sapien purus, dictum in sapien a, tempor sagittis sapien.Donec in dui." wrapText="true">
+                        <font>
+                            <Font name="neue-haas-grotesk-display" size="15.0" />
+                        </font>
+                        <VBox.margin>
+                            <Insets top="25.0" />
+                        </VBox.margin>
+                    </Label>
+                    <Label alignment="TOP_LEFT" maxHeight="60.0" prefHeight="60.0" prefWidth="550.0" styleClass="svdj-video-corner" stylesheets="@css/infopopup.css" text="Video Titel">
+                        <VBox.margin>
+                            <Insets top="25.0" />
+                        </VBox.margin>
+                    </Label>
+<!--                    <WebView maxHeight="310.0" maxWidth="550.0" prefHeight="310.0" prefWidth="550.0">-->
+                        <VBox.margin>
+                            <Insets top="5.0" />
+                        </VBox.margin>
+<!--                    </WebView>-->
+                </VBox>
+                  <AnchorPane layoutX="30.0" layoutY="14.0" prefHeight="50.0" prefWidth="50.0">
+                      <Line endX="35.0" endY="35.0" strokeWidth="5.0" />
+                      <Line endX="35.0" startY="35.0" strokeWidth="5.0" />
+                  </AnchorPane>
+            </AnchorPane>
+        </ScrollPane>
     </AnchorPane>
 </VBox>

@@ -28,7 +28,7 @@
 }
 
 .svdj-video-corner {
-    -fx-font: "neue-haas-grotesk-display";
+    -fx-font-family: "neue-haas-grotesk-display";
     -fx-font-size: 20px;
     -fx-font-weight: bold;
     -fx-text-fill: #000000;
