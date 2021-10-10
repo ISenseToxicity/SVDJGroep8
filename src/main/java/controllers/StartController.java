@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -23,6 +24,10 @@ public class StartController implements Controller {
     @FXML javafx.scene.control.Label nextLabel;
     @FXML javafx.scene.control.Label previousLabel;
 
+    @FXML javafx.scene.control.Label moreInfoButton;
+    @FXML javafx.scene.control.Button closeButton;
+    @FXML ScrollPane moreInfoPane;
+
 
     public void setStage(Stage primaryStage) {
         startView.setStage(primaryStage);
@@ -37,6 +42,9 @@ public class StartController implements Controller {
 
         previousButton.setOnMouseEntered(e -> enterButton(previousButton, previousLabel));
         previousButton.setOnMouseExited(e -> exitButton(previousButton, previousLabel));
+
+        moreInfoButton.setOnMouseClicked(e -> showPopup());
+        closeButton.setOnMouseClicked(e -> closePopup());
 
     }
 
@@ -84,6 +92,14 @@ public class StartController implements Controller {
         };
         animation.play();
 
+    }
+
+    private void showPopup() {
+        moreInfoPane.setVisible(true);
+    }
+
+    private void closePopup() {
+        moreInfoPane.setVisible(false);
     }
 
 }

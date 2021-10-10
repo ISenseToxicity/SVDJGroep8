@@ -94,7 +94,7 @@
                 </cursor>
             </Button>
         </AnchorPane>
-        <Label layoutX="875.0" layoutY="98.0" styleClass="more-info-label" stylesheets="@css/main.css" text="Meer informatie">
+        <Label fx:id="moreInfoButton" layoutX="875.0" layoutY="98.0" styleClass="more-info-label" stylesheets="@css/main.css" text="Meer informatie">
             <graphic>
                 <Label styleClass="more-info-corner" stylesheets="@css/main.css" />
             </graphic>
@@ -102,11 +102,24 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Label>
-        <ScrollPane layoutX="722.0" maxHeight="750.0" maxWidth="620.0" prefHeight="727.0" prefWidth="620.0" stylesheets="@css/infopopup.css" visible="false">
-            <AnchorPane prefWidth="550.0" style="-fx-background-color: #FFFFFF;">
-                <Button mnemonicParsing="false" />
-                <VBox layoutY="75.0" prefHeight="1000.0" prefWidth="600.0" style="-fx-background-color: #FFFF; -fx-alignment: top-center;">
-                    <Label alignment="TOP_LEFT" maxWidth="550.0" minHeight="50.0" prefHeight="50.0" prefWidth="550.0" style="-fx-font-weight: Bold;" text="Meer informatie over de vraag." wrapText="true">
+        <ScrollPane fx:id="moreInfoPane" layoutX="722.0" maxHeight="750.0" maxWidth="620.0" prefHeight="727.0" prefWidth="620.0" stylesheets="@css/infopopup.css" visible="false">
+            <AnchorPane prefWidth="550.0">
+                <style>-fx-background-color: #FFFFFF;</style>
+                <Button fx:id="closeButton" layoutX="23.0" layoutY="14.0" mnemonicParsing="false">
+                    <graphic>
+                        <AnchorPane prefHeight="50.0" prefWidth="50.0">
+                            <Line endX="35.0" endY="35.0" strokeWidth="5.0" />
+                            <Line endX="35.0" startY="35.0" strokeWidth="5.0" />
+                        </AnchorPane>
+                    </graphic>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+                <VBox layoutY="75.0" prefHeight="1000.0" prefWidth="600.0">
+                    <style>-fx-background-color: #FFFF; -fx-alignment: top-center;</style>
+                    <Label alignment="TOP_LEFT" maxWidth="550.0" minHeight="50.0" prefHeight="50.0" prefWidth="550.0" text="Meer informatie over de vraag." wrapText="true">
+                        <style>-fx-font-weight: Bold;</style>
                         <font>
                             <Font name="neue-haas-grotesk-display BOLD" size="30.0" />
                         </font>
@@ -127,16 +140,12 @@
                             <Insets top="25.0" />
                         </VBox.margin>
                     </Label>
-<!--                    <WebView maxHeight="310.0" maxWidth="550.0" prefHeight="310.0" prefWidth="550.0">-->
+<!--                    <WebView fx:id="infoVideo" maxHeight="310.0" maxWidth="550.0" prefHeight="310.0" prefWidth="550.0">-->
                         <VBox.margin>
                             <Insets top="5.0" />
                         </VBox.margin>
 <!--                    </WebView>-->
                 </VBox>
-                  <AnchorPane layoutX="30.0" layoutY="14.0" prefHeight="50.0" prefWidth="50.0">
-                      <Line endX="35.0" endY="35.0" strokeWidth="5.0" />
-                      <Line endX="35.0" startY="35.0" strokeWidth="5.0" />
-                  </AnchorPane>
             </AnchorPane>
         </ScrollPane>
     </AnchorPane>
