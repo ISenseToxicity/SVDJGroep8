@@ -17,14 +17,14 @@
         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="1400.0"
                text="Hier Komt een vraag te staan" textAlignment="CENTER">
             <font>
-                <Font name="Segoe UI Bold" size="44.0"/>
+                <Font name="neue-haas-grotesk-display Bold" size="44.0"/>
             </font>
         </Label>
         <CheckBox layoutX="325.0" layoutY="150.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0"
                   style="-fx-background-color: #F7F7F7;" stylesheets="@css/main.css"
                   text="Hier staat het eerst mogelijke antwoord">
             <font>
-                <Font name="Segoe UI Bold" size="15.0"/>
+                <Font name="neue-haas-grotesk-display Bold" size="15.0"/>
             </font>
             <padding>
                 <Insets bottom="5.0" left="15.0" right="15.0" top="5.0"/>
@@ -37,7 +37,7 @@
                   style="-fx-background-color: #F7F7F7;" stylesheets="@css/main.css"
                   text="Hier staat het tweede mogelijke antwoord">
             <font>
-                <Font name="Segoe UI Bold" size="15.0"/>
+                <Font name="neue-haas-grotesk-display Bold" size="15.0"/>
             </font>
             <padding>
                 <Insets bottom="5.0" left="15.0" right="15.0" top="5.0"/>
@@ -50,7 +50,7 @@
                   style="-fx-background-color: #F7F7F7;" stylesheets="@css/main.css"
                   text="Hier staat het derde mogelijke antwoord">
             <font>
-                <Font name="Segoe UI Bold" size="15.0"/>
+                <Font name="neue-haas-grotesk-display Bold" size="15.0"/>
             </font>
             <padding>
                 <Insets bottom="5.0" left="15.0" right="15.0" top="5.0"/>
@@ -63,7 +63,7 @@
                   style="-fx-background-color: #F7F7F7;" stylesheets="@css/main.css"
                   text="Hier staat dan natuurlijk het vierde mogelijke antwoord">
             <font>
-                <Font name="Segoe UI Bold" size="15.0"/>
+                <Font name="neue-haas-grotesk-display Bold" size="15.0"/>
             </font>
             <padding>
                 <Insets bottom="5.0" left="15.0" right="15.0" top="5.0"/>
@@ -76,7 +76,7 @@
                      stylesheets="@css/main.css"/>
         <Label layoutX="665.0" layoutY="664.0" text="Voortgang">
             <font>
-                <Font name="Segoe UI" size="15.0"/>
+                <Font name="neue-haas-grotesk-display" size="15.0"/>
             </font>
         </Label>
         <AnchorPane layoutX="899.0" layoutY="575.0" styleClass="blackground" stylesheets="@css/main.css">

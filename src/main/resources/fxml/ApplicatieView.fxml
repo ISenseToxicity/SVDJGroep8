@@ -19,7 +19,7 @@
       <Pane layoutX="100.0" opacity="0.5" prefHeight="750.0" prefWidth="529.0" styleClass="svdj-container" stylesheets="@css/applicatie.css" />
       <Label alignment="TOP_LEFT" layoutX="119.0" layoutY="495.0" prefHeight="110.0" prefWidth="400.0" text="Bekijk welke subsidie het beste bij u past" textFill="WHITE" textOverrun="CLIP" wrapText="true">
          <font>
-            <Font name="Segoe UI Bold" size="38.0" />
+            <Font name="neue-haas-grotesk-display Bold" size="38.0" />
          </font>
       </Label>
       <Label layoutX="100.0" layoutY="440.0" styleClass="title-corner-svdj" stylesheets="@css/applicatie.css" text=" Subsidie Wijzer" textFill="WHITE" />
