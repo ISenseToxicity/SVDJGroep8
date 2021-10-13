@@ -7,15 +7,15 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class RequestService {
-    private static RequestService requestService;
+public class GetService {
+    private static GetService getService;
 
     public String getResponse(String URL) throws IOException {
         java.net.URL endpointURL = new URL(URL);
-        HttpURLConnection connection = (HttpURLConnection) endpointURL.openConnection();
-        connection.setRequestMethod("GET");
+        HttpURLConnection httpURLConnection = (HttpURLConnection) endpointURL.openConnection();
+        httpURLConnection.setRequestMethod("GET");
 
-        InputStream inputStream = connection.getInputStream();
+        InputStream inputStream = httpURLConnection.getInputStream();
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
@@ -34,11 +34,11 @@ public class RequestService {
         return stringBuilder.toString();
     }
 
-    public static RequestService getInstance() {
-        if (requestService == null) {
-            requestService = new RequestService();
+    public static GetService getInstance() {
+        if (getService == null) {
+            getService = new GetService();
         }
 
-        return requestService;
+        return getService;
     }
 }
