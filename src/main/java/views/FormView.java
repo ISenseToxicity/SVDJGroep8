@@ -20,6 +20,7 @@ public class FormView implements PrimaryStage {
     public FormView() {
 
     }
+
     private void createPrimaryStage() throws IOException {
         final int WIDTH = 1350;
         final int HEIGHT = 750;
