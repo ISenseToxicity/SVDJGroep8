@@ -32,19 +32,6 @@ public class SubsidieWijzer extends Application {
         ApplicationController applicationController = (ApplicationController) ControllerRegistry.get(ApplicationController.class);
         applicationController.setStage(primaryStage);
 
-        tempTestShit();
-
-    }
-    private void tempTestShit(){
-        ArrayList<String> questionID = new ArrayList<>();
-        ArrayList<String> questionText = new ArrayList<>();
-        QuestionController questionController = new QuestionController();
-        for(int i = 0; i<100; i++){
-            questionID.add(String.valueOf(i));
-            questionText.add(i + "TEXTNDOJNSGDHUFSDIGSKOGMDSJOFDISJKO{DSLPMFJOHSFUH");
-        }
-        questionController.setQuestionID(questionID);
-        questionController.setQuestionText(questionText);
     }
 }
 

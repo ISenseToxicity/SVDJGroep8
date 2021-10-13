@@ -1,33 +1,17 @@
 package controllers;
 
+import models.Answer;
 import models.Question;
 
 import java.util.ArrayList;
 
 public class QuestionController implements Controller {
-    Question question = new Question();
 
-    public ArrayList<String> getQuestionID() {
-        return question.getQuestionID();
+    public Question makeQuestion(String questionID, String questionText, ArrayList<Answer> answers, String extraInfoTile, String extraInfoDescription, String extraInfoVideoURL){
+
+       return new Question(questionID, questionText, answers, extraInfoTile, extraInfoDescription, extraInfoVideoURL);
     }
-
-    public void setQuestionID(ArrayList<String> questionID) {
-        question.setQuestionID(questionID);
-    }
-
-    public ArrayList<String> getQuestionText() {
-        return question.getQuestionID();
-    }
-
-    public void setQuestionText(ArrayList<String> questionText) {
-        question.setQuestionText(questionText);
-    }
-
-    public String getSpecificQuestionID(int id){
-        return question.getQuestionID().get(id);
-    }
-
-    public String getSpecificQuestionText(int id){
-        return question.getQuestionText().get(id);
+    public Question makeQuestion(String questionID, String questionText, ArrayList<Answer> answers, String extraInfoTile, String extraInfoDescription){
+        return new Question(questionID, questionText, answers, extraInfoTile, extraInfoDescription);
     }
 }
