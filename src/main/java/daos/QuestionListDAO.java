@@ -11,7 +11,7 @@ public class QuestionListDAO {
     private final GetService getService =  GetService.getInstance();
 
 
-    public QuestionList getQuestionList()throws IOException {
-        return gson.fromJson(getService.getResponse("http://localhost:8080/questionlist"),QuestionList.class);
+    public Object getQuestionList()throws IOException {
+        return gson.fromJson(getService.getResponse("http://localhost:8080/questionlist"),Object.class);
     }
 }

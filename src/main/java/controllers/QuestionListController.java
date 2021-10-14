@@ -2,6 +2,7 @@ package controllers;
 
 
 import daos.QuestionListDAO;
+import models.ExceptionReturnObject;
 import models.Question;
 import models.QuestionList;
 
@@ -13,11 +14,20 @@ public class QuestionListController implements Controller {
     private final QuestionListDAO questionListDAO = new QuestionListDAO();
 
     public void getQuestionListFromAPI(){
-        try {
-            this.questionList = questionListDAO.getQuestionList();
-        }catch (IOException e){
+        try{
+            Object object = questionListDAO.getQuestionList();
+
+            if(object instanceof QuestionList){
+                this.questionList = (QuestionList) object;
+            }
+            if(object instanceof ExceptionReturnObject){
+                //todo handle exeption
+            }
+        }catch (Exception e){
             e.printStackTrace();
         }
+
+
     }
 
     public ArrayList<Question> getQuestions() {
