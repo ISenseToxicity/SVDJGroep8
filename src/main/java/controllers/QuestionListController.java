@@ -15,14 +15,15 @@ public class QuestionListController implements Controller {
 
     public void getQuestionListFromAPI(){
         try{
-            Object object = questionListDAO.getQuestionList();
-
-            if(object instanceof QuestionList){
-                this.questionList = (QuestionList) object;
-            }
-            if(object instanceof ExceptionReturnObject){
-                //todo handle exeption
-            }
+            this.questionList = (QuestionList) questionListDAO.getQuestionList();
+//            Object object = questionListDAO.getQuestionList();
+//
+//            if(object instanceof QuestionList){
+//                this.questionList = (QuestionList) object;
+//            }
+//            if(object instanceof ExceptionReturnObject){
+//                //todo handle exeption
+//            }
         }catch (Exception e){
             e.printStackTrace();
         }

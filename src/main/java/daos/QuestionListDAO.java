@@ -12,6 +12,6 @@ public class QuestionListDAO {
 
 
     public Object getQuestionList()throws IOException {
-        return gson.fromJson(getService.getResponse("http://localhost:8080/questionlist"),Object.class);
+        return gson.fromJson(getService.getResponse("http://localhost:8080/questionlist"),QuestionList.class);
     }
 }
