@@ -69,7 +69,7 @@ public class FormController implements Controller {
         translateTransition.setByX(-620);
         translateTransition.play();
 
-        // Example video, DELETE LATER
+        // TODO: Example video, DELETE LATER
         webEngine.load("https://www.youtube.com/embed/WPyOl4Equpw");
         // ^^^^^^^^^^^^^^^^^^^^^^^^^^^
     }
