@@ -2,26 +2,24 @@ package models;
 
 import java.util.HashMap;
 
-import java.util.ArrayList;
-
 public class Request {
 
     //    Attributes
     private final int userNr = 1;
     private String duty;
-    private ArrayList givenVariables;
+    private HashMap<String,String> givenVariables;
     private boolean isNewData ;
 
 //    Constructor
 
-    public Request(String duty, ArrayList givenVariables, boolean isNewData) {
+    public Request(String duty, HashMap<String,String> givenVariables, boolean isNewData) {
         this.duty = duty;
         this.givenVariables = givenVariables;
         this.isNewData = isNewData;
     }
 
 
-//    Setters And Getters
+//    Setters And Gettes
 
     public int getUserNr() {
         return userNr;
@@ -35,11 +33,11 @@ public class Request {
         this.duty = duty;
     }
 
-    public ArrayList getGivenVariables() {
+    public HashMap<String,String> getGivenVariables() {
         return givenVariables;
     }
 
-    public void setGivenVariables(ArrayList givenVariables) {
+    public void setGivenVariables(HashMap<String,String> givenVariables) {
         this.givenVariables = givenVariables;
     }
 
@@ -50,5 +48,4 @@ public class Request {
     public void setNewData(boolean newData) {
         isNewData = newData;
     }
-
 }

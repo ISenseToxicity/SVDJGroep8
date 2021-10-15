@@ -2,11 +2,8 @@ package services;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import models.Request;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ConstructionService {
@@ -21,7 +18,9 @@ public class ConstructionService {
     }
 
     public JsonElement constructJSON(Request request){
-        JsonElement jsonElement = JsonParser.parseString(request.toString());
+
+
+        JsonElement jsonElement = new JsonArray();
         return jsonElement;
     }
 }

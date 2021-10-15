@@ -1,77 +1,48 @@
 package controllers;
 
 import com.google.gson.JsonElement;
-import models.*;
-import services.*;
+import models.Request;
 import services.ConstructionService;
+import services.DeconstructionService;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class RequestController implements Controller {
-    private final ControllerRegistry controllerRegistry = ControllerRegistry.getInstance();
 
-    private final ReformRequestController reformRequestController = ReformRequestController.getInstance();
-    private final ConstructionService constructionService = ConstructionService.getInstance();
-    private final DeconstructionService deconstructionService = DeconstructionService.getInstance();
+    ConstructionService constructionService = ConstructionService.getInstance();
+    DeconstructionService deconstructionService = DeconstructionService.getInstance();
 
-    public ArrayList<Question> makeRequestOfReceivingQuestions() {
-        Request request = createNewRequest(null, "GetAllQuestions");
-        ArrayList answer = getAnswerNewRequest(request, "Question");
-        ArrayList<Question> fullQuestionList = (ArrayList<Question>) setCorrectFormatAnswer(answer, "Question");
-        return fullQuestionList;
+    public void createNewRequest(HashMap<String, String> variables, String duty) {
+
+        /*Make the request*/
+        Request request = new Request(duty, variables, false);
+
+        /*convert the new request to JSON*/
+         JsonElement jsonRequest  = convertToNewData(request);
+        /*Send the Request*/         /*Receive the Request*/
+         JsonElement receiveRequest = reformtoSendRequest(jsonRequest);
+
+         HashMap<String, String> requestAnswer = decryptRecvedRequest(receiveRequest);
+
+//         ToDo: See How to check where the answer Goes Back to and what it has
+        /*Send answerRequestBack*/
+//        return requestAnswer;
     }
 
-    public ArrayList<Question> makeRequestOfSendingAnswer(ArrayList<GivenAnswer> variables, String duty) { return null;}
-    public void makeRequestOfResults(ArrayList<Route> variables, String duty) {
-        Request request = createNewRequest(variables, "GET");
-        getAnswerNewRequest(request, "Result");
-
-    }
-
-    public ArrayList<Result> makeRequestOfSendingRoute(ArrayList<Route> variables, String duty, String nameClass) {
-        Request request = createNewRequest(variables, duty);
-        ArrayList<ArrayList> answer = getAnswerNewRequest(request, "Route");
-        ArrayList fullQuestionList = setCorrectFormatAnswer(answer,"Route");
-        return fullQuestionList;
-    }
-
-    private ArrayList setCorrectFormatAnswer(ArrayList<ArrayList> answer, String classType) {
-        Class needClass;
-        ArrayList<ArrayList> arrayList = new ArrayList<>();
-        try {
-            needClass = Class.forName(classType);
-            ArrayList<ArrayList> formattedList = new ArrayList<>();
-            for(ArrayList arrayListWithin : answer){
-                formattedList =(ArrayList<ArrayList>) arrayListWithin;
-            }
-            return  formattedList;
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return  arrayList;
-    }
-
-    private ArrayList<ArrayList> getAnswerNewRequest(Request request, String className) {
-        JsonElement jsonRequest = convertToNewData(request);
-        JsonElement receiveRequest = reformToSendRequest(jsonRequest, className );
-        ArrayList<ArrayList> requestAnswer = decryptReceivedRequest(receiveRequest);
+    private HashMap<String, String> decryptRecvedRequest(JsonElement receiveRequest) {
+         HashMap<String,String> requestAnswer = deconstructionService.deConstructJSON(receiveRequest);
         return requestAnswer;
     }
 
-    private Request createNewRequest(ArrayList variables, String duty) {
-        return new Request(duty, variables, false);
-    }
-
-    private ArrayList<ArrayList> decryptReceivedRequest(JsonElement receiveRequest) {
-        return deconstructionService.deConstructJSON(receiveRequest);
-    }
-
-    private JsonElement reformToSendRequest(JsonElement request, String className) {
-        return reformRequestController.reformSendRequest(request, className);
+    private JsonElement reformtoSendRequest(JsonElement request) {
+        JsonElement jsonAnswer = ReformRequestController.getInstance().reformSendRequest(request);
+        return jsonAnswer;
     }
 
     public JsonElement convertToNewData(Request request) {
-        return constructionService.constructJSON(request);
+        ConstructionService constructionService = new ConstructionService();
+        JsonElement JsonRequest = constructionService.constructJSON(request);
+
+        return JsonRequest;
     }
 }

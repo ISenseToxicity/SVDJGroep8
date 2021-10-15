@@ -16,7 +16,7 @@ public class DecryptService {
     private String DECRYPT_TOKEN = "ID0NTH4VE4T0K3N";
 
     public JsonElement deCryptData(JsonElement jsonElement){
-         int aswer = jsonElement.hashCode();
+//        Todo: Write Decrypt service
 
         return jsonElement;
     }

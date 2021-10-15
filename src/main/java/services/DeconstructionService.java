@@ -1,12 +1,14 @@
 package services;
 
 import com.google.gson.JsonElement;
+import models.Request;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DeconstructionService {
 
-    private static DeconstructionService deconstructionService;
+    static DeconstructionService deconstructionService;
 
     public static DeconstructionService getInstance() {
         if (deconstructionService == null) {
@@ -15,8 +17,9 @@ public class DeconstructionService {
         return deconstructionService;
     }
 
-    public ArrayList<ArrayList> deConstructJSON(JsonElement requestJsonAnswer) {
-       ArrayList<ArrayList> array = new ArrayList<>();
-        return array;
+    public HashMap<String, String> deConstructJSON(JsonElement requestJsonAnswer) {
+
+        HashMap<String, String> map = new HashMap<>();
+        return map;
     }
 }
