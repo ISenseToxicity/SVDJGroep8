@@ -13,7 +13,7 @@ public class RouteController implements Controller {
     public RouteController() {
         route = new Route(
                 0,
-                "placeholder resultID" //TODO: get route ID from DAO
+                "placeholder resultID" //TODO: get resultID from DAO
                 );
         givenAnswerController = new GivenAnswerController();
     }
