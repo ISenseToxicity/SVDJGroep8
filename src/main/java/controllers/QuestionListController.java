@@ -6,7 +6,6 @@ import models.ExceptionReturnObject;
 import models.Question;
 import models.QuestionList;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class QuestionListController implements Controller {
@@ -15,20 +14,26 @@ public class QuestionListController implements Controller {
 
     public void getQuestionListFromAPI(){
         try{
-            this.questionList = (QuestionList) questionListDAO.getQuestionList();
-//            Object object = questionListDAO.getQuestionList();
-//
-//            if(object instanceof QuestionList){
-//                this.questionList = (QuestionList) object;
-//            }
-//            if(object instanceof ExceptionReturnObject){
-//                //todo handle exeption
-//            }
+            Object[] objects = questionListDAO.getQuestionList();
+            if(checkIfExceptionReturnObjectIsNull((ExceptionReturnObject) objects[0])){
+                this.questionList =(QuestionList) objects[1];
+            }else{
+                //todo handle Exception
+            }
+
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
 
+    public boolean checkIfExceptionReturnObjectIsNull(ExceptionReturnObject exceptionReturnObject){
 
+        if(exceptionReturnObject.getApplicationInfo() == null){
+            if(exceptionReturnObject.getHttpStatus() == null){
+                return exceptionReturnObject.getUserMessage() == null;
+            }
+        }
+        return false;
     }
 
     public ArrayList<Question> getQuestions() {
