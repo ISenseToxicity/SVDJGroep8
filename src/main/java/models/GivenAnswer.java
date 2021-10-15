@@ -1,29 +1,32 @@
 package models;
 
 public class GivenAnswer {
-    private long startTime;
-    private long totalQuestionTime;
+    private String givenAnswerID;
+    private int elapsedSeconds;
     private String questionID;
     private String answerID;
 
-    public GivenAnswer() {
-
+    public GivenAnswer(String givenAnswerID, int elapsedSeconds, String questionID, String answerID) {
+        this.givenAnswerID = givenAnswerID;
+        this.elapsedSeconds = elapsedSeconds;
+        this.questionID = questionID;
+        this.answerID = answerID;
     }
 
-    public long getStartTime() {
-        return startTime;
+    public String getGivenAnswerID() {
+        return givenAnswerID;
     }
 
-    public void setStartTime(long startTime) {
-        this.startTime = startTime;
+    public void setGivenAnswerID(String givenAnswerID) {
+        this.givenAnswerID = givenAnswerID;
     }
 
-    public long getTotalQuestionTime() {
-        return totalQuestionTime;
+    public int getElapsedSeconds() {
+        return elapsedSeconds;
     }
 
-    public void setTotalQuestionTime(long totalQuestionTime) {
-        this.totalQuestionTime = totalQuestionTime;
+    public void setElapsedSeconds(int elapsedSeconds) {
+        this.elapsedSeconds = elapsedSeconds;
     }
 
     public String getQuestionID() {
