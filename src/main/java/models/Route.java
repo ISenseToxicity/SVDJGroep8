@@ -41,4 +41,8 @@ public class Route {
     public void addGivenAnswer(GivenAnswer givenAnswer) {
         givenAnswerList.add(givenAnswer);
     }
+
+    public void removeLastGivenAnswer() {
+        givenAnswerList.remove(givenAnswerList.size()-1);
+    }
 }
