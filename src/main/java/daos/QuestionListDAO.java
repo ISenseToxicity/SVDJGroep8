@@ -11,7 +11,7 @@ public class QuestionListDAO {
     private final Gson gson = new Gson();
     private final GetService getService =  GetService.getInstance();
 
-    //made this because both objects need te be checked and handled
+    //made this because both objects need te be checked and handled in questioncontroller backend will return one of these 2 objects
     public Object[] getQuestionList()throws IOException {
        String response = getService.getResponse("http://localhost:8080/questionlist");
        Object[] objects = new Object[2];
