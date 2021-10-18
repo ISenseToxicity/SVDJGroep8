@@ -1,10 +1,13 @@
 package controllers;
 
+import Exceptions.DataBaseException;
 import com.google.gson.JsonElement;
 import daos.RequestDAO;
 import models.Request;
 import services.DecryptService;
 import services.EncryptService;
+
+import java.io.IOException;
 
 public class ReformRequestController implements Controller {
     EncryptService encryptService = EncryptService.getInstance();
@@ -32,7 +35,13 @@ public class ReformRequestController implements Controller {
     }
 
     private JsonElement readyToSendRequest(JsonElement encryptedJsonRequest) {
-         JsonElement encryptedJsonAnswer = RequestDAO.getInstance().sendRequest(encryptedJsonRequest);
+        JsonElement encryptedJsonAnswer = null;
+        try {
+            encryptedJsonAnswer = RequestDAO.getInstance().sendRequest(encryptedJsonRequest);
+        } catch (IOException e) {
+            e.getMessage();
+//            dBE.getCause();
+        }
         return encryptedJsonAnswer;
     }
 
