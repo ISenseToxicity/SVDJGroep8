@@ -8,6 +8,8 @@ import org.junit.Assert;
 import services.DecryptService;
 import services.EncryptService;
 
+import java.io.IOException;
+
 public class ReformRequestController implements Controller {
     EncryptService encryptService = EncryptService.getInstance();
     DecryptService decryptService = DecryptService.getInstance();
