@@ -1,21 +1,23 @@
 package daos;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.itextpdf.text.pdf.StringUtils;
+import models.Request;
+import services.GetService;
 import services.ParameterStringBuilder;
 
 import java.io.*;
 import java.net.*;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public class RequestDAO {
     static RequestDAO requestDAO;
 
-    URL url;
-    HttpURLConnection con;
+    private final Gson request = new Gson();
+    GetService getService = GetService.getInstance();
+
 
     public static RequestDAO getInstance() {
         if (requestDAO == null) {
@@ -23,6 +25,13 @@ public class RequestDAO {
         }
         return requestDAO;
     }
+//    public Request sendRequest(JsonElement jRequest) throws IOException {
+//        return request.fromJson(getService.getResponse("http://localhost:8080/question"), Request.class);
+//
+//    }
+
+    URL url;
+    HttpURLConnection con;
 
     /**
      * Verzend een request om alle informatie in een keer te krijgen,
@@ -33,28 +42,45 @@ public class RequestDAO {
      * @throws IOException
      * @author Eefje | AntiEevee
      */
-    public JsonElement sendRequest(JsonElement readyRequest) throws IOException {
-
+    public JsonElement sendRequest(JsonElement readyRequest) {
 //        BASED OFF https://www.baeldung.com/java-http-request
-//        Todo :finnish
         try {
 //          set Connection
             setconectionSpecifics();
             url.openConnection();
 //          Add what to request
             formRequest();
+//            Read Request
+            readRequest();
 //            Give cookies
-            StringUtils cookies = developCookies();
+//            StringUtils cookies = developCookies();
             con.disconnect();
-            con = (HttpURLConnection) url.openConnection();
-            con.setRequestProperty("Cookie", StringUtils.join(cookieManager.getCookieStore().getCookies(), ";"));
+//            con.setRequestProperty("Cookie", StringUtils.join(cookieManager.getCookieStore().getCookies(), ";"));
+        } catch (IOException ioException){
+                ioException.getMessage();
         } catch (Exception e) {
-
+            e.getMessage();
         }
         return null;
     }
+
+
+    private void readRequest() throws IOException {
+        if (con.getResponseMessage().equals("200")) {
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer content = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+            in.close();
+        }
+    }
+
     /**
      * sets the request ready
+     *
      * @throws IOException
      */
     private void formRequest() throws IOException {
@@ -72,24 +98,25 @@ public class RequestDAO {
         con.setRequestProperty(contentType, "application/json");
     }
 
-    /**
-     * Vormt de cookies waaraan de request kan worden herkent.
-     * @return Cookies
-     */
-    private StringUtils developCookies() {
-        String cookiesHeader = con.getHeaderField("Set-Cookie");
-        List<HttpCookie> cookies = HttpCookie.parse(cookiesHeader);
+//    /**
+//     * Vormt de cookies waaraan de request kan worden herkent.
+//     * @return Cookies
+//     */
+//    private StringUtils developCookies() {
+//        String cookiesHeader = con.getHeaderField("Set-Cookie");
+//        List<HttpCookie> cookies = HttpCookie.parse(cookiesHeader);
+//
+//        cookies.forEach(cookie -> cookieManager.getCookieStore().add(null, cookie));
+//        Optional<HttpCookie> usernameCookie = cookies.stream()
+//                .findAny().filter(cookie -> cookie.getName().equals("username"));
+//        if (usernameCookie == null) {
+//            cookieManager.getCookieStore().add(null, new HttpCookie("username", "john"));
+//        }
+//        return cookies;
+//    }
 
-        cookies.forEach(cookie -> cookieManager.getCookieStore().add(null, cookie));
-        Optional<HttpCookie> usernameCookie = cookies.stream()
-                .findAny().filter(cookie -> cookie.getName().equals("username"));
-        if (usernameCookie == null) {
-            cookieManager.getCookieStore().add(null, new HttpCookie("username", "john"));
-        }
-        return cookies;
-    }
-
-    private void setconectionSpecifics() throws ProtocolException {
+    private void setconectionSpecifics() throws ProtocolException, MalformedURLException {
+        url = new URL("http://localhost:8080/");
         con.setRequestMethod("GET");
         con.setConnectTimeout(5000);
         con.setReadTimeout(5000);
