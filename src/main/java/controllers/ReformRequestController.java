@@ -36,12 +36,7 @@ public class ReformRequestController implements Controller {
 
     private JsonElement readyToSendRequest(JsonElement encryptedJsonRequest) {
         JsonElement encryptedJsonAnswer = null;
-        try {
-            encryptedJsonAnswer = RequestDAO.getInstance().sendRequest(encryptedJsonRequest);
-        } catch (IOException e) {
-            e.getMessage();
-//            dBE.getCause();
-        }
+        encryptedJsonAnswer = RequestDAO.getInstance().sendRequest(encryptedJsonRequest);
         return encryptedJsonAnswer;
     }
 
