@@ -5,30 +5,23 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.HashMap;
 
 public class PostService {
     public static PostService postService;
 
-    public void post() throws IOException, InterruptedException {
-        HashMap<String,String> values = new HashMap<String,String>();
-
-        //placeholder information TODO: make this variable input or ask for/create JSON as inputString
-        values.put("name","Rob");
-        values.put("biggest","boi");
-
-        String requestBody = values.toString(); //should be a JSON string
+    public void post(String URL, String input) throws IOException, InterruptedException {
+        //TODO: should input be Json string or object?
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest.newBuilder()
-                .uri(URI.create("Website url")) //TODO set final API parameter and get trail from input
+                .uri(URI.create(URL))
                 .header("Content-Type", "text/plain; charset=UTF-8")
-                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                .POST(HttpRequest.BodyPublishers.ofString(input))
                 .build();
 
         HttpResponse<String> httpResponse = httpClient.send(httpRequest,HttpResponse.BodyHandlers.ofString());
 
-        //TODO: do something with response
+        //TODO: do something with response. should return response?
         System.out.println(httpResponse.body());
     }
 
