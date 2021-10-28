@@ -1,5 +1,6 @@
 package controllers;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import daos.RouteDAO;
@@ -58,22 +59,8 @@ public class RouteController implements Controller {
         return route.getResultID();
     }
 
-    public void post() throws IOException, InterruptedException {
-        //TODO: should call Jsonbuilder class or something also below code sucks
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("routeid",route.getResultID());
-        jsonObject.addProperty("time",route.getTotalTime());
-
-        JsonObject givenAnswerJson = new JsonObject();
-        for (GivenAnswer givenAnswer : route.getGivenAnswerList()) {
-            givenAnswerJson.addProperty("given_answer_id", givenAnswer.getGivenAnswerID());
-            givenAnswerJson.addProperty("elapsed_seconds", givenAnswer.getElapsedSeconds());
-            givenAnswerJson.addProperty("question_id", givenAnswer.getQuestionID());
-            givenAnswerJson.addProperty("answer_id", givenAnswer.getAnswerID());
-        }
-
-        jsonObject.add("given_answers", givenAnswerJson);
-
-        dao.post(jsonObject.toString());
+    public void postRoute() throws IOException, InterruptedException {
+        String json = new Gson().toJson(route);
+        dao.post(json);
     }
 }

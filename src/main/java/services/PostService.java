@@ -10,8 +10,6 @@ public class PostService {
     public static PostService postService;
 
     public void post(String URL, String input) throws IOException, InterruptedException {
-        //TODO: should input be Json string or object?
-
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(URI.create(URL))
