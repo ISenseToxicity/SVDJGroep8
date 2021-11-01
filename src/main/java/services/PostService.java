@@ -19,7 +19,7 @@ public class PostService {
 
         HttpResponse<String> httpResponse = httpClient.send(httpRequest,HttpResponse.BodyHandlers.ofString());
 
-        //TODO: do something with response. should return response?
+        //does nothing with response atm
         System.out.println(httpResponse.body());
     }
 
