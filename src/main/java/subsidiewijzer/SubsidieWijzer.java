@@ -4,7 +4,6 @@ import controllers.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
 
 public class SubsidieWijzer extends Application {
 
