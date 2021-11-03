@@ -1,7 +1,7 @@
 package services;
 
 import com.itextpdf.awt.geom.misc.HashCode;
-import models.Model;
+import models.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,8 +17,8 @@ public class DeconstructionService {
         return deconstructionService;
     }
 
-    public HashMap<String, ArrayList<Model>> deConstructJSON(HashCode requestJsonAnswer) {
-        HashMap<String, ArrayList<Model>> map = new HashMap<>();
-        return map;
+    public ArrayList<ArrayList> deConstructJSON(HashCode requestJsonAnswer) {
+       ArrayList<ArrayList> array = new ArrayList<>();
+        return array;
     }
 }
