@@ -3,6 +3,11 @@ package daos;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.itextpdf.awt.geom.misc.HashCode;
+import models.Request;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import services.GetService;
 import services.ParameterStringBuilder;
 
@@ -14,18 +19,36 @@ import java.util.Map;
 
 public class RequestDAO {
     static RequestDAO requestDAO;
-    private final Gson request = new Gson();
-    GetService getService = GetService.getInstance();
 
+//    @Autowired
+//
+//    private final Gson request = new Gson();
+//    GetService getService = GetService.getInstance();
+//
+//
+//    public static RequestDAO getInstance() {
+//        if (requestDAO == null) {
+//            requestDAO = new RequestDAO();
+//        }
+//        return requestDAO;
+//    }
+//
+////    GetQuestions
+//    @GetMapping("/Questions")
+//    public Request getQuestions(Request readyRequest){
+//                return
+//
+//    }
+//
+////    POST results
+//    @PostMapping("/AnswerList")
+//    public Request getQuestions(Request readyRequest){
+//        return;
+//
+//    }
 
-    public static RequestDAO getInstance() {
-        if (requestDAO == null) {
-            requestDAO = new RequestDAO();
-        }
-        return requestDAO;
-    }
 //    public Request sendRequest(JsonElement jRequest) throws IOException {
-//        return request.fromJson(getService.getResponse("http://localhost:8080/question"), Request.class);
+//        return request.fromJson(getService.getResponse("http://localhost:8080/question"), Request.getClassName);
 //
 //    }
 

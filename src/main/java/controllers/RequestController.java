@@ -3,12 +3,12 @@ package controllers;
 import com.google.gson.JsonElement;
 import com.itextpdf.awt.geom.misc.HashCode;
 import models.Model;
+import models.Question;
 import models.Request;
 import services.*;
 import services.ConstructionService;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class RequestController implements Controller {
     private final ControllerRegistry controllerRegistry = ControllerRegistry.getInstance();
@@ -17,48 +17,56 @@ public class RequestController implements Controller {
     private final ConstructionService constructionService = ConstructionService.getInstance();
     private final DeconstructionService deconstructionService = DeconstructionService.getInstance();
 
-    public ArrayList<ArrayList<Model>> makeRequestOfReceivingQuestions() {
+    public ArrayList<Question> makeRequestOfReceivingQuestions() {
         Request request = createNewRequest(null, "GetAllQuestions");
-        HashMap<String, ArrayList<Model>> answer = getAnswerNewRequest(request);
-        ArrayList<ArrayList<Model>> fullQuestionList = setCorrectFormatAnswer(answer);
+        ArrayList<ArrayList> answer = getAnswerNewRequest(request);
+        ArrayList<Question> fullQuestionList = (ArrayList<Question>) setCorrectFormatAnswer(answer, "Question");
         return fullQuestionList;
     }
 
-    public ArrayList<ArrayList<Model>> makeRequestOfSending(ArrayList<Model> variables, String duty, String nameClass) {
-        HashMap<String, ArrayList<Model>> hmVariables = new HashMap<>();
-        hmVariables.put(nameClass, variables);
-        Request request = createNewRequest(hmVariables, duty);
-        HashMap<String, ArrayList<Model>> answer = getAnswerNewRequest(request);
-        ArrayList<ArrayList<Model>> fullQuestionList = setCorrectFormatAnswer(answer);
+    public ArrayList<Question> makeRequestOfSendingAnswer() { return null;}
+    public ArrayList<Question> makeRequestOfQuestions(ArrayList<Question> questions) {return null;}
+
+    public ArrayList makeRequestOfSending(ArrayList<Model> variables, String duty,String nameClass) {
+        Request request = createNewRequest(variables, duty);
+        ArrayList<ArrayList> answer = getAnswerNewRequest(request);
+        ArrayList fullQuestionList = setCorrectFormatAnswer(answer, nameClass);
         return fullQuestionList;
     }
 
-    private ArrayList<ArrayList<Model>> setCorrectFormatAnswer(HashMap<String, ArrayList<Model>> answer) {
-        ArrayList<ArrayList<Model>> arrayList = new ArrayList<>();
-        for (ArrayList<Model> model : answer.values()) {
-            arrayList.add(model);
+    private ArrayList setCorrectFormatAnswer(ArrayList<ArrayList> answer, String classType) {
+        Class needClass;
+        ArrayList<ArrayList> arrayList = new ArrayList<>();
+        try {
+            needClass = Class.forName(classType);
+            ArrayList<ArrayList> formattedList = new ArrayList<>();
+            for(ArrayList arrayListWithin : answer){
+                formattedList =(ArrayList<ArrayList>) arrayListWithin;
+            }
+            return  formattedList;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
-        return arrayList;
+
+        return  arrayList;
     }
 
-    private HashMap<String, ArrayList<Model>> getAnswerNewRequest(Request request) {
+    private ArrayList<ArrayList> getAnswerNewRequest(Request request) {
         JsonElement jsonRequest = convertToNewData(request);
-        HashCode receiveRequest = reformtoSendRequest(jsonRequest);
-        HashMap<String, ArrayList<Model>> requestAnswer = decryptRecvedRequest(receiveRequest);
+        HashCode receiveRequest = reformToSendRequest(jsonRequest);
+        ArrayList<ArrayList> requestAnswer = decryptReceivedRequest(receiveRequest);
         return requestAnswer;
     }
 
-    private Request createNewRequest(HashMap<String, ArrayList<Model>> variables, String duty) {
-        Request request = new Request(duty, variables, false);
-        return request;
+    private Request createNewRequest(ArrayList variables, String duty) {
+        return new Request(duty, variables, false);
     }
 
-    private HashMap<String, ArrayList<Model>> decryptRecvedRequest(HashCode receiveRequest) {
-        HashMap<String, ArrayList<Model>> requestAnswer = deconstructionService.deConstructJSON(receiveRequest);
-        return requestAnswer;
+    private ArrayList<ArrayList> decryptReceivedRequest(HashCode receiveRequest) {
+        return deconstructionService.deConstructJSON(receiveRequest);
     }
 
-    private HashCode reformtoSendRequest(JsonElement request) {
+    private HashCode reformToSendRequest(JsonElement request) {
         return reformRequestController.reformSendRequest(request);
     }
 
