@@ -1,13 +1,10 @@
 package controllers;
 
-import Exceptions.DataBaseException;
 import com.google.gson.JsonElement;
+import com.itextpdf.awt.geom.misc.HashCode;
 import daos.RequestDAO;
-import models.Request;
 import services.DecryptService;
 import services.EncryptService;
-
-import java.io.IOException;
 
 public class ReformRequestController implements Controller {
     EncryptService encryptService = EncryptService.getInstance();
@@ -23,19 +20,19 @@ public class ReformRequestController implements Controller {
     }
 
 
-    public JsonElement reformSendRequest(JsonElement requestJson) {
+    public HashCode reformSendRequest(JsonElement requestJson) {
 
         JsonElement encryptedJsonRequest = encryptTheRequest(requestJson);
 
         /*Receive the Answer                  Send the Answer*/
-        JsonElement receiveAnswerRequest = readyToSendRequest(encryptedJsonRequest);
+        HashCode receiveAnswerRequest = readyToSendRequest(encryptedJsonRequest);
 
                 /*Decrypt the answer*/
         return deCryptTheRequest(receiveAnswerRequest);
     }
 
-    private JsonElement readyToSendRequest(JsonElement encryptedJsonRequest) {
-        JsonElement encryptedJsonAnswer = null;
+    private HashCode readyToSendRequest(JsonElement encryptedJsonRequest) {
+        HashCode encryptedJsonAnswer = null;
         encryptedJsonAnswer = RequestDAO.getInstance().sendRequest(encryptedJsonRequest);
         return encryptedJsonAnswer;
     }
@@ -46,7 +43,7 @@ public class ReformRequestController implements Controller {
         return encryptService.encryptData(requestJson);
     }
 
-    private JsonElement deCryptTheRequest(JsonElement requestJson) {
+    private HashCode deCryptTheRequest(HashCode requestJson) {
         return decryptService.deCryptData(requestJson);
     }
 }
