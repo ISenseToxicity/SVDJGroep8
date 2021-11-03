@@ -1,14 +1,14 @@
 package services;
 
-import com.google.gson.JsonElement;
-import models.Request;
+import com.itextpdf.awt.geom.misc.HashCode;
+import models.Model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class DeconstructionService {
 
-    static DeconstructionService deconstructionService;
+    private static DeconstructionService deconstructionService;
 
     public static DeconstructionService getInstance() {
         if (deconstructionService == null) {
@@ -17,9 +17,8 @@ public class DeconstructionService {
         return deconstructionService;
     }
 
-    public HashMap<String, String> deConstructJSON(JsonElement requestJsonAnswer) {
-
-        HashMap<String, String> map = new HashMap<>();
+    public HashMap<String, ArrayList<Model>> deConstructJSON(HashCode requestJsonAnswer) {
+        HashMap<String, ArrayList<Model>> map = new HashMap<>();
         return map;
     }
 }
