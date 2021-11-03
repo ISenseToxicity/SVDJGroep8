@@ -33,7 +33,7 @@ public class ReformRequestController implements Controller {
 
     private HashCode readyToSendRequest(JsonElement encryptedJsonRequest) {
         HashCode encryptedJsonAnswer = null;
-        encryptedJsonAnswer = RequestDAO.getInstance().sendRequest(encryptedJsonRequest);
+//        encryptedJsonAnswer = RequestDAO.getInstance().sendRequest(encryptedJsonRequest);
         return encryptedJsonAnswer;
     }
 
