@@ -2,19 +2,18 @@ package daos;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.itextpdf.text.pdf.StringUtils;
-import models.Request;
+import com.itextpdf.awt.geom.misc.HashCode;
 import services.GetService;
 import services.ParameterStringBuilder;
 
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class RequestDAO {
     static RequestDAO requestDAO;
-
     private final Gson request = new Gson();
     GetService getService = GetService.getInstance();
 
@@ -42,7 +41,7 @@ public class RequestDAO {
      * @throws IOException
      * @author Eefje | AntiEevee
      */
-    public JsonElement sendRequest(JsonElement readyRequest) {
+    public HashCode sendRequest(JsonElement readyRequest) {
 //        BASED OFF https://www.baeldung.com/java-http-request
         try {
 //          set Connection
