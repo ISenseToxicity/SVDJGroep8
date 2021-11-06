@@ -1,14 +1,20 @@
 package controllers;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import daos.RouteDAO;
 import models.GivenAnswer;
 import models.Route;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class RouteController implements Controller {
 
-    Route route;
-    GivenAnswerController givenAnswerController;
+    private Route route;
+    private GivenAnswerController givenAnswerController;
+    private RouteDAO dao;
 
     public RouteController() {
         route = new Route(
@@ -16,6 +22,7 @@ public class RouteController implements Controller {
                 "placeholder resultID" //TODO: get resultID from DAO
                 );
         givenAnswerController = new GivenAnswerController();
+        dao = RouteDAO.getInstance();
     }
 
     public void setTotalTime(int elapsedSeconds) {
@@ -48,11 +55,12 @@ public class RouteController implements Controller {
         route.removeLastGivenAnswer();
     }
 
-    public Route getRoute() {
-        return route;
-    }
-
     public String getResultID(){
         return route.getResultID();
+    }
+
+    public void postRoute() throws IOException, InterruptedException {
+        String json = new Gson().toJson(route);
+        dao.post(json);
     }
 }
