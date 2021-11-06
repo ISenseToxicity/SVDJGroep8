@@ -9,6 +9,7 @@ import java.net.http.HttpResponse;
 public class PostService {
     public static PostService postService;
 
+    //TODO .env maken voor URL en dan niet als input pakken
     public void post(String URL, String input) throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest.newBuilder()
