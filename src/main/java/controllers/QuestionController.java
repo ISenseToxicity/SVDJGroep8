@@ -20,4 +20,8 @@ public class QuestionController implements Controller {
         QuestionListController questionListController = (QuestionListController) ControllerRegistry.get(QuestionListController.class);
        return questionListController.getQuestions().get(questionNumber).getAnswers();
     }
+    public String getExtraInfoDescription(int questionNumber){
+        QuestionListController questionListController = (QuestionListController) ControllerRegistry.get(QuestionListController.class);
+        return questionListController.getQuestions().get(questionNumber).getExtraInfoDescription();
+    }
 }

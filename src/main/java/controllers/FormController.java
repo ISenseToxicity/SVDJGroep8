@@ -30,6 +30,8 @@ public class FormController implements Controller {
     @FXML javafx.scene.control.CheckBox answer3;
     @FXML javafx.scene.control.CheckBox answer4;
 
+    @FXML javafx.scene.control.Label extraInfoDescription;
+
     @FXML ScrollPane moreInfoPane;
 
     @FXML WebView infoVideo;
@@ -62,7 +64,7 @@ public class FormController implements Controller {
         changeAnswerTitle(questionController.getAnswerTitle(0,1),1);
         makeAnswerInvisible(2);
         makeAnswerInvisible(3);
-
+        changeextraInfoDescription(questionController.getExtraInfoDescription(0));
     }
     private void showPopup() {
         moreInfoPane.setVisible(true);
@@ -122,5 +124,8 @@ public class FormController implements Controller {
                 answer4.setVisible(true);
                 break;
         }
+    }
+    private void changeextraInfoDescription(String extraInformationText){
+        extraInfoDescription.setText(extraInformationText);
     }
 }
