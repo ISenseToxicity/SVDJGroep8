@@ -16,12 +16,12 @@
 <VBox alignment="CENTER" minHeight="750.0" minWidth="1350.0" prefHeight="750.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <style>-fx-background-color: #FFFFFF;</style>
     <AnchorPane layoutX="98.0" layoutY="34.0" maxHeight="727.0" maxWidth="1342.0" minHeight="727.0" minWidth="1342.0" prefHeight="727.0" prefWidth="1342.0">
-        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="1400.0" text="Hier Komt een vraag te staan" textAlignment="CENTER">
+        <Label fx:id="question" alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="1400.0" textAlignment="CENTER">
             <font>
                 <Font name="neue-haas-grotesk-display Bold" size="44.0" />
             </font>
         </Label>
-        <CheckBox layoutX="325.0" layoutY="150.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0" stylesheets="@css/main.css" text="Hier staat het eerst mogelijke antwoord">
+        <CheckBox fx:id="answer1" layoutX="325.0" layoutY="150.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0" stylesheets="@css/main.css">
             <style>-fx-background-color: #F7F7F7;</style>
             <font>
                 <Font name="neue-haas-grotesk-display Bold" size="15.0" />
@@ -33,7 +33,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </CheckBox>
-        <CheckBox layoutX="325.0" layoutY="250.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0" stylesheets="@css/main.css" text="Hier staat het tweede mogelijke antwoord">
+        <CheckBox fx:id="answer2" layoutX="325.0" layoutY="250.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0" stylesheets="@css/main.css" text="Hier staat het tweede mogelijke antwoord">
             <style>-fx-background-color: #F7F7F7;</style>
             <font>
                 <Font name="neue-haas-grotesk-display Bold" size="15.0" />
@@ -45,7 +45,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </CheckBox>
-        <CheckBox layoutX="325.0" layoutY="350.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0" stylesheets="@css/main.css" text="Hier staat het derde mogelijke antwoord">
+        <CheckBox fx:id="answer3" layoutX="325.0" layoutY="350.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0" stylesheets="@css/main.css" text="Hier staat het derde mogelijke antwoord">
             <style>-fx-background-color: #F7F7F7;</style>
             <font>
                 <Font name="neue-haas-grotesk-display Bold" size="15.0" />
@@ -57,7 +57,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </CheckBox>
-        <CheckBox layoutX="325.0" layoutY="450.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0" stylesheets="@css/main.css" text="Hier staat dan natuurlijk het vierde mogelijke antwoord">
+        <CheckBox fx:id="answer4" layoutX="325.0" layoutY="450.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0" stylesheets="@css/main.css" text="Hier staat dan natuurlijk het vierde mogelijke antwoord">
             <style>-fx-background-color: #F7F7F7;</style>
             <font>
                 <Font name="neue-haas-grotesk-display Bold" size="15.0" />
