@@ -1,6 +1,8 @@
 package controllers;
 
 import javafx.animation.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.web.WebEngine;
@@ -55,6 +57,7 @@ public class FormController implements Controller {
         infoVideo.setContextMenuEnabled(false);
         webEngine = infoVideo.getEngine();
         initializefirstQuestion();
+        listeners();
     }
 
     private void initializefirstQuestion(){
@@ -76,6 +79,55 @@ public class FormController implements Controller {
         // Example video, DELETE LATER
         webEngine.load("https://www.youtube.com/embed/WPyOl4Equpw");
         // ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    }
+    public void listeners(){
+        answer1.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(answer1.isSelected()){
+                    unSelectOtherCheckBoxes(answer1.getId());
+                }
+            }
+        });
+        answer2.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(answer2.isSelected()){
+                    unSelectOtherCheckBoxes(answer2.getId());
+                }
+            }
+        });
+        answer3.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(answer3.isSelected()){
+                    unSelectOtherCheckBoxes(answer3.getId());
+                }
+            }
+        });
+        answer4.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(answer4.isSelected()){
+                    unSelectOtherCheckBoxes(answer4.getId());
+                }
+            }
+        });
+    }
+
+    private void unSelectOtherCheckBoxes(String checkBoxID){
+      if(!checkBoxID.equals("answer1")){
+          answer1.setSelected(false);
+      }
+        if(!checkBoxID.equals("answer2")){
+            answer2.setSelected(false);
+        }
+        if(!checkBoxID.equals("answer3")){
+            answer3.setSelected(false);
+        }
+        if(!checkBoxID.equals("answer4")){
+            answer4.setSelected(false);
+        }
     }
 
     private void closePopup() {
