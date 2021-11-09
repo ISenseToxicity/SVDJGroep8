@@ -18,10 +18,13 @@ public class QuestionController implements Controller {
     }
     public ArrayList<Answer> getAnswers(int questionNumber){
         QuestionListController questionListController = (QuestionListController) ControllerRegistry.get(QuestionListController.class);
+        questionListController.getQuestionListFromAPI();
        return questionListController.getQuestions().get(questionNumber).getAnswers();
     }
+
     public String getExtraInfoDescription(int questionNumber){
         QuestionListController questionListController = (QuestionListController) ControllerRegistry.get(QuestionListController.class);
+        questionListController.getQuestionListFromAPI();
         return questionListController.getQuestions().get(questionNumber).getExtraInfoDescription();
     }
 }

@@ -1,20 +1,19 @@
 package controllers;
 
 import javafx.animation.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import models.Form;
 import services.AnimationService;
 import views.FormView;
 
 public class FormController implements Controller {
     FormView formView = new FormView();
-
+    Form form = new Form();
     // FXML id's
     @FXML javafx.scene.control.Button nextButton;
     @FXML javafx.scene.control.Button previousButton;
@@ -53,22 +52,15 @@ public class FormController implements Controller {
 
         moreInfoButton.setOnMouseClicked(e -> showPopup());
         closeButton.setOnMouseClicked(e -> closePopup());
+        nextButton.setOnMouseClicked(event -> nextQuestion());
 
         infoVideo.setContextMenuEnabled(false);
         webEngine = infoVideo.getEngine();
-        initializefirstQuestion();
+
         listeners();
+        nextQuestion();
     }
 
-    private void initializefirstQuestion(){
-        QuestionController questionController = new QuestionController();
-        changeQuestionText(questionController.getQuestionTitle(0));
-        changeAnswerTitle(questionController.getAnswerTitle(0,0),0);
-        changeAnswerTitle(questionController.getAnswerTitle(0,1),1);
-        makeAnswerInvisible(2);
-        makeAnswerInvisible(3);
-        changeextraInfoDescription(questionController.getExtraInfoDescription(0));
-    }
     private void showPopup() {
         moreInfoPane.setVisible(true);
 
@@ -131,22 +123,7 @@ public class FormController implements Controller {
     private void changeQuestionText(String questionTitle){
         question.setText(questionTitle);
     }
-    private void makeAnswerInvisible(int answerNumber){
-        switch (answerNumber){
-            case 0:
-                answer1.setVisible(false);
-                break;
-            case 1:
-                answer2.setVisible(false);
-                break;
-            case 2:
-                answer3.setVisible(false);
-                break;
-            case 3:
-                answer4.setVisible(false);
-                break;
-        }
-    }
+
     private void changeAnswerTitle(String answerTitle,int answerNumber){
         switch (answerNumber){
             case 0:
@@ -167,5 +144,45 @@ public class FormController implements Controller {
     }
     private void changeextraInfoDescription(String extraInformationText){
         extraInfoDescription.setText(extraInformationText);
+    }
+    private void nextQuestion(){
+        int currentQuestion = form.getCurrentQuestionID();
+        QuestionController questionController = new QuestionController();
+        int numberOfAnswers = questionController.getAnswers(currentQuestion).size();
+        showAnswers(numberOfAnswers,currentQuestion ,questionController);
+        changeQuestionText(questionController.getQuestionTitle(currentQuestion));
+        changeextraInfoDescription(questionController.getExtraInfoDescription(currentQuestion));
+        form.setCurrentQuestionID(currentQuestion+1);
+        makeAnswerInvisible(numberOfAnswers);
+    }
+
+    private void showAnswers(int numberOfAnswers, int currentQuestion ,QuestionController questionController){
+        for(int i = 0; numberOfAnswers > i; i++){
+            changeAnswerTitle(questionController.getAnswerTitle(currentQuestion,i),i);
+
+            if(i >= 4){
+                break;
+            }
+
+        }
+    }
+    private void makeAnswerInvisible(int numberOfAnswers){
+        for(int i = numberOfAnswers; i<4; i++){
+            switch (i){
+                case 0:
+                    answer1.setVisible(false);
+                    break;
+                case 1:
+                    answer2.setVisible(false);
+                    break;
+                case 2:
+                    answer3.setVisible(false);
+                    break;
+                case 3:
+                    answer4.setVisible(false);
+                    break;
+            }
+        }
+
     }
 }
