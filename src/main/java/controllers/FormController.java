@@ -81,36 +81,24 @@ public class FormController implements Controller {
         // ^^^^^^^^^^^^^^^^^^^^^^^^^^^
     }
     public void listeners(){
-        answer1.selectedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if(answer1.isSelected()){
-                    unSelectOtherCheckBoxes(answer1.getId());
-                }
+        answer1.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (answer1.isSelected()) {
+                unSelectOtherCheckBoxes(answer1.getId());
             }
         });
-        answer2.selectedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if(answer2.isSelected()){
-                    unSelectOtherCheckBoxes(answer2.getId());
-                }
+        answer2.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if(answer2.isSelected()){
+                unSelectOtherCheckBoxes(answer2.getId());
             }
         });
-        answer3.selectedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if(answer3.isSelected()){
-                    unSelectOtherCheckBoxes(answer3.getId());
-                }
+        answer3.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if(answer3.isSelected()){
+                unSelectOtherCheckBoxes(answer3.getId());
             }
         });
-        answer4.selectedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if(answer4.isSelected()){
-                    unSelectOtherCheckBoxes(answer4.getId());
-                }
+        answer4.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if(answer4.isSelected()){
+                unSelectOtherCheckBoxes(answer4.getId());
             }
         });
     }
