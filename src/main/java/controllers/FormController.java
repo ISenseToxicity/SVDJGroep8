@@ -124,24 +124,6 @@ public class FormController implements Controller {
         question.setText(questionTitle);
     }
 
-    private void changeAnswerTitle(String answerTitle,int answerNumber){
-        switch (answerNumber){
-            case 0:
-                answer1.setText(answerTitle);
-                break;
-            case 1:
-                answer2.setText(answerTitle);
-                break;
-            case 2:
-                answer3.setText(answerTitle);
-                answer3.setVisible(true);
-                break;
-            case 3:
-                answer4.setText(answerTitle);
-                answer4.setVisible(true);
-                break;
-        }
-    }
     private void changeextraInfoDescription(String extraInformationText){
         extraInfoDescription.setText(extraInformationText);
     }
@@ -149,20 +131,33 @@ public class FormController implements Controller {
         int currentQuestion = form.getCurrentQuestionID();
         QuestionController questionController = new QuestionController();
         int numberOfAnswers = questionController.getAnswers(currentQuestion).size();
-        showAnswers(numberOfAnswers,currentQuestion ,questionController);
+
+        changeAnswerTitle(numberOfAnswers,currentQuestion ,questionController);
         changeQuestionText(questionController.getQuestionTitle(currentQuestion));
         changeextraInfoDescription(questionController.getExtraInfoDescription(currentQuestion));
-        form.setCurrentQuestionID(currentQuestion+1);
         makeAnswerInvisible(numberOfAnswers);
+        form.setCurrentQuestionID(currentQuestion+1);
     }
 
-    private void showAnswers(int numberOfAnswers, int currentQuestion ,QuestionController questionController){
+    private void changeAnswerTitle(int numberOfAnswers ,int currentQuestion, QuestionController questionController){
         for(int i = 0; numberOfAnswers > i; i++){
-            changeAnswerTitle(questionController.getAnswerTitle(currentQuestion,i),i);
-            if(i >= 4){
-                break;
-            }
-
+            String answerTitle = questionController.getAnswerTitle(currentQuestion,i);
+            switch (i){
+                case 0:
+                    answer1.setText(answerTitle);
+                    break;
+                case 1:
+                    answer2.setText(answerTitle);
+                    break;
+                case 2:
+                    answer3.setText(answerTitle);
+                    answer3.setVisible(true);
+                    break;
+                case 3:
+                    answer4.setText(answerTitle);
+                    answer4.setVisible(true);
+                    break;
+        }
         }
     }
     private void makeAnswerInvisible(int numberOfAnswers){
