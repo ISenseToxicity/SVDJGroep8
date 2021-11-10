@@ -134,7 +134,7 @@ public class FormController implements Controller {
                 break;
             case 2:
                 answer3.setText(answerTitle);
-                answer4.setVisible(true);
+                answer3.setVisible(true);
                 break;
             case 3:
                 answer4.setText(answerTitle);
@@ -159,7 +159,6 @@ public class FormController implements Controller {
     private void showAnswers(int numberOfAnswers, int currentQuestion ,QuestionController questionController){
         for(int i = 0; numberOfAnswers > i; i++){
             changeAnswerTitle(questionController.getAnswerTitle(currentQuestion,i),i);
-
             if(i >= 4){
                 break;
             }
