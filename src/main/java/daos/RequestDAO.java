@@ -19,41 +19,16 @@ import java.util.Map;
 
 public class RequestDAO {
     static RequestDAO requestDAO;
+    private URL url;
+    private HttpURLConnection con;
 
-//    @Autowired
-//
-//    private final Gson request = new Gson();
-//    GetService getService = GetService.getInstance();
-//
-//
-//    public static RequestDAO getInstance() {
-//        if (requestDAO == null) {
-//            requestDAO = new RequestDAO();
-//        }
-//        return requestDAO;
-//    }
-//
-////    GetQuestions
-//    @GetMapping("/Questions")
-//    public Request getQuestions(Request readyRequest){
-//                return
-//
-//    }
-//
-////    POST results
-//    @PostMapping("/AnswerList")
-//    public Request getQuestions(Request readyRequest){
-//        return;
-//
-//    }
+    public static RequestDAO getInstance() {
+        if (requestDAO == null) {
+            requestDAO = new RequestDAO();
+        }
+        return requestDAO;
+    }
 
-//    public Request sendRequest(JsonElement jRequest) throws IOException {
-//        return request.fromJson(getService.getResponse("http://localhost:8080/question"), Request.getClassName);
-//
-//    }
-
-    URL url;
-    HttpURLConnection con;
 
     /**
      * Verzend een request om alle informatie in een keer te krijgen,
@@ -64,22 +39,15 @@ public class RequestDAO {
      * @throws IOException
      * @author Eefje | AntiEevee
      */
-    public HashCode sendRequest(JsonElement readyRequest) {
-//        BASED OFF https://www.baeldung.com/java-http-request
+    public HashCode sendRequest(JsonElement readyRequest, String className) {
         try {
-//          set Connection
             setconectionSpecifics();
             url.openConnection();
-//          Add what to request
-            formRequest();
-//            Read Request
+            formRequest(readyRequest, className);
             readRequest();
-//            Give cookies
-//            StringUtils cookies = developCookies();
             con.disconnect();
-//            con.setRequestProperty("Cookie", StringUtils.join(cookieManager.getCookieStore().getCookies(), ";"));
-        } catch (IOException ioException){
-                ioException.getMessage();
+        } catch (IOException ioException) {
+            ioException.getMessage();
         } catch (Exception e) {
             e.getMessage();
         }
@@ -105,18 +73,17 @@ public class RequestDAO {
      *
      * @throws IOException
      */
-    private void formRequest() throws IOException {
+    private void formRequest(JsonElement jsonElement, String className) throws IOException {
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("Questions", "question");
+        parameters.put(className, jsonElement.getAsString());
 
         con.setDoOutput(true);
         DataOutputStream out = new DataOutputStream(con.getOutputStream());
         out.writeBytes(ParameterStringBuilder.getParamsString(parameters));
         out.flush();
         out.close();
-
 //      SetHeader of Request
-        String contentType = con.getHeaderField("GET/Question");
+        String contentType = con.getHeaderField("SVDJ/" + className);
         con.setRequestProperty(contentType, "application/json");
     }
 

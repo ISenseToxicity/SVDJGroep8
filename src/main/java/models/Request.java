@@ -2,7 +2,7 @@ package models;
 
 import java.util.ArrayList;
 
-public class Request implements Model{
+public class Request {
 
     //    Attributes
     private final int userNr = 1;

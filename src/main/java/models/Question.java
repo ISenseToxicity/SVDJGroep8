@@ -2,7 +2,7 @@ package models;
 
 import java.util.ArrayList;
 
-public class Question implements  Model{
+public class Question {
     private String questionID;
     private String questionText;
     private ArrayList<Answer> answers;
