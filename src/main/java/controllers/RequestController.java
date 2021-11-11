@@ -2,9 +2,7 @@ package controllers;
 
 import com.google.gson.JsonElement;
 import com.itextpdf.awt.geom.misc.HashCode;
-import models.Model;
-import models.Question;
-import models.Request;
+import models.*;
 import services.*;
 import services.ConstructionService;
 
@@ -19,18 +17,22 @@ public class RequestController implements Controller {
 
     public ArrayList<Question> makeRequestOfReceivingQuestions() {
         Request request = createNewRequest(null, "GetAllQuestions");
-        ArrayList<ArrayList> answer = getAnswerNewRequest(request);
+        ArrayList answer = getAnswerNewRequest(request, "Question");
         ArrayList<Question> fullQuestionList = (ArrayList<Question>) setCorrectFormatAnswer(answer, "Question");
         return fullQuestionList;
     }
 
-    public ArrayList<Question> makeRequestOfSendingAnswer() { return null;}
-    public ArrayList<Question> makeRequestOfQuestions(ArrayList<Question> questions) {return null;}
+    public ArrayList<Question> makeRequestOfSendingAnswer(ArrayList<GivenAnswer> variables, String duty) { return null;}
+    public void makeRequestOfResults(ArrayList<Route> variables, String duty) {
+        Request request = createNewRequest(variables, "GET");
+        getAnswerNewRequest(request, "Result");
 
-    public ArrayList makeRequestOfSending(ArrayList<Model> variables, String duty,String nameClass) {
+    }
+
+    public ArrayList<Result> makeRequestOfSendingRoute(ArrayList<Route> variables, String duty, String nameClass) {
         Request request = createNewRequest(variables, duty);
-        ArrayList<ArrayList> answer = getAnswerNewRequest(request);
-        ArrayList fullQuestionList = setCorrectFormatAnswer(answer, nameClass);
+        ArrayList<ArrayList> answer = getAnswerNewRequest(request, "Route");
+        ArrayList fullQuestionList = setCorrectFormatAnswer(answer,"Route");
         return fullQuestionList;
     }
 
@@ -51,9 +53,9 @@ public class RequestController implements Controller {
         return  arrayList;
     }
 
-    private ArrayList<ArrayList> getAnswerNewRequest(Request request) {
+    private ArrayList<ArrayList> getAnswerNewRequest(Request request, String className) {
         JsonElement jsonRequest = convertToNewData(request);
-        HashCode receiveRequest = reformToSendRequest(jsonRequest);
+        HashCode receiveRequest = reformToSendRequest(jsonRequest, className );
         ArrayList<ArrayList> requestAnswer = decryptReceivedRequest(receiveRequest);
         return requestAnswer;
     }
@@ -66,8 +68,8 @@ public class RequestController implements Controller {
         return deconstructionService.deConstructJSON(receiveRequest);
     }
 
-    private HashCode reformToSendRequest(JsonElement request) {
-        return reformRequestController.reformSendRequest(request);
+    private HashCode reformToSendRequest(JsonElement request, String className) {
+        return reformRequestController.reformSendRequest(request, className);
     }
 
     public JsonElement convertToNewData(Request request) {

@@ -20,20 +20,17 @@ public class ReformRequestController implements Controller {
     }
 
 
-    public HashCode reformSendRequest(JsonElement requestJson) {
-
+    public HashCode reformSendRequest(JsonElement requestJson, String className) {
         JsonElement encryptedJsonRequest = encryptTheRequest(requestJson);
-
         /*Receive the Answer                  Send the Answer*/
-        HashCode receiveAnswerRequest = readyToSendRequest(encryptedJsonRequest);
+        HashCode receiveAnswerRequest = readyToSendRequest(encryptedJsonRequest, className);
 
                 /*Decrypt the answer*/
         return deCryptTheRequest(receiveAnswerRequest);
     }
 
-    private HashCode readyToSendRequest(JsonElement encryptedJsonRequest) {
-        HashCode encryptedJsonAnswer = null;
-//        encryptedJsonAnswer = RequestDAO.getInstance().sendRequest(encryptedJsonRequest);
+    private HashCode readyToSendRequest(JsonElement encryptedJsonRequest, String className) {
+        HashCode encryptedJsonAnswer = RequestDAO.getInstance().sendRequest(encryptedJsonRequest,className);
         return encryptedJsonAnswer;
     }
 
