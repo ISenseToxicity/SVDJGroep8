@@ -14,7 +14,7 @@ public class GivenAnswer {
     }
 
     public String getGivenAnswerID() {
-        return givenAnswerID;
+        return this.givenAnswerID;
     }
 
     public void setGivenAnswerID(String givenAnswerID) {
@@ -22,7 +22,7 @@ public class GivenAnswer {
     }
 
     public int getElapsedSeconds() {
-        return elapsedSeconds;
+        return this.elapsedSeconds;
     }
 
     public void setElapsedSeconds(int elapsedSeconds) {
@@ -30,7 +30,7 @@ public class GivenAnswer {
     }
 
     public String getQuestionID() {
-        return questionID;
+        return this.questionID;
     }
 
     public void setQuestionID(String questionID) {
@@ -38,7 +38,7 @@ public class GivenAnswer {
     }
 
     public String getAnswerID() {
-        return answerID;
+        return this.answerID;
     }
 
     public void setAnswerID(String answerID) {

@@ -11,19 +11,15 @@ public class Route {
     public Route(int totalTime, String resultID) {
         this.totalTime = totalTime;
         this.resultID = resultID;
-        givenAnswerList = new ArrayList<GivenAnswer>();
+        this.givenAnswerList = new ArrayList<>();
     }
 
     public int getTotalTime() {
-        return totalTime;
+        return this.totalTime;
     }
 
     public void setTotalTime(int totalTime) {
         this.totalTime = totalTime;
-    }
-
-    public ArrayList<GivenAnswer> getGivenAnswerList() {
-        return givenAnswerList;
     }
 
     public void setGivenAnswerList(ArrayList<GivenAnswer> givenAnswerList) {
@@ -31,18 +27,14 @@ public class Route {
     }
 
     public String getResultID() {
-        return resultID;
-    }
-
-    public void setResultID(String resultID) {
-        this.resultID = resultID;
+        return this.resultID;
     }
 
     public void addGivenAnswer(GivenAnswer givenAnswer) {
-        givenAnswerList.add(givenAnswer);
+        this.givenAnswerList.add(givenAnswer);
     }
 
     public void removeLastGivenAnswer() {
-        givenAnswerList.remove(givenAnswerList.size()-1);
+        this.givenAnswerList.remove(this.givenAnswerList.size()-1);
     }
 }
