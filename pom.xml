@@ -38,10 +38,8 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-web</artifactId>
-            <version>18-ea+4</version>
+            <version>15.0.1</version>
         </dependency>
-
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

@@ -52,13 +52,13 @@ public class FormController implements Controller {
 
         moreInfoButton.setOnMouseClicked(e -> showPopup());
         closeButton.setOnMouseClicked(e -> closePopup());
-        nextButton.setOnMouseClicked(event -> nextQuestion());
+        nextButton.setOnMouseClicked(event -> changeToNextQuestion());
 
         infoVideo.setContextMenuEnabled(false);
         webEngine = infoVideo.getEngine();
 
         listeners();
-        nextQuestion();
+       changeToNextQuestion();
     }
 
     private void showPopup() {
@@ -72,7 +72,8 @@ public class FormController implements Controller {
         webEngine.load("https://www.youtube.com/embed/WPyOl4Equpw");
         // ^^^^^^^^^^^^^^^^^^^^^^^^^^^
     }
-    public void listeners(){
+
+    private void listeners(){
         answer1.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (answer1.isSelected()) {
                 unSelectOtherCheckBoxes(answer1.getId());
@@ -127,7 +128,8 @@ public class FormController implements Controller {
     private void changeextraInfoDescription(String extraInformationText){
         extraInfoDescription.setText(extraInformationText);
     }
-    private void nextQuestion(){
+
+    private void changeToNextQuestion(){
         int currentQuestion = form.getCurrentQuestionID();
         QuestionController questionController = new QuestionController();
         int numberOfAnswers = questionController.getAnswers(currentQuestion).size();
@@ -157,9 +159,10 @@ public class FormController implements Controller {
                     answer4.setText(answerTitle);
                     answer4.setVisible(true);
                     break;
-        }
+            }
         }
     }
+
     private void makeAnswerInvisible(int numberOfAnswers){
         for(int i = numberOfAnswers; i<4; i++){
             switch (i){
@@ -177,6 +180,9 @@ public class FormController implements Controller {
                     break;
             }
         }
-
+    }
+    private void calculateNextQuestion(){
+        //pak de categorien die nog niet zijn afgevallen.
+        //kijk naar de eervolgende vraag met een catogorie die nog niet is afgevallen.
     }
 }

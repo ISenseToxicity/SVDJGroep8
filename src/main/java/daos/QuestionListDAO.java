@@ -42,7 +42,8 @@ public class QuestionListDAO {
         }
         return new Question(linkedTreeMap.get("questionID").toString(),linkedTreeMap.get("questionText").toString(),makeAnswerArrayList((ArrayList<Answer>) linkedTreeMap.get("answers")) ,linkedTreeMap.get("extraInfoTile").toString(), linkedTreeMap.get("extraInfoDescription").toString(),linkedTreeMap.get("extraInfoVideoURL").toString());
     }
-private ArrayList<Answer> makeAnswerArrayList( ArrayList answerList){
+
+private ArrayList<Answer> makeAnswerArrayList(ArrayList answerList){
         ArrayList<Answer> answerArrayList = new ArrayList<>();
     for(Object object : answerList){
         LinkedTreeMap answerLinkedTreeMap = (LinkedTreeMap) object;
@@ -50,5 +51,4 @@ private ArrayList<Answer> makeAnswerArrayList( ArrayList answerList){
     }
 return answerArrayList;
 }
-
 }
