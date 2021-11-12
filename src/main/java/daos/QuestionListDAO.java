@@ -1,23 +1,54 @@
 package daos;
 
 import com.google.gson.Gson;
-import models.ExceptionReturnObject;
-import models.QuestionList;
+import com.google.gson.internal.LinkedTreeMap;
+import controllers.ControllerRegistry;
+import controllers.QuestionListController;
+import models.Answer;
+import models.Question;
+import models.ReturnModel;
 import services.GetService;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class QuestionListDAO {
     private final Gson gson = new Gson();
     private final GetService getService =  GetService.getInstance();
 
-    //made this because both objects need te be checked and handled in questioncontroller backend will return one of these 2 objects
-    public Object[] getQuestionList()throws IOException {
+    public int getQuestionList() throws IOException {
        String response = getService.getResponse("http://localhost:8080/questionlist");
-       Object[] objects = new Object[2];
-
-       objects[0] = gson.fromJson(response, ExceptionReturnObject.class);
-       objects[1] = gson.fromJson(response,QuestionList.class);
-       return objects;
+       ReturnModel returnModel = gson.fromJson(response,ReturnModel.class);
+       if(returnModel.getHttpStatus()==200){
+           makeQuestionList(returnModel);
+          return returnModel.getHttpStatus();
+       }
+       return returnModel.getHttpStatus();
     }
+
+    private void makeQuestionList(ReturnModel returnModel){
+        LinkedTreeMap questionListLinkedTreeMap = (LinkedTreeMap) returnModel.getReturnObject();
+        ArrayList arrayList = (ArrayList) questionListLinkedTreeMap.get("questions");
+        QuestionListController questionListController = (QuestionListController) ControllerRegistry.get(QuestionListController.class);
+        for(Object object: arrayList){
+            LinkedTreeMap questionLinkedTreeMap = (LinkedTreeMap) object;
+            Question question = makeQuestion(questionLinkedTreeMap);
+            questionListController.appendQuestion(question);
+        }
+    }
+    private Question makeQuestion(LinkedTreeMap linkedTreeMap){
+        if(linkedTreeMap.get("extraInfoVideoURL") == null){
+            return new Question(linkedTreeMap.get("questionID").toString(),linkedTreeMap.get("questionText").toString(),makeAnswerArrayList((ArrayList<Answer>) linkedTreeMap.get("answers")), linkedTreeMap.get("extraInfoTile").toString(), linkedTreeMap.get("extraInfoDescription").toString());
+        }
+        return new Question(linkedTreeMap.get("questionID").toString(),linkedTreeMap.get("questionText").toString(),makeAnswerArrayList((ArrayList<Answer>) linkedTreeMap.get("answers")) ,linkedTreeMap.get("extraInfoTile").toString(), linkedTreeMap.get("extraInfoDescription").toString(),linkedTreeMap.get("extraInfoVideoURL").toString());
+    }
+
+private ArrayList<Answer> makeAnswerArrayList(ArrayList answerList){
+        ArrayList<Answer> answerArrayList = new ArrayList<>();
+    for(Object object : answerList){
+        LinkedTreeMap answerLinkedTreeMap = (LinkedTreeMap) object;
+        answerArrayList.add(new Answer(answerLinkedTreeMap.get("answerID").toString(), answerLinkedTreeMap.get("answerText").toString(), (ArrayList<String>) answerLinkedTreeMap.get("categoryID")));
+    }
+return answerArrayList;
+}
 }

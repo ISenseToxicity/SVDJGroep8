@@ -16,12 +16,12 @@
 <VBox alignment="CENTER" minHeight="750.0" minWidth="1350.0" prefHeight="750.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <style>-fx-background-color: #FFFFFF;</style>
     <AnchorPane layoutX="98.0" layoutY="34.0" maxHeight="727.0" maxWidth="1342.0" minHeight="727.0" minWidth="1342.0" prefHeight="727.0" prefWidth="1342.0">
-        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="1400.0" text="Hier Komt een vraag te staan" textAlignment="CENTER">
+        <Label fx:id="question" alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="1400.0" textAlignment="CENTER">
             <font>
                 <Font name="neue-haas-grotesk-display Bold" size="44.0" />
             </font>
         </Label>
-        <CheckBox layoutX="325.0" layoutY="150.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0" stylesheets="@css/main.css" text="Hier staat het eerst mogelijke antwoord">
+        <CheckBox fx:id="answer1" layoutX="325.0" layoutY="150.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0" stylesheets="@css/main.css">
             <style>-fx-background-color: #F7F7F7;</style>
             <font>
                 <Font name="neue-haas-grotesk-display Bold" size="15.0" />
@@ -33,7 +33,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </CheckBox>
-        <CheckBox layoutX="325.0" layoutY="250.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0" stylesheets="@css/main.css" text="Hier staat het tweede mogelijke antwoord">
+        <CheckBox fx:id="answer2" layoutX="325.0" layoutY="250.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0" stylesheets="@css/main.css">
             <style>-fx-background-color: #F7F7F7;</style>
             <font>
                 <Font name="neue-haas-grotesk-display Bold" size="15.0" />
@@ -45,7 +45,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </CheckBox>
-        <CheckBox layoutX="325.0" layoutY="350.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0" stylesheets="@css/main.css" text="Hier staat het derde mogelijke antwoord">
+        <CheckBox fx:id="answer3" layoutX="325.0" layoutY="350.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0" stylesheets="@css/main.css">
             <style>-fx-background-color: #F7F7F7;</style>
             <font>
                 <Font name="neue-haas-grotesk-display Bold" size="15.0" />
@@ -57,7 +57,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </CheckBox>
-        <CheckBox layoutX="325.0" layoutY="450.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0" stylesheets="@css/main.css" text="Hier staat dan natuurlijk het vierde mogelijke antwoord">
+        <CheckBox fx:id="answer4" layoutX="325.0" layoutY="450.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="750.0" stylesheets="@css/main.css">
             <style>-fx-background-color: #F7F7F7;</style>
             <font>
                 <Font name="neue-haas-grotesk-display Bold" size="15.0" />
@@ -121,7 +121,7 @@
                 <VBox layoutY="75.0" prefWidth="600.0">
                     <style>-fx-background-color: #FFFF; -fx-alignment: top-center;</style>
                     <Label alignment="TOP_LEFT" maxWidth="550.0" minHeight="50.0" prefHeight="50.0" prefWidth="550.0" text="Meer informatie over de vraag." styleClass="title-Label" stylesheets="@css/infopopup.css" wrapText="true" />
-                    <Label alignment="TOP_LEFT" maxWidth="550.0" prefWidth="550.0" text="Hier komt  de extra informatie over de vraag te staan Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet ligula purus. Donec at velit at dolor finibus ultrices in id magna. Nunc molestie scelerisque nunc, eu egestas quam hendrerit at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse pharetra, nibh id finibus placerat, diam nisl condimentum eros, a convallis ante orci vel leo. Sed blandit a sapien a tincidunt. Nam aliquam quam sit amet mi dapibus finibus. Quisque viverra laoreet turpis non tristique. Suspendisse non nibh tellus. Nulla aliquet risus lorem, at egestas ante lacinia sed. Nunc dapibus, nisi eget cursus consectetur, ante metus dignissim diam, et placerat eros augue ac leo. Vestibulum tristique efficitur libero eget auctor. Aliquam condimentum risus blandit, tincidunt sem a, tincidunt dui. Pellentesque efficitur ex elit, sit amet fringilla erat sodales quis. Sed sapien purus, dictum in sapien a, tempor sagittis sapien.Donec in dui." wrapText="true">
+                    <Label fx:id="extraInfoDescription" alignment="TOP_LEFT" maxWidth="550.0" prefWidth="550.0" text="Hier komt  de extra informatie over de vraag te staan Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet ligula purus. Donec at velit at dolor finibus ultrices in id magna. Nunc molestie scelerisque nunc, eu egestas quam hendrerit at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse pharetra, nibh id finibus placerat, diam nisl condimentum eros, a convallis ante orci vel leo. Sed blandit a sapien a tincidunt. Nam aliquam quam sit amet mi dapibus finibus. Quisque viverra laoreet turpis non tristique. Suspendisse non nibh tellus. Nulla aliquet risus lorem, at egestas ante lacinia sed. Nunc dapibus, nisi eget cursus consectetur, ante metus dignissim diam, et placerat eros augue ac leo. Vestibulum tristique efficitur libero eget auctor. Aliquam condimentum risus blandit, tincidunt sem a, tincidunt dui. Pellentesque efficitur ex elit, sit amet fringilla erat sodales quis. Sed sapien purus, dictum in sapien a, tempor sagittis sapien.Donec in dui." wrapText="true">
                         <font>
                             <Font name="neue-haas-grotesk-display" size="15.0" />
                         </font>
