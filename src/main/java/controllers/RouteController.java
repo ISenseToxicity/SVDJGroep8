@@ -59,7 +59,7 @@ public class RouteController implements Controller {
         return route.getResultID();
     }
 
-    public void postRoute() throws IOException, InterruptedException {
+    public void postRoute() {
         String json = new Gson().toJson(route);
         dao.post(json);
     }
