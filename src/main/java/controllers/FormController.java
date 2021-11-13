@@ -7,13 +7,13 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import models.Form;
 import services.AnimationService;
 import views.FormView;
 
 public class FormController implements Controller {
+    QuestionOrderController questionOrderController = (QuestionOrderController) ControllerRegistry.get(QuestionOrderController.class);
     FormView formView = new FormView();
-    Form form = new Form();
+
     // FXML id's
     @FXML javafx.scene.control.Button nextButton;
     @FXML javafx.scene.control.Button previousButton;
@@ -45,7 +45,8 @@ public class FormController implements Controller {
 
     @FXML
     private void initialize() {
-
+        QuestionListController questionListController = (QuestionListController) ControllerRegistry.get(QuestionListController.class);
+        questionListController.getQuestionListFromAPI();
         // This sets the animation for the colors of the buttons.
         AnimationService.createButtonAnimation(nextButton, nextLabel);
         AnimationService.createButtonAnimation(previousButton, previousLabel);
@@ -121,29 +122,25 @@ public class FormController implements Controller {
         webEngine.load("");
     }
 
-    private void changeQuestionText(String questionTitle){
-        question.setText(questionTitle);
+    private void changeQuestionText(){
+        question.setText(this.questionOrderController.getCurrentQuestion().getQuestionText());
     }
 
-    private void changeextraInfoDescription(String extraInformationText){
-        extraInfoDescription.setText(extraInformationText);
+    private void changeextraInfoDescription(){
+        extraInfoDescription.setText(this.questionOrderController.getCurrentQuestion().getExtraInfoTile());
     }
 
     private void changeToNextQuestion(){
-        int currentQuestion = form.getCurrentQuestionID();
-        QuestionController questionController = new QuestionController();
-        int numberOfAnswers = questionController.getAnswers(currentQuestion).size();
-
-        changeAnswerTitle(numberOfAnswers,currentQuestion ,questionController);
-        changeQuestionText(questionController.getQuestionTitle(currentQuestion));
-        changeextraInfoDescription(questionController.getExtraInfoDescription(currentQuestion));
-        makeAnswerInvisible(numberOfAnswers);
-        form.setCurrentQuestionID(currentQuestion+1);
+         this.questionOrderController.calculateNextQuestion();
+        changeAnswerTitle();
+        changeQuestionText();
+        changeextraInfoDescription();
+        makeAnswerInvisible();
     }
 
-    private void changeAnswerTitle(int numberOfAnswers ,int currentQuestion, QuestionController questionController){
-        for(int i = 0; numberOfAnswers > i; i++){
-            String answerTitle = questionController.getAnswerTitle(currentQuestion,i);
+    private void changeAnswerTitle(){
+        for(int i = 0; this.questionOrderController.getCurrentQuestion().getAnswers().size() > i; i++){
+            String answerTitle = this.questionOrderController.getCurrentQuestion().getAnswers().get(i).getAnswerText();
             switch (i){
                 case 0:
                     answer1.setText(answerTitle);
@@ -159,11 +156,14 @@ public class FormController implements Controller {
                     answer4.setText(answerTitle);
                     answer4.setVisible(true);
                     break;
+                default:
+                    break;
             }
         }
     }
 
-    private void makeAnswerInvisible(int numberOfAnswers){
+    private void makeAnswerInvisible(){
+       int numberOfAnswers = this.questionOrderController.getCurrentQuestion().getAnswers().size();
         for(int i = numberOfAnswers; i<4; i++){
             switch (i){
                 case 0:
@@ -178,11 +178,9 @@ public class FormController implements Controller {
                 case 3:
                     answer4.setVisible(false);
                     break;
+                default:
+                    break;
             }
         }
-    }
-    private void calculateNextQuestion(){
-        //pak de categorien die nog niet zijn afgevallen.
-        //kijk naar de eervolgende vraag met een catogorie die nog niet is afgevallen.
     }
 }
