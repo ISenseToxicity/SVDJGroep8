@@ -21,7 +21,7 @@ public class RouteDAO {
         return routeDAO;
     }
 
-    public void post(String jsonString) throws IOException, InterruptedException {
+    public void post(String jsonString) {
         //TODO: extract Json fr om route
         postService.post("localhost", jsonString);
     }
