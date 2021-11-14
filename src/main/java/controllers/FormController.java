@@ -156,8 +156,6 @@ public class FormController implements Controller {
                     answer4.setText(answerTitle);
                     answer4.setVisible(true);
                     break;
-                default:
-                    break;
             }
         }
     }
@@ -177,8 +175,6 @@ public class FormController implements Controller {
                     break;
                 case 3:
                     answer4.setVisible(false);
-                    break;
-                default:
                     break;
             }
         }
