@@ -28,4 +28,11 @@ public class QuestionListController implements Controller {
     public void appendQuestion(Question question){
         questionList.appendQuestion(question);
     }
+
+    public ArrayList<Question> getRemainingQuestions() {
+        return questionList.getRemainingQuestions();
+    }
+    public void removeRemainingQuestion(Question question){
+        questionList.removeRemainingQuestion(question);
+    }
 }

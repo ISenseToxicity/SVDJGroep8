@@ -2,17 +2,21 @@ package models;
 
 import java.util.ArrayList;
 
-public class QuestionList {
-    private ArrayList<Question> questions = new ArrayList<Question>();
+public  class QuestionList {
+    private static ArrayList<Question> questions = new ArrayList<>();
+    private static ArrayList<Question> remainingQuestions = new ArrayList<>();
 
     public ArrayList<Question> getQuestions() {
         return questions;
     }
-
-    public void setQuestions(ArrayList<Question> questions) {
-        this.questions = questions;
+    public ArrayList<Question> getRemainingQuestions() {
+        return remainingQuestions;
     }
     public void appendQuestion(Question question){
-        this.questions.add(question);
+        questions.add(question);
+        remainingQuestions.add(question);
+    }
+    public void removeRemainingQuestion(Question question){
+        remainingQuestions.remove(question);
     }
 }
