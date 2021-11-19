@@ -1,10 +1,8 @@
 package services;
 
-import com.itextpdf.awt.geom.misc.HashCode;
-import models.*;
+import com.google.gson.JsonElement;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class DeconstructionService {
 
@@ -17,7 +15,7 @@ public class DeconstructionService {
         return deconstructionService;
     }
 
-    public ArrayList<ArrayList> deConstructJSON(HashCode requestJsonAnswer) {
+    public ArrayList<ArrayList> deConstructJSON(JsonElement requestJsonAnswer) {
        ArrayList<ArrayList> array = new ArrayList<>();
         return array;
     }
