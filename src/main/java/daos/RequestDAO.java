@@ -1,6 +1,5 @@
 package daos;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import services.ParameterStringBuilder;
 
