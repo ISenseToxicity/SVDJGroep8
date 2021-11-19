@@ -1,0 +1,63 @@
+.scroll-pane {
+    -fx-background-color: #FFFFFF;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical {
+    -fx-background-color: #ECF0F1;
+}
+
+.increment-button, decremenet-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-color-label-visible: transparent;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: #ECF0F1;
+}
+
+.scroll-bar:horizontal .track, .scroll-bar:vertical .track {
+    -fx-background-color: #ECF0F1;
+    -fx-border-color: transparent;
+    -fx-border-radius: 0px;
+}
+
+.scroll-bar:horizontal .thumb, .scroll-bar:vertical .thumb {
+    -fx-background-color: #BDC3C7;
+    -fx-border-radius: 0px;
+}
+
+.text-field {
+    -fx-background-color: #FFFFFF;
+    -fx-border-width: 0 0 0 1px;
+    -fx-border-color: #000000;
+    -fx-font-weight: bold;
+    -fx-prompt-text-fill: #757575;
+    -fx-padding: 3px 25px;
+}
+
+.button {
+    -fx-background-color: #000000;
+    -fx-font-family: "neue-haas-grotesk-display, sans-serif";
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 0;
+    -fx-padding: 5px 25px;
+}
+
+.svdj-samenvatting {
+    -fx-font-family: "neue-haas-grotesk-display";
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-border-width: 2px 0 0 2px;
+    -fx-border-color: #000000;
+    -fx-padding: 3px 25px 0px 15px;
+    -fx-max-height: 60px;
+}
+
+.samenvatting-pane {
+    -fx-border-width: 2px 0 0 0;
+    -fx-border-color: #000000;
+}

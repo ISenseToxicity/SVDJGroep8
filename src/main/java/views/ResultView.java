@@ -1,7 +1,6 @@
 package views;
 
 import controllers.ControllerRegistry;
-import controllers.FormController;
 import controllers.ResultController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
