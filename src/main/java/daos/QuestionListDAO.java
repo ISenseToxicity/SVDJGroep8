@@ -17,13 +17,17 @@ public class QuestionListDAO {
     private final GetService getService =  GetService.getInstance();
 
     public int getQuestionList() throws IOException {
-       String response = getService.getResponse("http://localhost:8080/questionlist");
+       String response = getService.getResponse("http://localhost:8080/AllQuestion");
        ReturnModel returnModel = gson.fromJson(response,ReturnModel.class);
-       if(returnModel.getHttpStatus()==200){
-           makeQuestionList(returnModel);
-          return returnModel.getHttpStatus();
-       }
-       return returnModel.getHttpStatus();
+        if(returnModel.getHttpStatus()==200){
+            makeQuestionList(returnModel);
+            return returnModel.getHttpStatus();
+        }
+        if(returnModel.getHttpStatus()==400){
+            makeQuestionList(null);
+            return  returnModel.getHttpStatus();
+        }
+        return returnModel.getHttpStatus();
     }
 
     private void makeQuestionList(ReturnModel returnModel){

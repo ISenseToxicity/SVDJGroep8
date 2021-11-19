@@ -1,8 +1,10 @@
 package controllers;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.itextpdf.awt.geom.misc.HashCode;
+import com.google.gson.JsonObject;
 import daos.RequestDAO;
+import org.junit.Assert;
 import services.DecryptService;
 import services.EncryptService;
 
@@ -20,17 +22,32 @@ public class ReformRequestController implements Controller {
     }
 
 
-    public HashCode reformSendRequest(JsonElement requestJson, String className) {
+    public JsonElement reformSendRequest(JsonElement requestJson, String className) {
         JsonElement encryptedJsonRequest = encryptTheRequest(requestJson);
         /*Receive the Answer                  Send the Answer*/
-        HashCode receiveAnswerRequest = readyToSendRequest(encryptedJsonRequest, className);
+        JsonElement receiveAnswerRequest = RevertToJsonElement(readyToSendRequest(encryptedJsonRequest, className), className);
 
                 /*Decrypt the answer*/
         return deCryptTheRequest(receiveAnswerRequest);
     }
 
-    private HashCode readyToSendRequest(JsonElement encryptedJsonRequest, String className) {
-        HashCode encryptedJsonAnswer = RequestDAO.getInstance().sendRequest(encryptedJsonRequest,className);
+    /**
+     *  Turns the given String to a JsonObject
+     * @param request
+     * @param classname
+     * @return
+     */
+    private JsonElement RevertToJsonElement(String request, String classname) {
+        JsonObject convertedToJson = new Gson().fromJson(request, JsonObject.class);
+
+        Assert.assertTrue(convertedToJson.isJsonObject());
+        Assert.assertEquals(convertedToJson.get("name").getAsString(), classname);
+        Assert.assertTrue(convertedToJson.get("java").getAsBoolean());
+        return  convertedToJson;
+    }
+
+    private String readyToSendRequest(JsonElement encryptedJsonRequest, String className) {
+        String encryptedJsonAnswer = RequestDAO.getInstance().sendRequest(encryptedJsonRequest,className);
         return encryptedJsonAnswer;
     }
 
@@ -40,7 +57,7 @@ public class ReformRequestController implements Controller {
         return encryptService.encryptData(requestJson);
     }
 
-    private HashCode deCryptTheRequest(HashCode requestJson) {
+    private JsonElement deCryptTheRequest(JsonElement requestJson) {
         return decryptService.deCryptData(requestJson);
     }
 }

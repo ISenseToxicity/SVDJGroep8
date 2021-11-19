@@ -1,6 +1,6 @@
 package services;
 
-import com.itextpdf.awt.geom.misc.HashCode;
+import com.google.gson.JsonElement;
 
 public class DecryptService {
     static DecryptService decryptService;
@@ -15,7 +15,7 @@ public class DecryptService {
 //    TODO: Choose a Token
     private String DECRYPT_TOKEN = "ID0NTH4VE4T0K3N";
 
-    public HashCode deCryptData(HashCode jsonElement){
+    public JsonElement deCryptData(JsonElement jsonElement){
          int aswer = jsonElement.hashCode();
 
         return jsonElement;

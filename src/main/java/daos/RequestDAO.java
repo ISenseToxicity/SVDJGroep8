@@ -1,14 +1,10 @@
 package daos;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.itextpdf.awt.geom.misc.HashCode;
-import services.GetService;
 import services.ParameterStringBuilder;
 
 import java.io.*;
 import java.net.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,39 +30,42 @@ public class RequestDAO {
      * @throws IOException
      * @author Eefje | AntiEevee
      */
-    public HashCode sendRequest(JsonElement readyRequest, String className) {
+    public String sendRequest(JsonElement readyRequest, String className) {
+        String newRequest = null;
         try {
             setconectionSpecifics();
             url.openConnection();
             formRequest(readyRequest, className);
-            readRequest();
+            newRequest = readRequest();
             con.disconnect();
         } catch (IOException ioException) {
             ioException.getMessage();
         } catch (Exception e) {
             e.getMessage();
         }
-        return null;
+        return newRequest;
     }
 
 
-    private void readRequest() throws IOException {
+    private String readRequest() throws IOException {
+        String answer = null;
         if (con.getResponseMessage().equals("200")) {
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(con.getInputStream()));
-            String inputLine;
             StringBuffer content = new StringBuffer();
-            while ((inputLine = in.readLine()) != null) {
-                content.append(inputLine);
+            while ((answer = in.readLine()) != null) {
+                content.append(answer);
             }
             in.close();
         }
+        return answer;
     }
 
     /**
      * sets the request ready
      *
      * @throws IOException
+     * @
      */
     private void formRequest(JsonElement jsonElement, String className) throws IOException {
         Map<String, String> parameters = new HashMap<>();
