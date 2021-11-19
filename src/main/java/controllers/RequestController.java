@@ -1,7 +1,6 @@
 package controllers;
 
 import com.google.gson.JsonElement;
-import com.itextpdf.awt.geom.misc.HashCode;
 import models.*;
 import services.*;
 import services.ConstructionService;
@@ -55,7 +54,7 @@ public class RequestController implements Controller {
 
     private ArrayList<ArrayList> getAnswerNewRequest(Request request, String className) {
         JsonElement jsonRequest = convertToNewData(request);
-        HashCode receiveRequest = reformToSendRequest(jsonRequest, className );
+        JsonElement receiveRequest = reformToSendRequest(jsonRequest, className );
         ArrayList<ArrayList> requestAnswer = decryptReceivedRequest(receiveRequest);
         return requestAnswer;
     }
@@ -64,11 +63,11 @@ public class RequestController implements Controller {
         return new Request(duty, variables, false);
     }
 
-    private ArrayList<ArrayList> decryptReceivedRequest(HashCode receiveRequest) {
+    private ArrayList<ArrayList> decryptReceivedRequest(JsonElement receiveRequest) {
         return deconstructionService.deConstructJSON(receiveRequest);
     }
 
-    private HashCode reformToSendRequest(JsonElement request, String className) {
+    private JsonElement reformToSendRequest(JsonElement request, String className) {
         return reformRequestController.reformSendRequest(request, className);
     }
 

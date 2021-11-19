@@ -5,6 +5,7 @@ import daos.QuestionListDAO;
 import models.Question;
 import models.QuestionList;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class QuestionListController implements Controller {
@@ -14,11 +15,15 @@ public class QuestionListController implements Controller {
         QuestionListDAO questionListDAO = new QuestionListDAO();
 
         try {
-            if(questionListDAO.getQuestionList() != 200){
+            if(questionListDAO.getQuestionList() == 200){
                 //todo handle exeption
             }
 
-        }catch (Exception e){
+        }
+        catch (IOException ioException){
+           ioException.getMessage();
+        }
+        catch (Exception e){
             e.printStackTrace();
         }
     }
