@@ -6,7 +6,7 @@ public class Route {
 
     private int totalTime;
     private ArrayList<GivenAnswer> givenAnswerList;
-    private String resultID;
+    private final String resultID;
 
     public Route(int totalTime, String resultID) {
         this.totalTime = totalTime;

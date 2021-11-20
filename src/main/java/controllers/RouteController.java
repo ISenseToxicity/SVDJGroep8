@@ -19,7 +19,7 @@ public class RouteController implements Controller {
     public RouteController() {
         route = new Route(
                 0,
-                "placeholder resultID" //TODO: get resultID from DAO
+                "placeholder resultID" //TODO: get resultID from DAO: DAO.getNextRouteId???
                 );
         givenAnswerController = new GivenAnswerController();
         dao = RouteDAO.getInstance();
@@ -37,18 +37,9 @@ public class RouteController implements Controller {
         route.setGivenAnswerList(givenAnswerList);
     }
 
-    public void addGivenAnswer(String givenAnswerID, int elapsedSeconds, String questionID, String answerID) {
-        addGivenAnswerToRoute(givenAnswerController.addGivenAnswer(
-                givenAnswerID,
-                elapsedSeconds,
-                questionID,
-                answerID)
-        );
-        setTotalTime(elapsedSeconds);
-    }
-
     public void addGivenAnswerToRoute(GivenAnswer givenAnswer) {
         route.addGivenAnswer(givenAnswer);
+        route.setTotalTime(route.getTotalTime()+givenAnswer.getElapsedSeconds());
     }
 
     public void removeLastGivenAnswerFromRoute() {
