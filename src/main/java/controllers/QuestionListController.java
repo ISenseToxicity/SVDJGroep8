@@ -1,7 +1,6 @@
 package controllers;
 
 
-import daos.QuestionListDAO;
 import models.Question;
 import models.QuestionList;
 
@@ -11,16 +10,7 @@ public class QuestionListController implements Controller {
     private QuestionList questionList = new QuestionList();
 
     public void getQuestionListFromAPI(){
-        QuestionListDAO questionListDAO = new QuestionListDAO();
-
-        try {
-            if(questionListDAO.getQuestionList() != 200){
-                //todo handle exeption
-            }
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        //todo get QuestionList from the DAO
     }
     public ArrayList<Question> getQuestions() {
         return questionList.getQuestions();
