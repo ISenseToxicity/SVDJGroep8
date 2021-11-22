@@ -1,5 +1,6 @@
 package controllers;
 
+import com.google.gson.JsonElement;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.Transition;
@@ -13,6 +14,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import models.QuestionList;
 import services.AnimationService;
 import views.ApplicationView;
 
@@ -36,6 +38,13 @@ public class ApplicationController implements Controller {
             FormController formController = (FormController) ControllerRegistry.get(FormController.class);
             formController.setStage(primaryStage);
         });
+    }
+
+    public void checkConnection(){
+        RequestController requestController =(RequestController) ControllerRegistry.get(RequestController.class);
+        if(requestController.establishConnection()){
+            System.out.println("There is an Connection with the database established");
+        }
     }
 
 }

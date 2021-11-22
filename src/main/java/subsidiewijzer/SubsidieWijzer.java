@@ -32,6 +32,7 @@ public class SubsidieWijzer extends Application {
 
         ApplicationController applicationController = (ApplicationController) ControllerRegistry.get(ApplicationController.class);
         applicationController.setStage(primaryStage);
+        applicationController.checkConnection();
 
     }
 }
