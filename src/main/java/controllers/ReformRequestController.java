@@ -24,10 +24,10 @@ public class ReformRequestController implements Controller {
     }
 
 
-    public JsonElement reformSendRequest(JsonElement requestJson, String className) {
+    public JsonElement reformSendRequest(JsonElement requestJson, String className,String duty) {
         JsonElement encryptedJsonRequest = encryptTheRequest(requestJson);
         /*Receive the Answer                  Send the Answer*/
-        JsonElement receiveAnswerRequest = RevertToJsonElement(readyToSendRequest(encryptedJsonRequest, className), className);
+        JsonElement receiveAnswerRequest = RevertToJsonElement(readyToSendRequest(encryptedJsonRequest, className, duty), className);
 
                 /*Decrypt the answer*/
         return deCryptTheRequest(receiveAnswerRequest);
@@ -39,7 +39,7 @@ public class ReformRequestController implements Controller {
      * @param classname
      * @return
      */
-    private JsonElement RevertToJsonElement(String request, String classname) {
+    public JsonElement RevertToJsonElement(String request, String classname) {
         JsonObject convertedToJson = new Gson().fromJson(request, JsonObject.class);
 
         Assert.assertTrue(convertedToJson.isJsonObject());
@@ -48,8 +48,8 @@ public class ReformRequestController implements Controller {
         return  convertedToJson;
     }
 
-    private String readyToSendRequest(JsonElement encryptedJsonRequest, String className) {
-        String encryptedJsonAnswer = RequestDAO.getInstance().sendRequest(encryptedJsonRequest,className);
+    private String readyToSendRequest(JsonElement encryptedJsonRequest, String className,String duty) {
+        String encryptedJsonAnswer = RequestDAO.getInstance().sendRequest(encryptedJsonRequest,className, duty);
         return encryptedJsonAnswer;
     }
 

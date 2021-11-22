@@ -21,27 +21,26 @@ public class RequestDAO {
     }
 
 
+
     /**
-     * Verzend een request om alle informatie in een keer te krijgen,
-     * opent een connectie met de rest api. En haalt vervolgens de informatie op.
+     * Sends request in diffrent Methods
      *
      * @param readyRequest
      * @return requestAnswer
      * @throws IOException
      * @author Eefje | AntiEevee
      */
-    public String sendRequest(JsonElement readyRequest, String className) {
+    public String sendRequest(JsonElement readyRequest, String className, String duty) {
         String newRequest = null;
         try {
-            setconectionSpecifics();
-            url.openConnection();
+            setconectionSpecifics(className, duty);
             formRequest(readyRequest, className);
             newRequest = readRequest();
             con.disconnect();
-        } catch (IOException ioException) {
-            ioException.getMessage();
+        } catch (IllegalStateException e) {
+            System.out.println(e.getMessage());
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
         return newRequest;
     }
@@ -49,15 +48,18 @@ public class RequestDAO {
 
     private String readRequest() throws IOException {
         String answer = null;
+        InputStream inputStream = con.getInputStream();
+        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+        BufferedReader in = new BufferedReader(inputStreamReader);
+        StringBuilder content = new StringBuilder();
+
         if (con.getResponseMessage().equals("200")) {
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()));
-            StringBuffer content = new StringBuffer();
             while ((answer = in.readLine()) != null) {
                 content.append(answer);
             }
             in.close();
         }
+        System.out.println(answer);
         return answer;
     }
 
@@ -76,9 +78,6 @@ public class RequestDAO {
         out.writeBytes(ParameterStringBuilder.getParamsString(parameters));
         out.flush();
         out.close();
-//      SetHeader of Request
-        String contentType = con.getHeaderField("SVDJ/" + className);
-        con.setRequestProperty(contentType, "application/json");
     }
 
 //    /**
@@ -98,12 +97,16 @@ public class RequestDAO {
 //        return cookies;
 //    }
 
-    private void setconectionSpecifics() throws ProtocolException, MalformedURLException {
-        url = new URL("http://localhost:8080/");
-        con.setRequestMethod("GET");
-        con.setConnectTimeout(5000);
-        con.setReadTimeout(5000);
+    private void setconectionSpecifics(String className, String duty) throws ProtocolException, MalformedURLException {
+        try {
+            url = new URL("http://localhost:8080/" + className);
+            con = (HttpURLConnection) url.openConnection();
+            con.setRequestProperty("Content-Type", "application/json; charset=utf8");
+            con.setRequestMethod(duty);
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
