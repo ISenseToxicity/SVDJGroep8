@@ -1,6 +1,6 @@
 package services;
 
-import com.google.gson.JsonElement;
+import com.google.gson.JsonArray;
 
 public class DecryptService {
     static DecryptService decryptService;
@@ -15,7 +15,7 @@ public class DecryptService {
 //    TODO: Choose a Token
     private String DECRYPT_TOKEN = "ID0NTH4VE4T0K3N";
 
-    public JsonElement deCryptData(JsonElement jsonElement){
+    public JsonArray deCryptData(JsonArray jsonElement){
          int aswer = jsonElement.hashCode();
 
         return jsonElement;

@@ -1,5 +1,6 @@
 package controllers;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import models.*;
 import services.*;
@@ -18,7 +19,7 @@ public class RequestController implements Controller {
         ArrayList<String> aString = new ArrayList<>();
         aString.add("hellow");
         Request request = createNewRequest(aString, "GET");
-        return getAnswerNewRequest(request, "Question").size() != 0;
+        return !getAnswerNewRequest(request, "grant/all").isEmpty();
     }
 
     /**
@@ -80,7 +81,7 @@ public class RequestController implements Controller {
 
 
     /**
-     * Find teh correct class and from the  inner Array list to the wanted clas
+     * Find the correct class and from the  inner Array list to the wanted clas
      * @param answer
      * @param classType
      * @return Arraylist 'type'
@@ -102,10 +103,10 @@ public class RequestController implements Controller {
         return  arrayList;
     }
 
-    private ArrayList<ArrayList> getAnswerNewRequest(Request request, String className) {
+    private ArrayList getAnswerNewRequest(Request request, String className) {
         JsonElement jsonRequest = convertToNewData(request);
-        JsonElement receiveRequest = reformToSendRequest(jsonRequest, className, request.getDuty());
-        ArrayList<ArrayList> requestAnswer = decryptReceivedRequest(receiveRequest);
+        JsonArray receivedRequest = reformToSendRequest(jsonRequest, className, request.getDuty());
+        ArrayList requestAnswer = decryptReceivedRequest(receivedRequest, className);
         return requestAnswer;
     }
 
@@ -113,11 +114,11 @@ public class RequestController implements Controller {
         return new Request(duty, variables, false);
     }
 
-    private ArrayList<ArrayList> decryptReceivedRequest(JsonElement receiveRequest) {
-        return deconstructionService.deConstructJSON(receiveRequest);
+    private ArrayList decryptReceivedRequest(JsonArray receiveRequest, String className) {
+        return deconstructionService.deConstructJSON(receiveRequest, className);
     }
 
-    private JsonElement reformToSendRequest(JsonElement request, String className,String duty) {
+    private JsonArray reformToSendRequest(JsonElement request, String className,String duty) {
         return reformRequestController.reformSendRequest(request, className, duty);
     }
 
