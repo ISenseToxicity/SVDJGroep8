@@ -1,6 +1,7 @@
 package services;
 
-import com.google.gson.JsonElement;
+import com.google.gson.JsonArray;
+import
 
 import java.util.ArrayList;
 
@@ -15,8 +16,9 @@ public class DeconstructionService {
         return deconstructionService;
     }
 
-    public ArrayList<ArrayList> deConstructJSON(JsonElement requestJsonAnswer) {
-       ArrayList<ArrayList> array = new ArrayList<>();
+    public ArrayList deConstructJSON(JsonArray requestJsonAnswer, String className) {
+//        requestJsonAnswer
+       ArrayList array = new ArrayList<>();
         return array;
     }
 }

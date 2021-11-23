@@ -7,6 +7,7 @@ import java.io.*;
 import java.net.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class RequestDAO {
     static RequestDAO requestDAO;
@@ -19,7 +20,6 @@ public class RequestDAO {
         }
         return requestDAO;
     }
-
 
 
     /**
@@ -36,31 +36,35 @@ public class RequestDAO {
             setconectionSpecifics(className, duty);
             formRequest(readyRequest, className);
             newRequest = readRequest();
-            con.disconnect();
         } catch (IllegalStateException e) {
             System.out.println(e.getMessage());
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            con.disconnect();
         }
         return newRequest;
     }
 
 
     private String readRequest() throws IOException {
-        String answer = null;
-        InputStream inputStream = con.getInputStream();
-        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-        BufferedReader in = new BufferedReader(inputStreamReader);
         StringBuilder content = new StringBuilder();
+        InputStream inputStream = con.getInputStream();
+        Scanner scan = new Scanner(inputStream);
+        while (scan.hasNext()) {
+            content.append(scan.next());
 
-        if (con.getResponseMessage().equals("200")) {
-            while ((answer = in.readLine()) != null) {
-                content.append(answer);
-            }
-            in.close();
         }
-        System.out.println(answer);
-        return answer;
+        if (con.getResponseCode() == 200) {
+
+            while (scan.hasNext()) {
+                content.append(scan.next());
+            }
+
+        }
+        inputStream.close();
+        System.out.println(content);
+        return content.toString();
     }
 
     /**
@@ -101,7 +105,7 @@ public class RequestDAO {
         try {
             url = new URL("http://localhost:8080/" + className);
             con = (HttpURLConnection) url.openConnection();
-            con.setRequestProperty("Content-Type", "application/json; charset=utf8");
+            con.setRequestProperty("content-type", "application/json; charset=utf8");
             con.setRequestMethod(duty);
 
         } catch (IOException e) {

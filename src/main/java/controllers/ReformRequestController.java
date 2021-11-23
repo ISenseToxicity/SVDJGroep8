@@ -1,14 +1,11 @@
 package controllers;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import daos.RequestDAO;
-import org.junit.Assert;
 import services.DecryptService;
 import services.EncryptService;
-
-import java.io.IOException;
 
 public class ReformRequestController implements Controller {
     EncryptService encryptService = EncryptService.getInstance();
@@ -24,13 +21,16 @@ public class ReformRequestController implements Controller {
     }
 
 
-    public JsonElement reformSendRequest(JsonElement requestJson, String className,String duty) {
+    public JsonArray reformSendRequest(JsonElement requestJson, String className, String duty) {
         JsonElement encryptedJsonRequest = encryptTheRequest(requestJson);
         /*Receive the Answer                  Send the Answer*/
-        JsonElement receiveAnswerRequest = RevertToJsonElement(readyToSendRequest(encryptedJsonRequest, className, duty), className);
+//        if(readyToSendRequest(encryptedJsonRequest, className, duty) != null) {
+        /*Decrypt the answer*/
+//        deCryptTheRequest(receiveAnswerRequest);
+            return RevertToJsonElement(readyToSendRequest(encryptedJsonRequest, className, duty), className);
+//        }
+//        return null;
 
-                /*Decrypt the answer*/
-        return deCryptTheRequest(receiveAnswerRequest);
     }
 
     /**
@@ -39,13 +39,9 @@ public class ReformRequestController implements Controller {
      * @param classname
      * @return
      */
-    public JsonElement RevertToJsonElement(String request, String classname) {
-        JsonObject convertedToJson = new Gson().fromJson(request, JsonObject.class);
+    public JsonArray RevertToJsonElement(String request, String classname) {
 
-        Assert.assertTrue(convertedToJson.isJsonObject());
-        Assert.assertEquals(convertedToJson.get("name").getAsString(), classname);
-        Assert.assertTrue(convertedToJson.get("java").getAsBoolean());
-        return  convertedToJson;
+        return new Gson().fromJson(request, JsonArray.class);
     }
 
     private String readyToSendRequest(JsonElement encryptedJsonRequest, String className,String duty) {
@@ -59,7 +55,7 @@ public class ReformRequestController implements Controller {
         return encryptService.encryptData(requestJson);
     }
 
-    private JsonElement deCryptTheRequest(JsonElement requestJson) {
+    private JsonArray deCryptTheRequest(JsonArray requestJson) {
         return decryptService.deCryptData(requestJson);
     }
 }

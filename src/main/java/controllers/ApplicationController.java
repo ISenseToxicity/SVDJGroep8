@@ -45,6 +45,10 @@ public class ApplicationController implements Controller {
         if(requestController.establishConnection()){
             System.out.println("There is an Connection with the database established");
         }
+        else{
+            System.out.println("There is no Connection");
+
+        }
     }
 
 }
