@@ -16,7 +16,7 @@ public class DecryptService {
     private String DECRYPT_TOKEN = "ID0NTH4VE4T0K3N";
 
     public JsonArray deCryptData(JsonArray jsonElement){
-         int aswer = jsonElement.hashCode();
+         int answer = jsonElement.hashCode();
 
         return jsonElement;
     }

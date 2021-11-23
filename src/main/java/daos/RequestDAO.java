@@ -30,10 +30,10 @@ public class RequestDAO {
      * @throws IOException
      * @author Eefje | AntiEevee
      */
-    public String sendRequest(JsonElement readyRequest, String className, String duty) {
+    public String sendRequest(JsonElement readyRequest, String className, String duty, String specific) {
         String newRequest = null;
         try {
-            setconectionSpecifics(className, duty);
+            setconectionSpecifics(className, duty, specific);
             formRequest(readyRequest, className);
             newRequest = readRequest();
         } catch (IllegalStateException e) {
@@ -63,7 +63,6 @@ public class RequestDAO {
 
         }
         inputStream.close();
-        System.out.println(content);
         return content.toString();
     }
 
@@ -84,26 +83,9 @@ public class RequestDAO {
         out.close();
     }
 
-//    /**
-//     * Vormt de cookies waaraan de request kan worden herkent.
-//     * @return Cookies
-//     */
-//    private StringUtils developCookies() {
-//        String cookiesHeader = con.getHeaderField("Set-Cookie");
-//        List<HttpCookie> cookies = HttpCookie.parse(cookiesHeader);
-//
-//        cookies.forEach(cookie -> cookieManager.getCookieStore().add(null, cookie));
-//        Optional<HttpCookie> usernameCookie = cookies.stream()
-//                .findAny().filter(cookie -> cookie.getName().equals("username"));
-//        if (usernameCookie == null) {
-//            cookieManager.getCookieStore().add(null, new HttpCookie("username", "john"));
-//        }
-//        return cookies;
-//    }
-
-    private void setconectionSpecifics(String className, String duty) throws ProtocolException, MalformedURLException {
+    private void setconectionSpecifics(String className, String duty, String specific) throws ProtocolException, MalformedURLException {
         try {
-            url = new URL("http://localhost:8080/" + className);
+            url = new URL("http://localhost:8080/" + className + "/" + specific);
             con = (HttpURLConnection) url.openConnection();
             con.setRequestProperty("content-type", "application/json; charset=utf8");
             con.setRequestMethod(duty);
