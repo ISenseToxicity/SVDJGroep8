@@ -7,15 +7,16 @@ import javafx.stage.Stage;
 
 public class SubsidieWijzer extends Application {
 
-        public static void main(String[] args){
+    public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) {
-            // Register all Controllers into ControllerRegistry
+        // Register all Controllers into ControllerRegistry
         ControllerRegistry.register(new AnswerController());
         ControllerRegistry.register(new ApplicationController());
+        ControllerRegistry.register(new CategoryListController());
         ControllerRegistry.register(new CategoryController());
         ControllerRegistry.register(new QuestionListController());
         ControllerRegistry.register(new QuestionOrderController());
