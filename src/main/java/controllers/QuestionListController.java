@@ -10,21 +10,12 @@ import java.util.ArrayList;
 
 public class QuestionListController implements Controller {
     private QuestionList questionList = new QuestionList();
+    private RequestController requestController =(RequestController) ControllerRegistry.get(RequestController.class);
 
     public void getQuestionListFromAPI(){
-        QuestionListDAO questionListDAO = new QuestionListDAO();
-
-        try {
-            if(questionListDAO.getQuestionList() == 200){
-                //todo handle exeption
-            }
-
-        }
-        catch (IOException ioException){
-           ioException.getMessage();
-        }
-        catch (Exception e){
-            e.printStackTrace();
+        ArrayList<Question>  ArrayQuestions = requestController.makeRequestOfReceivingQuestions();
+        for(Question question: ArrayQuestions){
+            questionList.appendQuestion(question);
         }
     }
     public ArrayList<Question> getQuestions() {
