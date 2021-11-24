@@ -54,7 +54,7 @@ public class RequestController implements Controller {
         return null;
     }
 
-    public ArrayList<Route> makeRequestWithRoute(ArrayList<Route> variables, String specific, String duty, String nameClass) {
+    public ArrayList<Route> makeRequestWithRoute(ArrayList<Route> variables, String specific, String duty) {
         Request request = createNewRequest(variables, specific, duty);
         ArrayList answer = getAnswerNewRequest(request, "Route");
         if (answer.size() > 1) {

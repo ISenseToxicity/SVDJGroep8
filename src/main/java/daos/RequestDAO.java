@@ -34,7 +34,9 @@ public class RequestDAO {
         String newRequest = null;
         try {
             setconectionSpecifics(className, duty, specific);
-            formRequest(readyRequest, className);
+            if (!duty.equals("GET")) {
+                formRequest(readyRequest, className);
+            }
             newRequest = readRequest();
         } catch (IllegalStateException e) {
             System.out.println(e.getMessage());
@@ -51,10 +53,6 @@ public class RequestDAO {
         StringBuilder content = new StringBuilder();
         InputStream inputStream = con.getInputStream();
         Scanner scan = new Scanner(inputStream);
-        while (scan.hasNext()) {
-            content.append(scan.next());
-
-        }
         if (con.getResponseCode() == 200) {
 
             while (scan.hasNext()) {
@@ -85,9 +83,9 @@ public class RequestDAO {
 
     private void setconectionSpecifics(String className, String duty, String specific) throws ProtocolException, MalformedURLException {
         try {
-            url = new URL("http://localhost:8080/" + className + "/" + specific);
+            url = new URL("http://localhost:8080/" + className.toLowerCase() + "/" + specific);
             con = (HttpURLConnection) url.openConnection();
-            con.setRequestProperty("content-type", "application/json; charset=utf8");
+//            con.setRequestProperty("content-type", "application/json; charset=utf8");
             con.setRequestMethod(duty);
 
         } catch (IOException e) {

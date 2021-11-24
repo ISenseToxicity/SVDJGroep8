@@ -5,6 +5,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import models.*;
+import org.junit.Assert;
 
 import java.sql.Time;
 import java.text.ParseException;
