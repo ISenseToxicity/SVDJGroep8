@@ -66,8 +66,13 @@ public class ResultController implements Controller {
         downloadPDFButton.setOnAction(e -> downloadPDF());
         sendResultButton.setOnAction(e -> sendResults());
 
-        // TODO: get result
-        // TODO: check if the result has an available Grant or datasource and assign function
+        Grant resultGrant = getFinalResult();
+
+        if (resultGrant == null) {
+            setOtherResult();
+            return;
+        }
+        setGrantResult(resultGrant);
     }
 
     private Grant getFinalResult() {
@@ -91,14 +96,13 @@ public class ResultController implements Controller {
         return categoriesID;
     }
 
-    private void setGrantResult() {
+    private void setGrantResult(Grant resultGrant) {
         grantBox.setVisible(true);
         dataSourceBox.setVisible(false);
 
-        // TODO: add the right Grant info.
-        grantTitle.setText("Titel for the Grant");
-        periodLabel.setText("Period this grant is available in?");
-        grantDescription.setText("A summary description for this grant that introduces the user to request or learn more");
+        grantTitle.setText(resultGrant.getName());
+        periodLabel.setText(resultGrant.getPeriod().toString()); // Period will probably change to String
+        grantDescription.setText(resultGrant.getInfo());
     }
 
     private void setOtherResult() {
@@ -107,7 +111,8 @@ public class ResultController implements Controller {
 
         // TODO: Decide if we can add this quickly and import the right data from the right source.
         dataSourceLabel.setText("Sorry, maar helaas hebben we geen bijpassend Subsidie voor u gevonden");
-        dataSourceDescription.setText("Dit is de reden waarom we niks hebben kunnen vinden, ...");
+        dataSourceDescription.setText("Hier onder staat een samenvatting van uw antwoorden op onze vragen. \n" +
+                "Als u op de knop hier onder klikt krijgt u een verwijzing naar een ander fonds");
     }
 
     private void downloadPDF() {
