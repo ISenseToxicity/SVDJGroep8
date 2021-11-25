@@ -33,6 +33,7 @@ public class ResultController implements Controller {
     @FXML Label downloadPDFLabel;
     @FXML TextField emailField;
     @FXML Button sendResultButton;
+    @FXML Label emailMessageLabel;
 
     @FXML HBox questionAnswerBox;
     @FXML Label questionTitle;
