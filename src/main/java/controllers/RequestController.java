@@ -30,7 +30,7 @@ public class RequestController implements Controller {
     public ArrayList<Question> makeRequestOfReceivingQuestions() {
         ArrayList<String> aString = new ArrayList<>();
         aString.add("Question");
-        Request request = createNewRequest(aString, "all", "GetAllQuestions");
+        Request request = createNewRequest(aString, "all", "GET");
         ArrayList answer = getAnswerNewRequest(request, "Question");
         return (ArrayList<Question>) setCorrectFormatAnswer(answer, "Question");
     }
@@ -92,21 +92,21 @@ public class RequestController implements Controller {
      * @param classType
      * @return Arraylist 'type'
      */
-    private ArrayList setCorrectFormatAnswer(ArrayList<ArrayList> answer, String classType) {
+    private ArrayList setCorrectFormatAnswer(ArrayList answer, String classType) {
         Class needClass;
         ArrayList<ArrayList> arrayList = new ArrayList<>();
-        try {
-            needClass = Class.forName(classType);
+//        try {
+//            needClass = Class.forName(classType);
             ArrayList<ArrayList> formattedList = new ArrayList<>();
-            for (ArrayList arrayListWithin : answer) {
-                formattedList = (ArrayList<ArrayList>) arrayListWithin;
-            }
-            return formattedList;
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+//            for (ArrayList arrayListWithin : answer) {
+//                formattedList = (ArrayList<ArrayList>) arrayListWithin;
+//            }
+//            return formattedList;
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
 
-        return arrayList;
+        return answer;
     }
 
     private ArrayList getAnswerNewRequest(Request request, String className) {

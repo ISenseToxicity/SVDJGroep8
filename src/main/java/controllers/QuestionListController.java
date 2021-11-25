@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class QuestionListController implements Controller {
     private QuestionList questionList = new QuestionList();
-    private RequestController requestController =(RequestController) ControllerRegistry.get(RequestController.class);
+    private final RequestController requestController =(RequestController) ControllerRegistry.get(RequestController.class);
 
     public void getQuestionListFromAPI(){
         ArrayList<Question>  ArrayQuestions = requestController.makeRequestOfReceivingQuestions();
