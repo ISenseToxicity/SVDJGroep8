@@ -12,6 +12,11 @@ import models.Grant;
 import services.AnimationService;
 import views.ResultView;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class ResultController implements Controller {
@@ -59,8 +64,7 @@ public class ResultController implements Controller {
         AnimationService.createButtonAnimation(differentFundButton, differentFundLabel);
         AnimationService.createButtonAnimation(downloadPDFButton, downloadPDFLabel);
 
-        // Open the web page for the Grant.
-//        readMoreButton.setOnAction(e -> );
+        readMoreButton.setOnAction(e -> openGrantPage());
 
         // Open the web page for other Grant funds
 //        differentFundButton.setOnAction(e -> );
@@ -115,6 +119,17 @@ public class ResultController implements Controller {
         dataSourceLabel.setText("Sorry, maar helaas hebben we geen bijpassend Subsidie voor u gevonden");
         dataSourceDescription.setText("Hier onder staat een samenvatting van uw antwoorden op onze vragen. \n" +
                 "Als u op de knop hier onder klikt krijgt u een verwijzing naar een ander fonds");
+    }
+
+    private void openGrantPage() {
+        String grantName = resultGrant.getName().replace(' ', '-');
+        String url = "https://www.svdj.nl/regeling/" + grantName;
+
+        try {
+            Desktop.getDesktop().browse(new URL(url).toURI());
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 
     private void downloadPDF() {
