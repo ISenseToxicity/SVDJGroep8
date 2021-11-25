@@ -49,7 +49,44 @@ public class ResultController implements Controller {
         AnimationService.createButtonAnimation(differentFundButton, differentFundLabel);
         AnimationService.createButtonAnimation(downloadPDFButton, downloadPDFLabel);
 
-    // TODO: get result
+        // Open the web page for the Grant.
+//        readMoreButton.setOnAction(e -> );
+
+        // Open the web page for other Grant funds
+//        differentFundButton.setOnAction(e -> );
+
+        downloadPDFButton.setOnAction(e -> downloadPDF());
+        sendResultButton.setOnAction(e -> sendResults());
+
+        // TODO: get result
+        // TODO: check if the result has an available Grant or datasource and asign function
+    }
+
+    private void setGrantResult() {
+        grantBox.setVisible(true);
+        dataSourceBox.setVisible(false);
+
+        // TODO: add the right Grant info.
+        grantTitle.setText("Titel for the Grant");
+        periodLabel.setText("Period this grant is available in?");
+        grantDescription.setText("A summary description for this grant that introduces the user to request or learn more");
+    }
+
+    private void setOtherResult() {
+        grantBox.setVisible(false);
+        dataSourceBox.setVisible(true);
+
+        // TODO: Decide if we can add this quickly and import the right data from the right source.
+        dataSourceLabel.setText("Sorry, maar helaas hebben we geen bijpassend Subsidie voor u gevonden");
+        dataSourceDescription.setText("Dit is de reden waarom we niks hebben kunnen vinden, ...");
+    }
+
+    private void downloadPDF() {
+
+    }
+
+    private void sendResults() {
+
     }
 
 }
