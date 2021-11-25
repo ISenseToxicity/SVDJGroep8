@@ -14,7 +14,6 @@ import views.ResultView;
 
 import java.awt.*;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -66,7 +65,7 @@ public class ResultController implements Controller {
 
         readMoreButton.setOnAction(e -> openGrantPage());
 
-        // Open the web page for other Grant funds
+        // TODO: check for alternative funds
 //        differentFundButton.setOnAction(e -> );
 
         downloadPDFButton.setOnAction(e -> downloadPDF());
