@@ -7,11 +7,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import models.Category;
+import models.Grant;
 import services.AnimationService;
 import views.ResultView;
 
+import java.util.ArrayList;
+
 public class ResultController implements Controller {
     ResultView resultView = new ResultView();
+
+    private final CategoryListController categoryListController = (CategoryListController) ControllerRegistry.get(CategoryListController.class);
+    private final GrantController grantController = (GrantController) ControllerRegistry.get(GrantController.class);
 
     @FXML
     Label resultTitle;
@@ -60,7 +67,28 @@ public class ResultController implements Controller {
         sendResultButton.setOnAction(e -> sendResults());
 
         // TODO: get result
-        // TODO: check if the result has an available Grant or datasource and asign function
+        // TODO: check if the result has an available Grant or datasource and assign function
+    }
+
+    private Grant getFinalResult() {
+        ArrayList<Grant> grantList = grantController.getAllGrants();
+        ArrayList<String> activeCategoriesID = convertToIDArray(categoryListController.getActiveCategories());
+
+        for (Grant grant : grantList) {
+            ArrayList<String> grantCategoriesID = convertToIDArray(grant.getCategories());
+            if (activeCategoriesID.containsAll(grantCategoriesID)) {
+                return grant;
+            }
+        }
+        return null;
+    }
+
+    private ArrayList<String> convertToIDArray(ArrayList<Category> categories) {
+        ArrayList<String> categoriesID = new ArrayList<>();
+        for (Category category : categories) {
+            categoriesID.add(category.getId());
+        }
+        return categoriesID;
     }
 
     private void setGrantResult() {
