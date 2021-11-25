@@ -47,6 +47,8 @@ public class ResultController implements Controller {
     @FXML Label questionAnswer;
     @FXML Label moreInfoButton;
 
+    private Grant resultGrant;
+
     public void setStage(Stage primaryStage) {
         resultView.setStage(primaryStage);
     }
@@ -66,13 +68,13 @@ public class ResultController implements Controller {
         downloadPDFButton.setOnAction(e -> downloadPDF());
         sendResultButton.setOnAction(e -> sendResults());
 
-        Grant resultGrant = getFinalResult();
+        resultGrant = getFinalResult();
 
         if (resultGrant == null) {
             setOtherResult();
             return;
         }
-        setGrantResult(resultGrant);
+        setGrantResult();
     }
 
     private Grant getFinalResult() {
@@ -96,12 +98,12 @@ public class ResultController implements Controller {
         return categoriesID;
     }
 
-    private void setGrantResult(Grant resultGrant) {
+    private void setGrantResult() {
         grantBox.setVisible(true);
         dataSourceBox.setVisible(false);
 
         grantTitle.setText(resultGrant.getName());
-        periodLabel.setText(resultGrant.getPeriod().toString()); // Period will probably change to String
+        periodLabel.setText(resultGrant.getPeriod());
         grantDescription.setText(resultGrant.getInfo());
     }
 

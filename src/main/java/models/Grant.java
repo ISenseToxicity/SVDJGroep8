@@ -1,13 +1,12 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Grant {
 
     private String id;
     private String name;
-    private Date period;
+    private String period;
     private String type;
     private String info;
     private ArrayList<Category> categories;
@@ -16,7 +15,7 @@ public class Grant {
 
     }
 
-    public Grant(String id, String name, Date period, String type, String info, ArrayList<Category> categories) {
+    public Grant(String id, String name, String period, String type, String info, ArrayList<Category> categories) {
         this.id = id;
         this.name = name;
         this.period = period;
@@ -41,11 +40,11 @@ public class Grant {
         this.name = name;
     }
 
-    public Date getPeriod() {
+    public String getPeriod() {
         return this.period;
     }
 
-    public void setPeriod(Date period) {
+    public void setPeriod(String period) {
         this.period = period;
     }
 
