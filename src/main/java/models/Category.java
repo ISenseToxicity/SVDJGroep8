@@ -1,7 +1,6 @@
 package models;
 
 public class Category {
-<<<<<<< HEAD
 
     public String id;
     public String name;
@@ -32,11 +31,9 @@ public class Category {
 
     public String getName() {
         return this.name;
-=======
-    private Long categoryID;
+    }
 
-    private String name;
-    private String description;
+    private Long categoryID;
 
     public Category(Long categoryID, String name, String description) {
         this.categoryID = categoryID;
@@ -44,45 +41,31 @@ public class Category {
         this.description = description;
     }
 
-    public Category() {
-    }
-
-    //    Setters and Getters
-    public String getName() {
-        return name;
->>>>>>> developer
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
     public String getDescription() {
-<<<<<<< HEAD
         return this.description;
-=======
-        return description;
->>>>>>> developer
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-<<<<<<< HEAD
     public boolean isActive() {
         return this.active;
     }
 
     public void setActive(boolean active) {
         this.active = active;
-=======
+    }
+
     public void setCategoryID(Long categoryID) {
         this.categoryID = categoryID;
     }
 
     public Long getCategoryID() {
         return categoryID;
->>>>>>> developer
     }
 }
