@@ -6,6 +6,14 @@ import java.util.HashMap;
 // This class is meant to register all Controllers and only use one instance of each.
 public class ControllerRegistry {
 
+    static ControllerRegistry controllerRegistry;
+
+        public static ControllerRegistry getInstance(){
+            if(controllerRegistry == null){
+                controllerRegistry = new ControllerRegistry();
+            }
+            return controllerRegistry;
+        }
         protected  final static HashMap<String, Controller> controllers = new HashMap<>();
 
         public static void register(Controller controller) {

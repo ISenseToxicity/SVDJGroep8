@@ -156,4 +156,6 @@ buildNumber.properties
 .classpath
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,maven,java
-/SVDJGroep8.iml
+SVDJGroep8.iml
+.idea/*
+.idea/compiler.xml
