@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Answer {
     private String answerID;
     private String answerText;
-    private ArrayList<String > categoryID;
+    private ArrayList<String> categoryID;
 
     public Answer(String answerID, String answerText, ArrayList<String> categoryID) {
         this.answerID = answerID;
