@@ -10,9 +10,12 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import models.Category;
 import models.Question;
 import services.AnimationService;
 import views.FormView;
+
+import java.util.ArrayList;
 
 public class FormController implements Controller {
     QuestionOrderController questionOrderController = (QuestionOrderController) ControllerRegistry.get(QuestionOrderController.class);
@@ -151,6 +154,17 @@ public class FormController implements Controller {
         long questionEndTime = System.currentTimeMillis();
         int elapsedSeconds = (int) (this.questionStartTime - questionEndTime) / 1000;
         Question currentQuestion = this.questionOrderController.getCurrentQuestion();
+
+        CategoryListController categoryListController = (CategoryListController) ControllerRegistry.get(CategoryListController.class);
+        ArrayList<Category> activeCategories = categoryListController.getActiveCategories();
+        for(String categoryId : currentQuestion.getAnswers().get(getGivenAnswer()).getCategoryID()) {
+            for (Category activeCategory: activeCategories) {
+                if (categoryId.equals(activeCategory.getId())) {
+                        activeCategory.setActive(false);
+                }
+            }
+        }
+
         routeController.addGivenAnswerToRoute(
                 this.givenAnswerController.addGivenAnswer(
                         "Get this from request DAO",
