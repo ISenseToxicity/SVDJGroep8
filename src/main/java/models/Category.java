@@ -33,14 +33,6 @@ public class Category {
         return this.name;
     }
 
-    private Long categoryID;
-
-    public Category(Long categoryID, String name, String description) {
-        this.categoryID = categoryID;
-        this.name = name;
-        this.description = description;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -59,13 +51,5 @@ public class Category {
 
     public void setActive(boolean active) {
         this.active = active;
-    }
-
-    public void setCategoryID(Long categoryID) {
-        this.categoryID = categoryID;
-    }
-
-    public Long getCategoryID() {
-        return categoryID;
     }
 }
