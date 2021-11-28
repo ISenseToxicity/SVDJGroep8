@@ -3,22 +3,47 @@ package models;
 public class GivenAnswer {
     private String givenAnswerID;
     private int elapsedSeconds;
-    private String questionID;
-    private String answerID;
+    private Question question;
+    private Answer answer;
+    private Route routeID;
 
-    public GivenAnswer(String givenAnswerID, int elapsedSeconds, String questionID, String answerID) {
+    public GivenAnswer(String givenAnswerID, int elapsedSeconds, Question questionID, Answer answerID) {
         this.givenAnswerID = givenAnswerID;
         this.elapsedSeconds = elapsedSeconds;
-        this.questionID = questionID;
-        this.answerID = answerID;
+        this.question = questionID;
+        this.answer = answerID;
+    }
+
+    public Route getRouteID() {
+        return routeID;
+    }
+
+    public void setRouteID(Route routeID) {
+        this.routeID = routeID;
     }
 
     public String getGivenAnswerID() {
-        return this.givenAnswerID;
+        return givenAnswerID;
     }
 
     public void setGivenAnswerID(String givenAnswerID) {
         this.givenAnswerID = givenAnswerID;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+
+    public Answer getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
     }
 
     public int getElapsedSeconds() {
@@ -29,19 +54,13 @@ public class GivenAnswer {
         this.elapsedSeconds = elapsedSeconds;
     }
 
-    public String getQuestionID() {
-        return this.questionID;
-    }
-
-    public void setQuestionID(String questionID) {
-        this.questionID = questionID;
-    }
-
-    public String getAnswerID() {
-        return this.answerID;
-    }
-
-    public void setAnswerID(String answerID) {
-        this.answerID = answerID;
+    @Override
+    public String toString() {
+        return "{" +
+                "answer: " + this.answer.toString() + "\"," +
+                "elapsedSeconds: \"" + this.elapsedSeconds + "\"," +
+                "question: " + this.question.toString() + "\"," +
+                "route: " + this.routeID.toString() +
+                '}';
     }
 }

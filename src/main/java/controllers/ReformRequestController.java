@@ -33,8 +33,8 @@ public class ReformRequestController implements Controller {
     }
 
     public JsonArray readyToSendRequest(Request readyToEncryptRequest, String className) {
-        JsonElement encryptedJsonRequest = encryptTheRequest(readyToEncryptRequest);
-        String encryptedJsonAnswer = RequestDAO.getInstance().sendRequest(encryptedJsonRequest, className, readyToEncryptRequest.getDuty(), readyToEncryptRequest.getSpecific());
+//        JsonElement encryptedJsonRequest = encryptTheRequest(readyToEncryptRequest);
+        String encryptedJsonAnswer = RequestDAO.getInstance().sendRequest(readyToEncryptRequest, className, readyToEncryptRequest.getDuty(), readyToEncryptRequest.getSpecific());
         return RevertToJsonElement(encryptedJsonAnswer, className);
     }
 

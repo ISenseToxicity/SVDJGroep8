@@ -60,4 +60,14 @@ public class Result {
     public Grant getGrant() {
         return grant;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "amountQuestions: " + amountQuestions + "," +
+                "grant: " + grant.toString() + "," +
+                "resultID: " + resultID + "," +
+                "totalTime: \"" + totalTime.toString() +"\""+
+                '}';
+    }
 }

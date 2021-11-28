@@ -39,4 +39,13 @@ public class Category {
     public Long getCategoryID() {
         return categoryID;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "categoryID: " + categoryID + ',' +
+                "description: \"" + description + "\"," +
+                "name: \"" + name + '\"' +
+                '}';
+    }
 }

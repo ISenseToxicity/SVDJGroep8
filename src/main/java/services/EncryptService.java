@@ -17,8 +17,18 @@ public class EncryptService {
         //    TODO: Choose a Token
         private String DECRYPT_TOKEN = "ID0NTH4VE4T0K3N";
 
+        private Request deleteIdOfRequest(Request request){
+
+            for(Object postRequest :request.getGivenVariables()){
+                postRequest.toString();
+            }
+            return request;
+        }
+
+
         public JsonElement encryptData(Request request) {
-//        Todo: Write Decrypt service
+            request.getGivenVariables();
+
             JsonElement jsonElement = JsonParser.parseString(request.toString());
             return jsonElement;
         }

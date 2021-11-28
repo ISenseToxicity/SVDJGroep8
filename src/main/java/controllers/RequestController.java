@@ -17,8 +17,11 @@ public class RequestController implements Controller {
     public boolean establishConnection() {
         ArrayList<String> aString = new ArrayList<>();
         Request request = createNewRequest(aString, "all", "GET");
-
-        return !getAnswerNewRequest(request, "grant").isEmpty();
+        ArrayList<Category> out = (ArrayList<Category>) getAnswerNewRequest(request, "category");
+        for(Category grant: out){
+            System.out.println(grant.getName());
+        }
+        return !out.isEmpty();
     }
 
     /**
@@ -64,7 +67,7 @@ public class RequestController implements Controller {
         return null;
     }
 
-    public ArrayList<Grant> makeRequestWithGrant(ArrayList<Grant> variables, String specific, String duty, String nameClass) {
+    public ArrayList<Grant> makeRequestWithGrant(ArrayList<Grant> variables, String specific, String duty) {
         Request request = createNewRequest(variables, specific, duty);
         ArrayList answer = getAnswerNewRequest(request, "Grant");
         if (answer.size() > 1) {
@@ -74,7 +77,7 @@ public class RequestController implements Controller {
         return null;
     }
 
-    public ArrayList<Category> makeRequestWithCategory(ArrayList<Category> variables, String specific, String duty, String nameClass) {
+    public ArrayList<Category> makeRequestWithCategory(ArrayList<Category> variables, String specific, String duty) {
         Request request = createNewRequest(variables, specific, duty);
         ArrayList answer = getAnswerNewRequest(request, "Category");
         if (answer.size() > 1) {
@@ -112,8 +115,13 @@ public class RequestController implements Controller {
     private ArrayList getAnswerNewRequest(Request request, String className) {
 //        JsonElement jsonRequest = convertToNewData(request);
         JsonArray receivedRequest = reformToSendRequest(request, className);
-        ArrayList requestAnswer = decryptReceivedRequest(receivedRequest, className);
-        return requestAnswer;
+        if(request.getDuty().equals("GET")) {
+            ArrayList requestAnswer = decryptReceivedRequest(receivedRequest, className);
+            return requestAnswer;
+        }
+        else {
+            return new ArrayList<>();
+        }
     }
 
     private Request createNewRequest(ArrayList variables, String specific, String duty) {

@@ -14,9 +14,13 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import models.Category;
+import models.Grant;
 import models.QuestionList;
 import services.AnimationService;
 import views.ApplicationView;
+
+import java.util.ArrayList;
 
 public class ApplicationController implements Controller {
 
@@ -41,6 +45,7 @@ public class ApplicationController implements Controller {
     }
 
     public void checkConnection(){
+        putNewGrant();
         RequestController requestController =(RequestController) ControllerRegistry.get(RequestController.class);
         if(requestController.establishConnection()){
             System.out.println("There is an Connection with the database established");
@@ -49,6 +54,14 @@ public class ApplicationController implements Controller {
             System.out.println("There is no Connection");
 
         }
+
+    }
+
+    public void putNewGrant(){
+        RequestController requestController =(RequestController) ControllerRegistry.get(RequestController.class);
+        ArrayList<Category> grants = new ArrayList<>();
+                grants.add(new Category(8L,"MilionairsSide","Alleen voor die die rijk willen wordden"));
+         requestController.makeRequestWithCategory(grants, "{8}","POST");
     }
 
 }

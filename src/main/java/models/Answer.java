@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Answer {
     private String answerID;
     private String answerText;
-    private ArrayList<String> categoryID;
+    private ArrayList<Category> categoryID;
 
-    public Answer(String answerID, String answerText, ArrayList<String> categoryID) {
+    public Answer(String answerID, String answerText, ArrayList<Category> categoryID) {
         this.answerID = answerID;
         this.answerText = answerText;
         this.categoryID = categoryID;
@@ -29,11 +29,25 @@ public class Answer {
         this.answerText = answerText;
     }
 
-    public ArrayList<String> getCategoryID() {
+    public ArrayList<Category> getCategoryID() {
         return categoryID;
     }
 
-    public void setCategoryID(ArrayList<String> categoryID) {
+    public void setCategoryID(ArrayList<Category> categoryID) {
         this.categoryID = categoryID;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder category = null;
+        for(Category cat : categoryID) {
+            category.append(cat.toString()).append(",");
+        }
+        return "{" +
+                "answerID: \"" + categoryID + "\"," +
+                "answerText: \"" + answerText + "\"," +
+                "category: "+ category +"\","+
+                "questionID: \"" + categoryID +'\"' +
+                '}';
     }
 }
