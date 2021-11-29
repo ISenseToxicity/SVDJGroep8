@@ -57,10 +57,10 @@ public class GivenAnswer {
     @Override
     public String toString() {
         return "{" +
-                "answer: " + this.answer.toString() + "\"," +
-                "elapsedSeconds: \"" + this.elapsedSeconds + "\"," +
-                "question: " + this.question.toString() + "\"," +
-                "route: " + this.routeID.toString() +
+                "\"answer\": " + this.answer.toString() + "\"," +
+                "\"elapsedSeconds\": \"" + this.elapsedSeconds + "\"," +
+                "\"question\": " + this.question.toString() + "\"," +
+                "\"route\": " + this.routeID.toString() +
                 '}';
     }
 }

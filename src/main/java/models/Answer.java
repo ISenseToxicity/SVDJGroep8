@@ -44,10 +44,10 @@ public class Answer {
             category.append(cat.toString()).append(",");
         }
         return "{" +
-                "answerID: \"" + categoryID + "\"," +
-                "answerText: \"" + answerText + "\"," +
-                "category: "+ category +"\","+
-                "questionID: \"" + categoryID +'\"' +
+                "\"answerID\": \"" + categoryID + "\"," +
+                "\"answerText\": \"" + answerText + "\"," +
+                "\"category\": "+ category +"\","+
+                "\"questionID\": \"" + categoryID +'\"' +
                 '}';
     }
 }

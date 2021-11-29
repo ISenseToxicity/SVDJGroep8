@@ -40,9 +40,9 @@ public class Grant {
     @Override
     public String toString() {
         return "{" +
-                "description: \"" + this.description + "\"," +
-                "grantID: \"" + this.grantID + "\"," +
-                "name: \"" + this.name + "\"" +
+                "\"description\": \"" + this.description + "\"," +
+                "\"grantID\": \"" + this.grantID + "\"," +
+                "\"name\": \"" + this.name + "\"" +
                 '}';
     }
 }

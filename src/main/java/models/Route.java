@@ -41,10 +41,10 @@ public class Route {
     @Override
     public String toString() {
         return "{" +
-                "result: \"" + this.resultID.toString() + "\"," +
-                "givenAnswerList: \"" + this.givenAnswerList + "\"," +
-                "totalTime: \"" + this.totalTime + "\"," +
-                "routeID: \"" + this.totalTime + "\"" +
+                "\"result\": \"" + this.resultID.toString() + "\"," +
+                "\"givenAnswerList\": \"" + this.givenAnswerList + "\"," +
+                "\"totalTime\": \"" + this.totalTime + "\"," +
+                "\"routeID\": \"" + this.totalTime + "\"" +
                 '}';
     }
 }

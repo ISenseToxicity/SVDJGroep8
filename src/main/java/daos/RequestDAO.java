@@ -77,6 +77,7 @@ public class RequestDAO {
         DataOutputStream out = new DataOutputStream(con.getOutputStream());
         for(Object item: jsonRequest.getGivenVariables()){
             out.writeBytes(item.toString());
+            System.out.println(item.toString());
         }
         out.flush();
         out.close();

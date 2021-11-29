@@ -83,12 +83,12 @@ public class Question {
             answerI.append(answer.toString()).append(",");
         }
         return "{" +
-                "answers: [" + answerI +
-                "], extraInfoTile: \"" + extraInfoTile + "\"," +
-                "extraInfoDescription: \"" + extraInfoDescription + "\"," +
-                "extraInfoVideoURL: \"" + extraInfoVideoURL + "\"," +
-                "questionID: " + questionID + "," +
-                "questionText: \"" + questionText + "\"," +
+                "\"answers\": [" + answerI +
+                "], \"extraInfoTile\": \"" + extraInfoTile + "\"," +
+                "\"extraInfoDescription\": \"" + extraInfoDescription + "\"," +
+                "\"extraInfoVideoURL\": \"" + extraInfoVideoURL + "\"," +
+                "\"questionID\": " + questionID + "," +
+                "\"questionText\": \"" + questionText + "\"," +
                 '}';
     }
 }

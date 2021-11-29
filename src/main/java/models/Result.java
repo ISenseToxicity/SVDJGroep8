@@ -64,10 +64,10 @@ public class Result {
     @Override
     public String toString() {
         return "{" +
-                "amountQuestions: " + amountQuestions + "," +
-                "grant: " + grant.toString() + "," +
-                "resultID: " + resultID + "," +
-                "totalTime: \"" + totalTime.toString() +"\""+
+                "\"amountQuestions\": " + amountQuestions + "," +
+                "\"grant\": " + grant.toString() + "," +
+                "\"resultID\": " + resultID + "," +
+                "\"totalTime\": \"" + totalTime.toString() +"\""+
                 '}';
     }
 }

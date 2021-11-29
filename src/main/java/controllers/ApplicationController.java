@@ -60,8 +60,8 @@ public class ApplicationController implements Controller {
     public void putNewGrant(){
         RequestController requestController =(RequestController) ControllerRegistry.get(RequestController.class);
         ArrayList<Category> grants = new ArrayList<>();
-                grants.add(new Category(8L,"MilionairsSide","Alleen voor die die rijk willen wordden"));
-         requestController.makeRequestWithCategory(grants, "{8}","POST");
+                grants.add(new Category(9L,"number9","Alleen voor die die rijk willen wordden"));
+         requestController.makeRequestWithCategory(grants, "","POST");
     }
 
 }
