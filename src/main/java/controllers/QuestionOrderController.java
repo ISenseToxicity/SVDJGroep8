@@ -19,12 +19,14 @@ public class QuestionOrderController implements Controller {
             return;
         }
         ArrayList<Category> activeCategories = categoryListController.getActiveCategories();
+        settingCurrentAnswer:
         for (Question question: questions) {
             for(Answer answer : question.getAnswers()) {
                 for (String category : answer.getCategoryID()) {
                     for (Category activeCategory: activeCategories) {
                         if (category.equals(activeCategory.getId())) {
                             questionOrder.setCurrentQuestion(question);
+                            break settingCurrentAnswer;
                         }
                     }
                 }
