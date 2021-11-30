@@ -45,7 +45,6 @@ public class ApplicationController implements Controller {
     }
 
     public void checkConnection(){
-        putNewGrant();
         RequestController requestController =(RequestController) ControllerRegistry.get(RequestController.class);
         if(requestController.establishConnection()){
             System.out.println("There is an Connection with the database established");
@@ -56,12 +55,4 @@ public class ApplicationController implements Controller {
         }
 
     }
-
-    public void putNewGrant(){
-        RequestController requestController =(RequestController) ControllerRegistry.get(RequestController.class);
-        ArrayList<Category> grants = new ArrayList<>();
-                grants.add(new Category(9L,"number9","Alleen voor die die rijk willen wordden"));
-         requestController.makeRequestWithCategory(grants, "","POST");
-    }
-
 }

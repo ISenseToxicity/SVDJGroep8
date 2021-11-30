@@ -18,14 +18,12 @@ public class RequestController implements Controller {
         ArrayList<String> aString = new ArrayList<>();
         Request request = createNewRequest(aString, "all", "GET");
         ArrayList<Category> out = (ArrayList<Category>) getAnswerNewRequest(request, "category");
-        for(Category grant: out){
-            System.out.println(grant.getName());
-        }
         return !out.isEmpty();
     }
 
     /**
      * Make Requests to de Database
+     * makeRequestWithClass(class, id/ all, method);
      *
      * @return Wanted database models
      * @author Eefje | AntiEevee
@@ -35,15 +33,13 @@ public class RequestController implements Controller {
         aString.add("Question");
         Request request = createNewRequest(aString, "all", "GET");
         ArrayList answer = getAnswerNewRequest(request, "Question");
-        return (ArrayList<Question>) setCorrectFormatAnswer(answer, "Question");
-    }
+            return answer;    }
 
     public ArrayList<GivenAnswer> makeRequestWithGivenAnswer(ArrayList<GivenAnswer> variables, String specific, String duty) {
         Request request = createNewRequest(variables, specific, duty);
         ArrayList answer = getAnswerNewRequest(request, "GivenAnswer");
         if (answer.size() > 1) {
-            return (ArrayList<GivenAnswer>) setCorrectFormatAnswer(answer, "Question");
-        }
+            return answer;        }
         return null;
     }
 
@@ -51,8 +47,7 @@ public class RequestController implements Controller {
         Request request = createNewRequest(variables, specific, duty);
         ArrayList answer = getAnswerNewRequest(request, "Result");
         if (answer.size() > 1) {
-            return (ArrayList<Result>) setCorrectFormatAnswer(answer, "Result");
-
+            return answer;
         }
         return null;
     }
@@ -61,8 +56,7 @@ public class RequestController implements Controller {
         Request request = createNewRequest(variables, specific, duty);
         ArrayList answer = getAnswerNewRequest(request, "Route");
         if (answer.size() > 1) {
-            return (ArrayList<Route>) setCorrectFormatAnswer(answer, "Route");
-
+            return answer;
         }
         return null;
     }
@@ -71,8 +65,7 @@ public class RequestController implements Controller {
         Request request = createNewRequest(variables, specific, duty);
         ArrayList answer = getAnswerNewRequest(request, "Grant");
         if (answer.size() > 1) {
-            return (ArrayList<Grant>) setCorrectFormatAnswer(answer, "Grant");
-
+            return answer;
         }
         return null;
     }
@@ -81,36 +74,12 @@ public class RequestController implements Controller {
         Request request = createNewRequest(variables, specific, duty);
         ArrayList answer = getAnswerNewRequest(request, "Category");
         if (answer.size() > 1) {
-            return (ArrayList<Category>) setCorrectFormatAnswer(answer, "Category");
+            return answer;
 
         }
         return null;
     }
 
-
-    /**
-     * Find the correct class and from the  inner Array list to the wanted clas
-     *
-     * @param answer
-     * @param classType
-     * @return Arraylist 'type'
-     */
-    private ArrayList setCorrectFormatAnswer(ArrayList answer, String classType) {
-        Class needClass;
-        ArrayList<ArrayList> arrayList = new ArrayList<>();
-//        try {
-//            needClass = Class.forName(classType);
-            ArrayList<ArrayList> formattedList = new ArrayList<>();
-//            for (ArrayList arrayListWithin : answer) {
-//                formattedList = (ArrayList<ArrayList>) arrayListWithin;
-//            }
-//            return formattedList;
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-
-        return answer;
-    }
 
     private ArrayList getAnswerNewRequest(Request request, String className) {
 //        JsonElement jsonRequest = convertToNewData(request);
