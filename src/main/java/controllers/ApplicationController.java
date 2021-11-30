@@ -44,6 +44,9 @@ public class ApplicationController implements Controller {
         });
     }
 
+    /**
+     * checks for a connection
+     */
     public void checkConnection(){
         RequestController requestController =(RequestController) ControllerRegistry.get(RequestController.class);
         if(requestController.establishConnection()){
