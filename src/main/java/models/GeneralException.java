@@ -1,13 +1,13 @@
 package models;
 
-public class Exception {
+public class GeneralException {
     private Integer status;
     private String path;
     private String errorMessage;
     private String timeStamp;
     private String trace;
 
-    public Exception(int status, String path, String errorMessage, String timeStamp, String trace){
+    public GeneralException(int status, String path, String errorMessage, String timeStamp, String trace){
         this.status = status;
         this.path = path;
         this.errorMessage = errorMessage;

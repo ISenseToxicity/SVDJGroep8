@@ -1,30 +1,32 @@
 package controllers;
 
-import models.Exception;
+import models.GeneralException;
 
 public class ExceptionController implements Controller {
-    Exception exception;
-    public void setExceptionResponse(Exception exception){
-        this.exception = exception;
+    private GeneralException generalException;
+
+    public void throwGeneralException(GeneralException generalException){
+        this.generalException = generalException;
+        throw new RuntimeException(new Exceptions.GeneralException());
     }
 
     public Integer getStatus() {
-        return exception.getStatus();
+        return generalException.getStatus();
     }
 
     public String getPath() {
-        return exception.getPath();
+        return generalException.getPath();
     }
 
     public String getErrorMessage() {
-        return exception.getErrorMessage();
+        return generalException.getErrorMessage();
     }
 
     public String getTimeStamp() {
-        return exception.getTimeStamp();
+        return generalException.getTimeStamp();
     }
 
     public String getTrace() {
-        return exception.getTrace();
+        return generalException.getTrace();
     }
 }
