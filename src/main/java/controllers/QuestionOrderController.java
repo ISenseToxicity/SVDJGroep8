@@ -16,22 +16,11 @@ public class QuestionOrderController implements Controller {
         questionListController.removeRemainingQuestion(questionOrder.getCurrentQuestion());
         ArrayList<Question> questions = questionListController.getRemainingQuestions();
         if (questions.isEmpty()) {
+            //TODO: should reroute to result screen right?
             return;
         }
-        ArrayList<Category> activeCategories = categoryListController.getActiveCategories();
-        settingCurrentAnswer:
-        for (Question question: questions) {
-            for(Answer answer : question.getAnswers()) {
-                for (String category : answer.getCategoryID()) {
-                    for (Category activeCategory: activeCategories) {
-                        if (category.equals(activeCategory.getId())) {
-                            questionOrder.setCurrentQuestion(question);
-                            break settingCurrentAnswer;
-                        }
-                    }
-                }
-            }
-        }
+
+        questionOrder.setCurrentQuestion(questions.get(0));
     }
 
     public Question getCurrentQuestion() {

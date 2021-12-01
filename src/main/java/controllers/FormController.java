@@ -10,6 +10,7 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import models.Answer;
 import models.Category;
 import models.Question;
 import services.AnimationService;
@@ -21,6 +22,8 @@ public class FormController implements Controller {
     QuestionOrderController questionOrderController = (QuestionOrderController) ControllerRegistry.get(QuestionOrderController.class);
     GivenAnswerController givenAnswerController = (GivenAnswerController) ControllerRegistry.get(GivenAnswerController.class);
     RouteController routeController = (RouteController) ControllerRegistry.get(RouteController.class);
+    QuestionListController questionListController = (QuestionListController) ControllerRegistry.get(QuestionListController.class);
+    CategoryListController categoryListController = (CategoryListController) ControllerRegistry.get(CategoryListController.class);
     FormView formView = new FormView();
     long questionStartTime;
 
@@ -157,10 +160,23 @@ public class FormController implements Controller {
 
         CategoryListController categoryListController = (CategoryListController) ControllerRegistry.get(CategoryListController.class);
         ArrayList<Category> activeCategories = categoryListController.getActiveCategories();
+
+        for (Question remainingQuestion : questionListController.getRemainingQuestions()) {
+            for(Answer answer : remainingQuestion.getAnswers()) {
+                for (String category : answer.getCategoryID()) {
+                    for(String categoryId : currentQuestion.getAnswers().get(getGivenAnswer()).getCategoryID()) {
+                        if (category.equals(categoryId)) {
+                            this.questionListController.removeRemainingQuestion(remainingQuestion);
+                        }
+                    }
+                }
+            }
+        }
+
         for(String categoryId : currentQuestion.getAnswers().get(getGivenAnswer()).getCategoryID()) {
-            for (Category activeCategory: activeCategories) {
+            for (Category activeCategory : activeCategories) {
                 if (categoryId.equals(activeCategory.getId())) {
-                        activeCategory.setActive(false);
+                    categoryListController.removeActiveCategory(categoryId);
                 }
             }
         }

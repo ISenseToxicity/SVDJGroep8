@@ -23,13 +23,10 @@ public class CategoryListController implements Controller {
     }
 
     public ArrayList<Category> getActiveCategories() {
-        ArrayList<Category> activeCategories = new ArrayList<>();
-        for (Category category : getCategoryList()) {
-            if (category.isActive()) {
-                activeCategories.add(category);
-            }
-        }
-        return activeCategories;
+        return categoryList.getActiveCategories();
     }
 
+    public void removeActiveCategory(String id) {
+        this.categoryList.removeActiveCategory(id);
+    }
 }
