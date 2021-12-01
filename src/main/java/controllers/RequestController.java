@@ -33,13 +33,15 @@ public class RequestController implements Controller {
         aString.add("Question");
         Request request = createNewRequest(aString, "all", "GET");
         ArrayList answer = getAnswerNewRequest(request, "Question");
-            return answer;    }
+        return answer;
+    }
 
     public ArrayList<GivenAnswer> makeRequestWithGivenAnswer(ArrayList<GivenAnswer> variables, String specific, String duty) {
         Request request = createNewRequest(variables, specific, duty);
         ArrayList answer = getAnswerNewRequest(request, "GivenAnswer");
         if (answer.size() > 1) {
-            return answer;        }
+            return answer;
+        }
         return null;
     }
 
@@ -84,11 +86,10 @@ public class RequestController implements Controller {
     private ArrayList getAnswerNewRequest(Request request, String className) {
 //        JsonElement jsonRequest = convertToNewData(request);
         JsonArray receivedRequest = reformToSendRequest(request, className);
-        if(request.getDuty().equals("GET")) {
+        if (request.getDuty().equals("GET")) {
             ArrayList requestAnswer = decryptReceivedRequest(receivedRequest, className);
             return requestAnswer;
-        }
-        else {
+        } else {
             return new ArrayList<>();
         }
     }
