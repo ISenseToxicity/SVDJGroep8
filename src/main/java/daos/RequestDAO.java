@@ -54,11 +54,9 @@ public class RequestDAO {
         InputStream inputStream = con.getInputStream();
         Scanner scan = new Scanner(inputStream);
         if (con.getResponseCode() == 200) {
-
             while (scan.hasNext()) {
                 content.append(scan.next());
             }
-
         }
         inputStream.close();
         return content.toString();

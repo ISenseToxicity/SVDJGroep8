@@ -24,6 +24,7 @@ public class SubsidieWijzer extends Application {
         ControllerRegistry.register(new QuestionListController());
         ControllerRegistry.register(new QuestionOrderController());
         ControllerRegistry.register(new FormController());
+        ControllerRegistry.register(new ExceptionController());
         ControllerRegistry.register(new GivenAnswerController());
         ControllerRegistry.register(new GrantController());
         ControllerRegistry.register(new QuestionListController());
