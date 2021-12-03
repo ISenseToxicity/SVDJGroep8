@@ -80,4 +80,13 @@ public class Grant {
     public void removeCategoryFromGrant(Category category) {
         this.categories.remove(category);
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\"description\": \"" + this.description + "\"," +
+                "\"grantID\": \"" + this.grantID + "\"," +
+                "\"name\": \"" + this.name + "\"" +
+                '}';
+    }
 }

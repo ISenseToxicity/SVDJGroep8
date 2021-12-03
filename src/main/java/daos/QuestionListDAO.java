@@ -5,6 +5,7 @@ import com.google.gson.internal.LinkedTreeMap;
 import controllers.ControllerRegistry;
 import controllers.QuestionListController;
 import models.Answer;
+import models.Category;
 import models.Question;
 import models.ReturnModel;
 import services.GetService;
@@ -51,7 +52,7 @@ private ArrayList<Answer> makeAnswerArrayList(ArrayList answerList){
         ArrayList<Answer> answerArrayList = new ArrayList<>();
     for(Object object : answerList){
         LinkedTreeMap answerLinkedTreeMap = (LinkedTreeMap) object;
-        answerArrayList.add(new Answer(answerLinkedTreeMap.get("answerID").toString(), answerLinkedTreeMap.get("answerText").toString(), (ArrayList<String>) answerLinkedTreeMap.get("categoryID")));
+        answerArrayList.add(new Answer(answerLinkedTreeMap.get("answerID").toString(), answerLinkedTreeMap.get("answerText").toString(), (ArrayList<Category>) answerLinkedTreeMap.get("categoryID")));
     }
 return answerArrayList;
 }

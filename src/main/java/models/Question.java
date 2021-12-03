@@ -75,4 +75,20 @@ public class Question {
     public void setExtraInfoVideoURL(String extraInfoVideoURL) {
         this.extraInfoVideoURL = extraInfoVideoURL;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder answerI = null;
+        for(Answer answer : answers) {
+            answerI.append(answer.toString()).append(",");
+        }
+        return "{" +
+                "\"answers\": [" + answerI +
+                "], \"extraInfoTile\": \"" + extraInfoTile + "\"," +
+                "\"extraInfoDescription\": \"" + extraInfoDescription + "\"," +
+                "\"extraInfoVideoURL\": \"" + extraInfoVideoURL + "\"," +
+                "\"questionID\": " + questionID + "," +
+                "\"questionText\": \"" + questionText + "\"," +
+                '}';
+    }
 }
