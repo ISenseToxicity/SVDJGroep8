@@ -1,13 +1,9 @@
 package controllers;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import daos.RouteDAO;
-import models.GivenAnswer;
-import models.Route;
+import models.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class RouteController implements Controller {
@@ -19,7 +15,7 @@ public class RouteController implements Controller {
     public RouteController() {
         route = new Route(
                 0,
-                "placeholder resultID" //TODO: get resultID from DAO
+                new Result() //TODO: get resultID from DAO
                 );
         givenAnswerController = new GivenAnswerController();
         dao = RouteDAO.getInstance();
@@ -37,7 +33,7 @@ public class RouteController implements Controller {
         route.setGivenAnswerList(givenAnswerList);
     }
 
-    public void addGivenAnswer(String givenAnswerID, int elapsedSeconds, String questionID, String answerID) {
+    public void addGivenAnswer(String givenAnswerID, int elapsedSeconds, Question questionID, Answer answerID) {
         addGivenAnswerToRoute(givenAnswerController.addGivenAnswer(
                 givenAnswerID,
                 elapsedSeconds,
@@ -55,7 +51,7 @@ public class RouteController implements Controller {
         route.removeLastGivenAnswer();
     }
 
-    public String getResultID(){
+    public Result getResultID(){
         return route.getResultID();
     }
 

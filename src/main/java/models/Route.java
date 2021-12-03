@@ -6,9 +6,9 @@ public class Route {
 
     private int totalTime;
     private ArrayList<GivenAnswer> givenAnswerList;
-    private String resultID;
+    private final Result resultID;
 
-    public Route(int totalTime, String resultID) {
+    public Route(int totalTime, Result resultID) {
         this.totalTime = totalTime;
         this.resultID = resultID;
         this.givenAnswerList = new ArrayList<>();
@@ -26,7 +26,7 @@ public class Route {
         this.givenAnswerList = givenAnswerList;
     }
 
-    public String getResultID() {
+    public Result getResultID() {
         return this.resultID;
     }
 
@@ -35,6 +35,16 @@ public class Route {
     }
 
     public void removeLastGivenAnswer() {
-        this.givenAnswerList.remove(this.givenAnswerList.size()-1);
+        this.givenAnswerList.remove(this.givenAnswerList.size() - 1);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\"result\": \"" + this.resultID.toString() + "\"," +
+                "\"givenAnswerList\": \"" + this.givenAnswerList + "\"," +
+                "\"totalTime\": \"" + this.totalTime + "\"," +
+                "\"routeID\": \"" + this.totalTime + "\"" +
+                '}';
     }
 }

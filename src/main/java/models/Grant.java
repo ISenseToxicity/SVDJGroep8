@@ -36,4 +36,13 @@ public class Grant {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\"description\": \"" + this.description + "\"," +
+                "\"grantID\": \"" + this.grantID + "\"," +
+                "\"name\": \"" + this.name + "\"" +
+                '}';
+    }
 }

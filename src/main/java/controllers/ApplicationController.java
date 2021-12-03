@@ -14,9 +14,13 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import models.Category;
+import models.Grant;
 import models.QuestionList;
 import services.AnimationService;
 import views.ApplicationView;
+
+import java.util.ArrayList;
 
 public class ApplicationController implements Controller {
 
@@ -40,6 +44,9 @@ public class ApplicationController implements Controller {
         });
     }
 
+    /**
+     * checks for a connection
+     */
     public void checkConnection(){
         RequestController requestController =(RequestController) ControllerRegistry.get(RequestController.class);
         if(requestController.establishConnection()){
@@ -49,6 +56,6 @@ public class ApplicationController implements Controller {
             System.out.println("There is no Connection");
 
         }
-    }
 
+    }
 }
