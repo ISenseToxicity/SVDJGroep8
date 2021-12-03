@@ -163,9 +163,9 @@ public class FormController implements Controller {
 
         for (Question remainingQuestion : questionListController.getRemainingQuestions()) {
             for(Answer answer : remainingQuestion.getAnswers()) {
-                for (String category : answer.getCategoryID()) {
-                    for(String categoryId : currentQuestion.getAnswers().get(getGivenAnswer()).getCategoryID()) {
-                        if (category.equals(categoryId)) {
+                for (Category category : answer.getCategoryID()) {
+                    for(Category categoryId : currentQuestion.getAnswers().get(getGivenAnswer()).getCategoryID()) {
+                        if (category.getId().equals(categoryId.getId())) {
                             this.questionListController.removeRemainingQuestion(remainingQuestion);
                         }
                     }
@@ -173,10 +173,10 @@ public class FormController implements Controller {
             }
         }
 
-        for(String categoryId : currentQuestion.getAnswers().get(getGivenAnswer()).getCategoryID()) {
+        for(Category categoryId : currentQuestion.getAnswers().get(getGivenAnswer()).getCategoryID()) {
             for (Category activeCategory : activeCategories) {
-                if (categoryId.equals(activeCategory.getId())) {
-                    categoryListController.removeActiveCategory(categoryId);
+                if (categoryId.getId().equals(activeCategory.getId())) {
+                    categoryListController.removeActiveCategory(categoryId.getId());
                 }
             }
         }
@@ -185,8 +185,8 @@ public class FormController implements Controller {
                 this.givenAnswerController.addGivenAnswer(
                         "Get this from request DAO",
                         elapsedSeconds,
-                        currentQuestion.getQuestionID(),
-                        currentQuestion.getAnswers().get(getGivenAnswer()).getAnswerID()
+                        currentQuestion,
+                        currentQuestion.getAnswers().get(getGivenAnswer())
                 ));
         this.questionOrderController.calculateNextQuestion();
         changeAnswerTitle();
