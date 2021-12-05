@@ -163,8 +163,8 @@ public class FormController implements Controller {
 
         for (Question remainingQuestion : questionListController.getRemainingQuestions()) {
             for(Answer answer : remainingQuestion.getAnswers()) {
-                for (Category category : answer.getCategories()) {
-                    for(Category categoryId : currentQuestion.getAnswers().get(getGivenAnswer()).getCategories()) {
+                for (Category category : answer.getCategory()) {
+                    for(Category categoryId : currentQuestion.getAnswers().get(getGivenAnswer()).getCategory()) {
                         if (category.equals(categoryId)) {
                             this.questionListController.removeRemainingQuestion(remainingQuestion);
                         }
