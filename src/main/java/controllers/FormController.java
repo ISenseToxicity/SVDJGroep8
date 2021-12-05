@@ -17,6 +17,7 @@ import services.AnimationService;
 import views.FormView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FormController implements Controller {
     QuestionOrderController questionOrderController = (QuestionOrderController) ControllerRegistry.get(QuestionOrderController.class);
@@ -50,6 +51,7 @@ public class FormController implements Controller {
     @FXML WebView infoVideo;
     @FXML WebEngine webEngine;
 
+    @FXML Label errorLabel;
 
     public void setStage(Stage primaryStage) {
         formView.setStage(primaryStage);
@@ -161,17 +163,27 @@ public class FormController implements Controller {
         CategoryListController categoryListController = (CategoryListController) ControllerRegistry.get(CategoryListController.class);
         ArrayList<Category> activeCategories = categoryListController.getActiveCategories();
 
+        if (getGivenAnswer() < 0 || getGivenAnswer() > currentQuestion.getAnswers().size()) {
+            errorLabel.setText("Selecteer graag een antwoord");
+            return;
+        }
+        errorLabel.setText("");
+
+        Question toRemove = null;
         for (Question remainingQuestion : questionListController.getRemainingQuestions()) {
             for(Answer answer : remainingQuestion.getAnswers()) {
                 for (Category category : answer.getCategory()) {
                     for(Category categoryId : currentQuestion.getAnswers().get(getGivenAnswer()).getCategory()) {
                         if (category.equals(categoryId)) {
-                            this.questionListController.removeRemainingQuestion(remainingQuestion);
+                            toRemove = remainingQuestion;
+                            break;
                         }
                     }
                 }
             }
         }
+
+        this.questionListController.removeRemainingQuestion(toRemove);
 
         routeController.addGivenAnswerToRoute(
                 this.givenAnswerController.addGivenAnswer(
