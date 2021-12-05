@@ -1,84 +1,39 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.Date;
-
 public class Grant {
 
-    private String id;
+    private String grantID;
     private String name;
-    private Date period;
-    private String type;
-    private String info;
-    private ArrayList<Category> categories;
+    private String description;
 
-    public Grant() {
-
-    }
-
-    public Grant(String id, String name, Date period, String type, String info, ArrayList<Category> categories) {
-        this.id = id;
+    public Grant(String grantID, String name, String description) {
+        this.grantID = grantID;
         this.name = name;
-        this.period = period;
-        this.type = type;
-        this.info = info;
-        this.categories = categories;
+        this.description = description;
     }
 
-    public String getId() {
-        return this.id;
+    public String getGrantID() {
+        return grantID;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setGrantID(String grantID) {
+        this.grantID = grantID;
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public Date getPeriod() {
-        return this.period;
+    public String getDescription() {
+        return description;
     }
 
-    public void setPeriod(Date period) {
-        this.period = period;
-    }
-
-    public String getType() {
-        return this.type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getInfo() {
-        return this.info;
-    }
-
-    public void setInfo(String info) {
-        this.info = info;
-    }
-
-    public ArrayList<Category> getCategories() {
-        return this.categories;
-    }
-
-    public void setCategories(ArrayList<Category> categories) {
-        this.categories = categories;
-    }
-
-    public void addCategoryToGrant(Category category) {
-        this.categories.add(category);
-    }
-
-    public void removeCategoryFromGrant(Category category) {
-        this.categories.remove(category);
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
