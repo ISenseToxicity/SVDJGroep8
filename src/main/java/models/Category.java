@@ -2,7 +2,7 @@ package models;
 
 public class Category {
 
-    public String id;
+    public Long id;
     public String name;
     public String description;
     public boolean active;
@@ -10,22 +10,22 @@ public class Category {
     public Category() {
     }
 
-    public Category(String id, String name, String description) {
+    public Category(Long id, String name, String description) {
         this(id, name, description, true);
     }
 
-    public Category(String id, String name, String description, boolean active) {
+    public Category(Long id, String name, String description, boolean active) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.active = active;
     }
 
-    public String getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

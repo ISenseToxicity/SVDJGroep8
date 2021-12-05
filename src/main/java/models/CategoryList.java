@@ -27,8 +27,12 @@ public class CategoryList {
         this.activeCategories = categories;
     }
 
-    public void removeActiveCategory(String id) {
+    public void removeActiveCategory(Long id) {
         activeCategories.removeIf(activeCategory -> id.equals(activeCategory.getId()));
+    }
+
+    public void removeActiveCategory(Category category) {
+        activeCategories.remove(category);
     }
 
 }

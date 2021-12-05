@@ -162,21 +162,14 @@ public class FormController implements Controller {
         ArrayList<Category> activeCategories = categoryListController.getActiveCategories();
 
         for (Question remainingQuestion : questionListController.getRemainingQuestions()) {
+            System.out.println(remainingQuestion);
             for(Answer answer : remainingQuestion.getAnswers()) {
-                for (Category category : answer.getCategoryID()) {
-                    for(Category categoryId : currentQuestion.getAnswers().get(getGivenAnswer()).getCategoryID()) {
-                        if (category.getId().equals(categoryId.getId())) {
+                for (Category category : answer.getCategories()) {
+                    for(Category categoryId : currentQuestion.getAnswers().get(getGivenAnswer()).getCategories()) {
+                        if (category.equals(categoryId)) {
                             this.questionListController.removeRemainingQuestion(remainingQuestion);
                         }
                     }
-                }
-            }
-        }
-
-        for(Category categoryId : currentQuestion.getAnswers().get(getGivenAnswer()).getCategoryID()) {
-            for (Category activeCategory : activeCategories) {
-                if (categoryId.getId().equals(activeCategory.getId())) {
-                    categoryListController.removeActiveCategory(categoryId.getId());
                 }
             }
         }

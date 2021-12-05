@@ -26,7 +26,7 @@ public class CategoryListController implements Controller {
         return categoryList.getActiveCategories();
     }
 
-    public void removeActiveCategory(String id) {
+    public void removeActiveCategory(Long id) {
         this.categoryList.removeActiveCategory(id);
     }
 }

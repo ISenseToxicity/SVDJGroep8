@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class Answer {
     private String answerID;
     private String answerText;
-    private ArrayList<Category> categoryID;
+    private ArrayList<Category> categories;
 
     public Answer(String answerID, String answerText, ArrayList<Category> categoryID) {
         this.answerID = answerID;
         this.answerText = answerText;
-        this.categoryID = categoryID;
+        this.categories = categoryID;
     }
 
     public String getAnswerID() {
@@ -29,25 +29,25 @@ public class Answer {
         this.answerText = answerText;
     }
 
-    public ArrayList<Category> getCategoryID() {
-        return categoryID;
+    public ArrayList<Category> getCategories() {
+        return categories;
     }
 
-    public void setCategoryID(ArrayList<Category> categoryID) {
-        this.categoryID = categoryID;
+    public void setCategories(ArrayList<Category> categories) {
+        this.categories = categories;
     }
 
     @Override
     public String toString() {
-        StringBuilder category = null;
-        for(Category cat : categoryID) {
+        StringBuilder category = new StringBuilder();
+        for(Category cat : categories) {
             category.append(cat.toString()).append(",");
         }
+
         return "{" +
-                "\"answerID\": \"" + categoryID + "\"," +
+                "\"answerID\": \"" + answerID + "\"," +
                 "\"answerText\": \"" + answerText + "\"," +
-                "\"category\": "+ category +"\","+
-                "\"questionID\": \"" + categoryID +'\"' +
+                "\"category\": "+ category +"\""+
                 '}';
     }
 }
