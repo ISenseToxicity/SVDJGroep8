@@ -19,6 +19,7 @@ public class Category {
         this.name = name;
         this.description = description;
         this.active = active;
+
     }
 
     public Long getId() {

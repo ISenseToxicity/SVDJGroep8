@@ -162,7 +162,6 @@ public class FormController implements Controller {
         ArrayList<Category> activeCategories = categoryListController.getActiveCategories();
 
         for (Question remainingQuestion : questionListController.getRemainingQuestions()) {
-            System.out.println(remainingQuestion);
             for(Answer answer : remainingQuestion.getAnswers()) {
                 for (Category category : answer.getCategories()) {
                     for(Category categoryId : currentQuestion.getAnswers().get(getGivenAnswer()).getCategories()) {
