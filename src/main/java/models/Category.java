@@ -2,7 +2,7 @@ package models;
 
 public class Category {
 
-    public Long id;
+    public Long categoryID;
     public String name;
     public String description;
     public boolean active;
@@ -10,24 +10,24 @@ public class Category {
     public Category() {
     }
 
-    public Category(Long id, String name, String description) {
-        this(id, name, description, true);
+    public Category(Long categoryID, String name, String description) {
+        this(categoryID, name, description, true);
     }
 
-    public Category(Long id, String name, String description, boolean active) {
-        this.id = id;
+    public Category(Long categoryID, String name, String description, boolean active) {
+        this.categoryID = categoryID;
         this.name = name;
         this.description = description;
         this.active = active;
 
     }
 
-    public Long getId() {
-        return this.id;
+    public Long getCategoryID() {
+        return this.categoryID;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCategoryID(Long categoryID) {
+        this.categoryID = categoryID;
     }
 
     public String getName() {
@@ -57,7 +57,7 @@ public class Category {
     @Override
     public String toString() {
         return "{" +
-                "\"categoryID\": " + id + ',' +
+                "\"categoryID\": " + categoryID + ',' +
                 "\"description\": \"" + description + "\"," +
                 "\"name\": \"" + name + '\"' +
                 '}';

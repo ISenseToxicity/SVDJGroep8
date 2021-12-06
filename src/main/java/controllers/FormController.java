@@ -17,7 +17,6 @@ import services.AnimationService;
 import views.FormView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class FormController implements Controller {
     QuestionOrderController questionOrderController = (QuestionOrderController) ControllerRegistry.get(QuestionOrderController.class);
