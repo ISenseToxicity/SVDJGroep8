@@ -1,11 +1,8 @@
 package controllers;
 
 
-import daos.QuestionListDAO;
 import models.Question;
 import models.QuestionList;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class QuestionListController implements Controller {
@@ -18,6 +15,7 @@ public class QuestionListController implements Controller {
             questionList.appendQuestion(question);
         }
     }
+
     public ArrayList<Question> getQuestions() {
         return questionList.getQuestions();
     }

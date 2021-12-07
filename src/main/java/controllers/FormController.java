@@ -10,12 +10,22 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import models.Answer;
+import models.Category;
+import models.Question;
 import services.AnimationService;
 import views.FormView;
 
+import java.util.ArrayList;
+
 public class FormController implements Controller {
     QuestionOrderController questionOrderController = (QuestionOrderController) ControllerRegistry.get(QuestionOrderController.class);
+    GivenAnswerController givenAnswerController = (GivenAnswerController) ControllerRegistry.get(GivenAnswerController.class);
+    RouteController routeController = (RouteController) ControllerRegistry.get(RouteController.class);
+    QuestionListController questionListController = (QuestionListController) ControllerRegistry.get(QuestionListController.class);
+    CategoryListController categoryListController = (CategoryListController) ControllerRegistry.get(CategoryListController.class);
     FormView formView = new FormView();
+    long questionStartTime;
 
     @FXML Button nextButton;
     @FXML Button previousButton;
@@ -33,13 +43,14 @@ public class FormController implements Controller {
     @FXML CheckBox answer3;
     @FXML CheckBox answer4;
 
-    @FXML Label extraInfoDescription;
+    @FXML javafx.scene.control.Label extraInfoDescription;
 
     @FXML ScrollPane moreInfoPane;
 
     @FXML WebView infoVideo;
     @FXML WebEngine webEngine;
 
+    @FXML Label errorLabel;
 
     public void setStage(Stage primaryStage) {
         formView.setStage(primaryStage);
@@ -53,15 +64,17 @@ public class FormController implements Controller {
         AnimationService.createButtonAnimation(nextButton, nextLabel);
         AnimationService.createButtonAnimation(previousButton, previousLabel);
 
-        moreInfoButton.setOnMouseClicked(e -> showPopup());
-        closeButton.setOnMouseClicked(e -> closePopup());
+        moreInfoButton.setOnMouseClicked(event -> showPopup());
+        closeButton.setOnMouseClicked(event -> closePopup());
         nextButton.setOnMouseClicked(event -> changeToNextQuestion());
+        //previousButton.setOnMouseClicked(event -> ); //routeController.removeLastGivenAnswerFromRoute();
+
 
         infoVideo.setContextMenuEnabled(false);
         webEngine = infoVideo.getEngine();
 
         listeners();
-       changeToNextQuestion();
+        setFirstQuestion();
     }
 
     private void showPopup() {
@@ -71,45 +84,45 @@ public class FormController implements Controller {
         translateTransition.setByX(-620);
         translateTransition.play();
 
-        // TODO: Example video, DELETE LATER
+        // Example video, DELETE LATER
         webEngine.load("https://www.youtube.com/embed/WPyOl4Equpw");
         // ^^^^^^^^^^^^^^^^^^^^^^^^^^^
     }
 
-    private void listeners(){
+    private void listeners() {
         answer1.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (answer1.isSelected()) {
                 unSelectOtherCheckBoxes(answer1.getId());
             }
         });
         answer2.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if(answer2.isSelected()){
+            if (answer2.isSelected()) {
                 unSelectOtherCheckBoxes(answer2.getId());
             }
         });
         answer3.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if(answer3.isSelected()){
+            if (answer3.isSelected()) {
                 unSelectOtherCheckBoxes(answer3.getId());
             }
         });
         answer4.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if(answer4.isSelected()){
+            if (answer4.isSelected()) {
                 unSelectOtherCheckBoxes(answer4.getId());
             }
         });
     }
 
-    private void unSelectOtherCheckBoxes(String checkBoxID){
-      if(!checkBoxID.equals("answer1")){
-          answer1.setSelected(false);
-      }
-        if(!checkBoxID.equals("answer2")){
+    private void unSelectOtherCheckBoxes(String checkBoxID) {
+        if (!checkBoxID.equals("answer1")) {
+            answer1.setSelected(false);
+        }
+        if (!checkBoxID.equals("answer2")) {
             answer2.setSelected(false);
         }
-        if(!checkBoxID.equals("answer3")){
+        if (!checkBoxID.equals("answer3")) {
             answer3.setSelected(false);
         }
-        if(!checkBoxID.equals("answer4")){
+        if (!checkBoxID.equals("answer4")) {
             answer4.setSelected(false);
         }
     }
@@ -124,24 +137,86 @@ public class FormController implements Controller {
         webEngine.load("");
     }
 
-    private void changeQuestionText(){
+    private void changeQuestionText() {
         question.setText(this.questionOrderController.getCurrentQuestion().getQuestionText());
     }
 
-    private void changeextraInfoDescription(){
+    private void changeExtraInfoDescription() {
         extraInfoDescription.setText(this.questionOrderController.getCurrentQuestion().getExtraInfoTile());
     }
 
-    private void changeToNextQuestion(){
-         this.questionOrderController.calculateNextQuestion();
+    private void setFirstQuestion() {
+        this.questionStartTime = System.currentTimeMillis();
+        this.questionOrderController.calculateNextQuestion();
         changeAnswerTitle();
         changeQuestionText();
-        changeextraInfoDescription();
+        changeExtraInfoDescription();
         makeAnswerInvisible();
     }
 
-    private void changeAnswerTitle(){
-        for(int i = 0; this.questionOrderController.getCurrentQuestion().getAnswers().size() > i; i++){
+    private void changeToNextQuestion() {
+        long questionEndTime = System.currentTimeMillis();
+        int elapsedSeconds = (int) (this.questionStartTime - questionEndTime) / 1000;
+        Question currentQuestion = this.questionOrderController.getCurrentQuestion();
+
+        CategoryListController categoryListController = (CategoryListController) ControllerRegistry.get(CategoryListController.class);
+        ArrayList<Category> activeCategories = categoryListController.getActiveCategories();
+
+        if (getGivenAnswer() < 0 || getGivenAnswer() > currentQuestion.getAnswers().size()) {
+            errorLabel.setText("Selecteer graag een antwoord");
+            return;
+        }
+        errorLabel.setText("");
+
+        Question toRemove = null;
+        for (Question remainingQuestion : questionListController.getRemainingQuestions()) {
+            for(Answer answer : remainingQuestion.getAnswers()) {
+                for (Category category : answer.getCategory()) {
+                    for(Category categoryId : currentQuestion.getAnswers().get(getGivenAnswer()).getCategory()) {
+                        if (category.equals(categoryId)) {
+                            toRemove = remainingQuestion;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        this.questionListController.removeRemainingQuestion(toRemove);
+
+        routeController.addGivenAnswerToRoute(
+                this.givenAnswerController.addGivenAnswer(
+                        "Get this from request DAO",
+                        elapsedSeconds,
+                        currentQuestion,
+                        currentQuestion.getAnswers().get(getGivenAnswer())
+                ));
+        this.questionOrderController.calculateNextQuestion();
+        changeAnswerTitle();
+        changeQuestionText();
+        changeExtraInfoDescription();
+        makeAnswerInvisible();
+        this.questionStartTime = System.currentTimeMillis();
+    }
+
+    public int getGivenAnswer() {
+        if (answer1.isSelected()) {
+            return 0;
+        }
+        if (answer2.isSelected()) {
+            return 1;
+        }
+        if (answer3.isSelected()) {
+            return 2;
+        }
+        if (answer4.isSelected()) {
+            return 3;
+        }
+        return -1; //should stop the user from advancing to next question
+    }
+
+    private void changeAnswerTitle() {
+        for (int i = 0; this.questionOrderController.getCurrentQuestion().getAnswers().size() > i; i++) {
             String answerTitle = this.questionOrderController.getCurrentQuestion().getAnswers().get(i).getAnswerText();
             switch (i) {
                 case 0 -> answer1.setText(answerTitle);

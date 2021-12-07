@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class Answer {
     private String answerID;
     private String answerText;
-    private ArrayList<Category> categoryID;
+    private ArrayList<Category> category;
 
-    public Answer(String answerID, String answerText, ArrayList<Category> categoryID) {
+    public Answer(String answerID, String answerText, ArrayList<Category> category) {
         this.answerID = answerID;
         this.answerText = answerText;
-        this.categoryID = categoryID;
+        this.category = category;
     }
 
     public String getAnswerID() {
@@ -29,25 +29,25 @@ public class Answer {
         this.answerText = answerText;
     }
 
-    public ArrayList<Category> getCategoryID() {
-        return categoryID;
+    public ArrayList<Category> getCategory() {
+        return category;
     }
 
-    public void setCategoryID(ArrayList<Category> categoryID) {
-        this.categoryID = categoryID;
+    public void setCategory(ArrayList<Category> category) {
+        this.category = category;
     }
 
     @Override
     public String toString() {
-        StringBuilder category = null;
-        for(Category cat : categoryID) {
+        StringBuilder category = new StringBuilder();
+        for(Category cat : this.category) {
             category.append(cat.toString()).append(",");
         }
+
         return "{" +
-                "\"answerID\": \"" + categoryID + "\"," +
+                "\"answerID\": \"" + answerID + "\"," +
                 "\"answerText\": \"" + answerText + "\"," +
-                "\"category\": "+ category +"\","+
-                "\"questionID\": \"" + categoryID +'\"' +
+                "\"category\": "+ category +"\""+
                 '}';
     }
 }

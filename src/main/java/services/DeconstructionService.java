@@ -60,6 +60,7 @@ public class DeconstructionService {
 
     private Category getCatogory(JsonElement item) {
         return (Category) new Gson().fromJson(item, Category.class);
+
     }
 
     private Answer getAnswer(JsonElement item) {

@@ -78,7 +78,7 @@ public class Question {
 
     @Override
     public String toString() {
-        StringBuilder answerI = null;
+        StringBuilder answerI = new StringBuilder();
         for(Answer answer : answers) {
             answerI.append(answer.toString()).append(",");
         }

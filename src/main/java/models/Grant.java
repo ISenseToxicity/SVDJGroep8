@@ -2,16 +2,15 @@ package models;
 
 public class Grant {
 
-        private String grantID;
+    private String grantID;
+    private String name;
+    private String description;
 
-        private String name;
-        private String description;
-
-        public Grant(String grantID, String name, String description) {
-            this.grantID = grantID;
-            this.name = name;
-            this.description = description;
-        }
+    public Grant(String grantID, String name, String description) {
+        this.grantID = grantID;
+        this.name = name;
+        this.description = description;
+    }
 
     public String getGrantID() {
         return grantID;

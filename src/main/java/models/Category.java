@@ -1,23 +1,37 @@
 package models;
 
 public class Category {
-    private Long categoryID;
 
-    private String name;
-    private String description;
-
-    public Category(Long categoryID, String name, String description) {
-        this.categoryID = categoryID;
-        this.name = name;
-        this.description = description;
-    }
+    public Long categoryID;
+    public String name;
+    public String description;
+    public boolean active;
 
     public Category() {
     }
 
-    //    Setters and Getters
+    public Category(Long categoryID, String name, String description) {
+        this(categoryID, name, description, true);
+    }
+
+    public Category(Long categoryID, String name, String description, boolean active) {
+        this.categoryID = categoryID;
+        this.name = name;
+        this.description = description;
+        this.active = active;
+
+    }
+
+    public Long getCategoryID() {
+        return this.categoryID;
+    }
+
+    public void setCategoryID(Long categoryID) {
+        this.categoryID = categoryID;
+    }
+
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -25,19 +39,19 @@ public class Category {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public void setCategoryID(Long categoryID) {
-        this.categoryID = categoryID;
+    public boolean isActive() {
+        return this.active;
     }
 
-    public Long getCategoryID() {
-        return categoryID;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     @Override

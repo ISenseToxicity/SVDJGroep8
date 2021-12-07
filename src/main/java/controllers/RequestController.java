@@ -87,8 +87,7 @@ public class RequestController implements Controller {
 //        JsonElement jsonRequest = convertToNewData(request);
         JsonArray receivedRequest = reformToSendRequest(request, className);
         if (request.getDuty().equals("GET")) {
-            ArrayList requestAnswer = decryptReceivedRequest(receivedRequest, className);
-            return requestAnswer;
+            return decryptReceivedRequest(receivedRequest, className);
         } else {
             return new ArrayList<>();
         }
